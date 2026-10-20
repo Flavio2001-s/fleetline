@@ -1,0 +1,1960 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0A1633"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg%20width=%22512%22%20height=%22512%22%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20512%20512%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22bg0%22%20x1=%220%22%20y1=%220%22%20x2=%221%22%20y2=%221%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%232F6BFF%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%230B1B3F%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22c0%22%20x1=%220%22%20y1=%220%22%20x2=%221%22%20y2=%220%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%235BE3F7%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%231FC4E8%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22w0%22%20x1=%220%22%20y1=%220%22%20x2=%221%22%20y2=%220%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23fff%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23E4EEFF%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width=%22512%22%20height=%22512%22%20rx=%22116%22%20fill=%22url(%23bg0)%22/%3E%3Crect%20width=%22512%22%20height=%22512%22%20rx=%22116%22%20fill=%22url(%23bg0)%22/%3E%3Cg%20transform=%22translate(-12%200)%22%3E%3Cpath%20d=%22M139%20145.0H317L291%20195.0H113z%22%20fill=%22url(%23w0)%22%20stroke=%22url(%23w0)%22%20stroke-width=%2218%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M353%20145.0H431L405%20195.0H327z%22%20fill=%22url(%23c0)%22%20stroke=%22url(%23c0)%22%20stroke-width=%2218%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M139%20231.0H239L213%20281.0H113z%22%20fill=%22url(%23c0)%22%20stroke=%22url(%23c0)%22%20stroke-width=%2218%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M275%20231.0H431L405%20281.0H249z%22%20fill=%22url(%23w0)%22%20stroke=%22url(%23w0)%22%20stroke-width=%2218%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M139%20317.0H317L291%20367.0H113z%22%20fill=%22url(%23w0)%22%20stroke=%22url(%23w0)%22%20stroke-width=%2218%22%20stroke-linejoin=%22round%22/%3E%3Cpath%20d=%22M353%20317.0H431L405%20367.0H327z%22%20fill=%22url(%23c0)%22%20stroke=%22url(%23c0)%22%20stroke-width=%2218%22%20stroke-linejoin=%22round%22/%3E%3C/g%3E%3C/svg%3E">
+<style>:root{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Fleetline</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,500;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Concept: banco di smistamento da autostazione. Cifre condensate da tabellone orari, righe sobrie.
+   Verde "cartello autostradale" come unico accento; rosso e ambra riservati agli avvisi. */
+:root{
+  --bg:#EDF1F9; --surface:#FFFFFF; --surface-2:#F3F6FC; --line:#DCE3F2; --line-strong:#B6C3DE;
+  --ink:#0E1A33; --ink-2:#43506C; --ink-3:#6F7C9B;
+  --accent:#2557E8; --accent-ink:#FFFFFF; --accent-soft:#E1E9FF;
+  --ok:#0B8A5A; --ok-soft:#DDF4E8; --cyan:#22D3EE;
+  --danger:#B3261E; --danger-soft:#FBE4E1;
+  --warn:#8F5200; --warn-soft:#FBECD2;
+  --info:#2A5C9A; --info-soft:#E0EBF8;
+  --shadow:0 1px 2px rgba(22,38,44,.08),0 8px 24px rgba(22,38,44,.08);
+  --f-display:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1226; --surface:#111B36; --surface-2:#16223F; --line:#24345A; --line-strong:#34497A;
+    --ink:#E6ECFA; --ink-2:#A9B7D6; --ink-3:#8394BB; --accent:#5B8CFF; --accent-ink:#06122E; --accent-soft:#16295C;
+    --ok:#4FD39B; --ok-soft:#10382B; --cyan:#22D3EE;
+    --danger:#FF8F85; --danger-soft:#3B1B19;
+    --warn:#F2B764; --warn-soft:#3B2A10;
+    --info:#8BB8EE; --info-soft:#162B44;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1226; --surface:#111B36; --surface-2:#16223F; --line:#24345A; --line-strong:#34497A;
+  --ink:#E6ECFA; --ink-2:#A9B7D6; --ink-3:#8394BB; --accent:#5B8CFF; --accent-ink:#06122E; --accent-soft:#16295C;
+  --ok:#4FD39B; --ok-soft:#10382B; --cyan:#22D3EE;
+  --danger:#FF8F85; --danger-soft:#3B1B19;
+  --warn:#F2B764; --warn-soft:#3B2A10;
+  --info:#8BB8EE; --info-soft:#162B44;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font:14px/1.45 var(--f-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px)); padding-block:0;
+}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.5}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1500px;margin:0 auto;padding-block:10px 56px}
+h1,h2,h3,h4,p{margin:0}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+
+/* header */
+.top{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-top:6px}
+.brand{display:flex;align-items:center;gap:10px;padding-bottom:12px}
+.brand svg{width:30px;height:30px;color:var(--accent)}
+.brand b{font-family:var(--f-display);font-size:26px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;line-height:1}
+.brand small{display:block;color:var(--ink-3);font-size:12px;margin-top:2px}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px 11px;font-weight:500;color:var(--ink-2);display:flex;gap:8px;align-items:center}
+.nav button:hover{color:var(--ink)}
+.nav button[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.badge{min-width:20px;height:20px;padding:0 6px;border-radius:10px;font-size:12px;line-height:20px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.badge.danger{background:var(--danger);color:var(--surface)}
+.badge.warn{background:var(--warn-soft);color:var(--warn)}
+.sync{margin-left:auto;padding-bottom:12px;color:var(--ink-3);font-size:12px;display:flex;align-items:center;gap:7px}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+.sync.local i{background:var(--warn)}
+main{padding-top:20px}
+.banner{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--info-soft);color:var(--info);border-radius:8px;padding:10px 14px;margin-bottom:16px}
+.banner span{color:var(--ink)}
+
+/* buttons & fields */
+.btn{background:var(--surface);border:1px solid var(--line-strong);border-radius:7px;padding:7px 13px;font-weight:500;display:inline-flex;align-items:center;gap:7px;line-height:1.2}
+.btn:hover:not(:disabled){background:var(--surface-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover:not(:disabled){background:var(--accent);filter:brightness(1.08)}
+.btn.danger{border-color:var(--danger);color:var(--danger)}
+.btn.danger.armed{background:var(--danger);color:var(--surface)}
+.btn.sm{padding:4px 9px;font-size:13px}
+.btn.ico{padding:7px 9px}
+.btn svg{width:16px;height:16px}
+.btn.link{border-color:transparent;background:none;color:var(--accent);padding:4px 6px}
+.bar{display:flex;gap:10px 14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:16px}
+.bar .grow{flex:1;min-width:160px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>span{font-size:12px;color:var(--ink-2);font-weight:500}
+.field>span em{font-style:normal;color:var(--ink-3);font-weight:400}
+input[type=text],input[type=number],input[type=date],input[type=time],input[type=search],input[type=tel],select,textarea{
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:7px;padding:7px 10px;min-width:0;width:100%
+}
+textarea{resize:vertical;min-height:70px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.pick{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--ink-2)}
+.pick:hover{border-color:var(--line-strong)}
+.pick.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+
+/* tabella servizi */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.scroll{overflow-x:auto}
+table.tbl{width:100%;min-width:1040px;border-collapse:separate;border-spacing:0}
+.tbl th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr.srow{cursor:pointer}
+.tbl tr.srow:hover td{background:var(--surface-2)}
+.tbl td.dayrow{background:var(--surface-2);font-family:var(--f-display);font-size:17px;font-weight:600;letter-spacing:.02em;padding:8px 12px;text-transform:capitalize}
+.tbl td.dayrow span{font-family:var(--f-body);font-size:12.5px;font-weight:400;color:var(--ink-2);margin-left:12px;text-transform:none;letter-spacing:0}
+.tm{font-family:var(--f-display);font-weight:600;font-size:22px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tm small{display:block;font-family:var(--f-mono);font-size:11px;font-weight:400;color:var(--ink-3);margin-top:4px}
+.sub{display:block;color:var(--ink-3);font-size:12.5px;margin-top:2px}
+.price{white-space:nowrap}
+.price small{display:block;color:var(--ink-3);font-size:12px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:5px}
+.ex{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--info);background:var(--info-soft);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;font-size:12.5px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.chip.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.chip.danger{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.chip.empty{border-style:dashed;background:transparent;color:var(--ink-3)}
+.chip svg{width:13px;height:13px}
+.stack{display:flex;gap:5px;flex-wrap:wrap}
+.empty{padding:44px 20px;text-align:center;color:var(--ink-2)}
+.empty h3{font-family:var(--f-display);font-size:24px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.empty .btn{margin-top:14px}
+.loading{padding:60px 20px;text-align:center;color:var(--ink-2)}
+.msgs{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px;font-size:12.5px}
+.msgs li{display:flex;gap:6px;align-items:flex-start}
+.msgs li svg{width:14px;height:14px;flex:none;margin-top:2px}
+.msgs .danger{color:var(--danger)}
+.msgs .warn{color:var(--warn)}
+
+/* assegnazione */
+.presets{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0 6px}.fcohint{color:var(--ink-3);font-size:12px}
+.hotelcard textarea{width:100%;font:inherit;padding:8px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);color:var(--ink)}
+.daynav{display:flex;gap:6px;align-items:center}
+.daynav input{font:inherit;padding:5px 8px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);color:var(--ink)}
+.daychips{margin-bottom:10px;flex-wrap:wrap}
+.cnt{margin-left:6px;font-size:11px;font-weight:700;padding:0 6px;border-radius:999px;background:var(--surface-2);color:var(--ink-2)}
+.cnt.open{background:var(--warn-soft);color:var(--warn)}
+.dayhead{display:flex;gap:6px 16px;align-items:baseline;flex-wrap:wrap;margin:4px 0 8px}
+.dayhead h2{font-family:var(--f-display);font-size:24px;font-weight:600;margin:0;text-transform:capitalize}
+.dayhead span{color:var(--ink-2);font-size:13.5px}
+.wcount{color:var(--warn)}
+.pairbar .hint{margin-left:auto;font-size:12.5px;color:var(--ink-3)}
+.alayout2{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:16px;align-items:start}
+@media (max-width:1150px){.alayout2{grid-template-columns:minmax(0,1fr)}}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.at{width:100%;border-collapse:collapse;font-size:14px}
+.at th{position:sticky;top:0;text-align:left;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:8px 8px;border-bottom:1px solid var(--line-strong);background:var(--surface-2);white-space:nowrap}
+.at td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.at th.num,.at td.num{text-align:right;font-variant-numeric:tabular-nums}
+.at tr.ar td:first-child{border-left:4px solid transparent}
+.at tr.paired td:first-child{border-left-color:hsl(var(--h) 55% 48%)}
+.at tr.paired{background:color-mix(in srgb,hsl(var(--h) 55% 50%) 7%,var(--surface))}
+.at tr.picked{background:var(--accent-soft)}
+.at tr.on{outline:2px solid var(--accent);outline-offset:-2px}
+.at td[data-action]{cursor:pointer}
+.at tr:hover td[data-action]{text-decoration:underline;text-decoration-color:var(--line-strong)}
+.c-ck{width:26px}.c-ck input{width:17px;height:17px;accent-color:var(--accent)}
+.c-tm{font-family:var(--f-mono);font-weight:600;font-size:15px;white-space:nowrap}
+.c-h{min-width:150px;max-width:230px}
+.c-g{min-width:130px}.c-s{min-width:200px}
+.c-w{min-width:120px}
+.accb{border:0;border-radius:6px;min-width:26px;height:26px;font-weight:700;color:#fff;background:hsl(var(--h) 55% 42%);cursor:pointer}
+.rsel{font:inherit;font-size:13.5px;max-width:190px;padding:5px 6px;border-radius:7px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)}
+.rsel.empty{border-style:dashed;color:var(--ink-3)}
+.rsel.ok{border-color:var(--accent)}
+.rsel.warn{border-color:var(--warn);background:var(--warn-soft)}
+.rsel.danger{border-color:var(--danger);background:var(--danger-soft)}
+.side{display:flex;flex-direction:column;gap:12px}
+.side .card{padding:12px 14px}
+.side h3{margin:0 0 8px;font-family:var(--f-display);font-size:17px;font-weight:600}
+.rl{list-style:none;margin:0 0 6px;padding:0;display:flex;flex-direction:column;gap:4px}
+.rl li{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13.5px;padding:4px 0;border-bottom:1px dashed var(--line)}
+.rl .nm{font-weight:600}.rl .nm small{display:block;font-weight:400;color:var(--ink-3);font-size:12px}
+.rl .st{margin-left:auto;color:var(--ink-2);font-variant-numeric:tabular-nums;font-size:12.5px;text-align:right}
+.rl li.free .st{color:var(--accent)}
+.alayout{display:grid;grid-template-columns:minmax(340px,5fr) minmax(0,6fr);gap:20px;align-items:start}
+@media (max-width:1000px){.alayout{grid-template-columns:minmax(0,1fr)}}
+.col-h{display:flex;align-items:baseline;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.col-h h2{font-family:var(--f-display);font-size:26px;font-weight:600;letter-spacing:.02em}
+.col-h span{color:var(--ink-2);font-size:13px}
+.step{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--surface);font-family:var(--f-display);font-size:16px;font-weight:700;margin-right:8px;vertical-align:2px}
+.pairbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line-strong);border-radius:10px;padding:8px 10px;margin-bottom:10px;box-shadow:var(--shadow)}
+.pairbar b{font-variant-numeric:tabular-nums}
+.dayh{font-family:var(--f-display);font-size:17px;font-weight:600;padding:12px 4px 6px;text-transform:capitalize;color:var(--ink-2)}
+.arow{display:grid;grid-template-columns:22px 54px minmax(0,1fr) auto;gap:10px;align-items:start;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:6px;cursor:pointer;width:100%;text-align:left}
+.arow:hover{border-color:var(--line-strong)}
+.arow.picked{border-color:var(--accent);background:var(--accent-soft)}
+.arow.paired{cursor:pointer;background:var(--surface-2)}
+.arow.paired.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.arow input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--accent)}
+.arow .tm{font-size:21px}
+.arow b{font-weight:600}
+.arow .sub{margin-top:1px}
+.accs{display:flex;flex-direction:column;gap:12px}
+.acc{overflow:hidden;border-left:5px solid var(--line-strong)}
+.acc.lvl-danger{border-left-color:var(--danger)}
+.acc.lvl-warn{border-left-color:var(--warn)}
+.acc.lvl-ok{border-left-color:var(--accent)}
+.acc.sel{box-shadow:0 0 0 2px var(--accent)}
+.acc-head{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;padding:12px 14px}
+.acc-n{font-family:var(--f-display);font-size:22px;font-weight:700;width:34px;height:34px;border-radius:7px;background:var(--ink);color:var(--surface);display:grid;place-items:center}
+.acc-title{font-weight:600;overflow-wrap:anywhere}
+.acc-meta{color:var(--ink-2);font-size:12.5px}
+.acc-svcs{list-style:none;margin:0;padding:0 14px 8px}
+.acc-svcs li{display:grid;grid-template-columns:50px minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 0;border-top:1px dashed var(--line)}
+.acc-svcs .tm{font-size:18px}
+.acc-body{padding:0 14px 14px}
+.acc-foot{display:flex;justify-content:space-between;gap:8px;padding:0 14px 12px}
+.pk-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:1250px){.pk-cols{grid-template-columns:minmax(0,1fr)}}
+.pk-cols h4{font-family:var(--f-display);font-size:18px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);margin-bottom:8px}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:10px;align-items:start;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 11px;width:100%}
+.opt:hover{border-color:var(--line-strong);background:var(--surface-2)}
+.opt .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:5px}
+.opt.lvl-warn .dot{background:var(--warn)}
+.opt.lvl-danger .dot{background:var(--danger)}
+.opt.on{border-color:var(--accent);background:var(--accent-soft)}
+.opt b{font-weight:600}
+.opt small{color:var(--ink-2)}
+.opt .msgs{margin-top:4px}
+.opt-tag{font-size:12px;font-weight:600;color:var(--ink-3);white-space:nowrap}
+.opt.on .opt-tag{color:var(--accent)}
+.opt.lvl-danger:not(.on) .opt-tag{color:var(--danger)}
+.opt.lvl-warn:not(.on) .opt-tag{color:var(--warn)}
+
+/* riposi */
+.rv-wrap{overflow:auto;max-height:calc(100vh - 260px);min-height:200px}
+table.rvt{border-collapse:separate;border-spacing:0;width:100%}
+.rvt th,.rvt td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:0;vertical-align:top;min-width:116px;background:var(--surface)}
+.rvt thead th{position:sticky;top:0;z-index:2;font-family:var(--f-display);font-size:16px;font-weight:600;padding:8px 6px;text-align:center;text-transform:capitalize}
+.rvt thead th small{display:block;font-family:var(--f-body);font-size:11px;font-weight:400;color:var(--ink-3);text-transform:none}
+.rvt thead th.today{color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.rvt .who{position:sticky;left:0;z-index:1;min-width:170px;max-width:170px;padding:10px 12px;text-align:left}
+.rvt thead .who{z-index:3}
+.rvt .who b{display:block}
+.rvt .who small{color:var(--ink-3);font-size:12px}
+.rc{display:block;width:100%;height:100%;min-height:86px;text-align:left;border:0;padding:8px 9px;background:var(--surface-2);line-height:1.3}
+.rc .t{font-family:var(--f-display);font-size:19px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.rc .l{display:block;font-size:12px;color:var(--ink-2);margin-top:3px}
+.rc .l.bad{color:var(--warn);font-weight:600}
+.rc.lvl-warn{background:var(--warn-soft)}
+.rc.lvl-danger{background:var(--danger-soft)}
+.rc.free{background:var(--accent-soft);color:var(--accent);cursor:default}
+.rc.free .t{font-size:16px}
+.rc.free .l{color:var(--accent)}
+.rc.none{background:var(--surface);color:var(--ink-3);cursor:default}
+.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink-2);font-size:12.5px;margin-top:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1px solid var(--line-strong)}
+
+/* avvisi / risorse */
+.vgrid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+@media (max-width:980px){.vgrid{grid-template-columns:minmax(0,1fr)}}
+.alist{display:flex;flex-direction:column;gap:10px}
+.acard{padding:14px 16px;border-left:5px solid var(--warn)}
+.acard.lvl-danger{border-left-color:var(--danger)}
+.acard header{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.acard h3{font-size:15px;font-weight:600}
+.acard h3 span{font-weight:400;color:var(--ink-2);margin-left:8px}
+.rules{padding:16px 18px}
+.rules h3,.res h3{font-family:var(--f-display);font-size:20px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
+.rules .field{margin-bottom:12px}
+.rules .hint{font-size:12px;color:var(--ink-3);margin-top:-6px;margin-bottom:12px}
+.rgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+@media (max-width:980px){.rgrid{grid-template-columns:minmax(0,1fr)}}
+.res{padding:16px 18px}
+.res header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.res header h3{margin:0}
+.rtbl{width:100%;border-collapse:collapse}
+.rtbl td,.rtbl th{padding:9px 6px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.rtbl th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);border-top:0}
+
+/* pannello laterale */
+#scrim{position:fixed;inset:0;background:rgba(10,20,24,.45);z-index:50}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(480px,100vw);background:var(--surface);z-index:60;display:flex;flex-direction:column;box-shadow:var(--shadow);border-left:1px solid var(--line)}
+#drawer header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line);padding-top:max(16px,env(safe-area-inset-top,0px))}
+#drawer h2{font-family:var(--f-display);font-size:26px;font-weight:600}
+.dbody{padding:18px 20px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:14px}
+.dfoot{display:flex;gap:8px;flex-wrap:wrap;padding:14px 20px;border-top:1px solid var(--line);padding-bottom:max(14px,env(safe-area-inset-bottom,0px));background:var(--surface-2)}
+.dfoot .sp{margin-left:auto}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.check{display:flex;gap:9px;align-items:flex-start;color:var(--ink-2)}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.check small{display:block;color:var(--ink-3)}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:7px;overflow:hidden;align-self:flex-start}
+.seg label{padding:7px 12px;cursor:pointer;color:var(--ink-2);border-right:1px solid var(--line-strong)}
+.seg label:last-child{border-right:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--accent);color:var(--accent-ink)}
+.seg label:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:-2px}
+.tot{color:var(--ink-2);font-size:13px;min-height:20px}
+.ferr{color:var(--danger);min-height:18px;font-size:13px}
+#toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 16px;border-radius:8px;z-index:80;max-width:min(92vw,520px);box-shadow:var(--shadow)}
+@media (prefers-reduced-motion:no-preference){
+  #drawer{animation:slide .18s ease-out}
+  @keyframes slide{from{transform:translateX(24px);opacity:.4}to{transform:none;opacity:1}}
+}
+/* --- assegnazione: versione leggera --- */
+.dayhead{margin:0 0 6px}.dayhead h2{font-size:20px}
+.tw{border:0;border-radius:0;background:none}
+.at{font-size:13.5px}
+.at th{position:static;background:none;border-bottom:1px solid var(--line);font-size:11px;font-weight:500;padding:4px 8px}
+.at td{padding:7px 8px;border-bottom:1px solid var(--line)}
+.at tr.paired{background:none}
+.at tr.picked{background:var(--accent-soft)}
+.at tr.on{outline:0;background:var(--surface-2)}
+.at tr.ar td:first-child{border-left-width:3px}
+.at tr.paired td:first-child{border-left-color:hsl(var(--h) 45% 55%)}
+.at tr:hover td[data-action]{text-decoration:none}
+.at tr:hover{background:var(--surface-2)}
+.c-tm{font-size:14px}
+.accb{min-width:22px;height:22px;font-size:12px;font-weight:600;background:hsl(var(--h) 40% 50%)}
+.at .tag{font-size:10.5px;padding:0 4px}
+.at .sub{font-size:12px}
+.at .chip{font-size:11.5px;padding:1px 7px}
+.at .c-x .btn{opacity:0}.at tr:hover .c-x .btn{opacity:1}
+.rsel{border-color:transparent;background:var(--surface-2);font-size:13px;padding:4px 6px}
+.rsel.empty{background:none;border:1px dashed var(--line-strong)}
+.rsel.ok{border-color:transparent}
+.rsel.warn{border-color:var(--warn)}.rsel.danger{border-color:var(--danger)}
+.side{gap:18px;padding-top:2px}
+.side h3{font-family:var(--f-body);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.rl li{border-bottom:0;padding:3px 0;font-size:13px}
+.rl .nm{font-weight:500}
+.rl .chip{padding:0 5px}
+.pairfloat{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;gap:10px;align-items:center;background:var(--ink);color:var(--surface);padding:8px 10px 8px 16px;border-radius:999px;box-shadow:var(--shadow)}
+.pairfloat .btn{border-radius:999px}
+.pairfloat .btn:not(.primary){background:transparent;color:var(--surface);border-color:var(--surface)}
+.pairfloat .btn.link{border-color:transparent;text-decoration:underline}
+.rbtn{font:inherit;font-size:13px;width:150px;max-width:100%;text-align:left;padding:4px 8px;border-radius:7px;border:1px solid transparent;background:var(--surface-2);color:var(--ink);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rbtn:hover{border-color:var(--line-strong)}
+.rbtn.empty{background:none;border:1px dashed var(--line-strong);color:var(--ink-3)}
+.rbtn.warn{border-color:var(--warn);background:var(--warn-soft)}
+.rbtn.danger{border-color:var(--danger);background:var(--danger-soft)}
+.pop{position:fixed;z-index:40;display:flex;flex-direction:column;max-height:min(70vh,520px);background:var(--surface);color:var(--ink);border:1px solid var(--line-strong);border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.28);overflow:hidden}
+.pop-h{padding:8px 10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.pop-h input{font:inherit;padding:6px 8px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface);color:var(--ink);width:100%}
+.pop-t{font-size:11.5px;color:var(--ink-3)}
+.pop-l{overflow:auto;padding:2px 0}
+.pgh{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding:8px 12px 2px}
+.pi{display:flex;gap:8px;align-items:flex-start;width:100%;text-align:left;border:0;background:none;color:inherit;font:inherit;padding:6px 12px;cursor:pointer}
+.pi:hover,.pi:focus-visible{background:var(--surface-2)}
+.pi .dot{width:9px;height:9px;border-radius:50%;margin-top:5px;background:var(--accent);flex:none}
+.pi.lvl-warn .dot{background:var(--warn)}.pi.lvl-danger .dot{background:var(--danger)}
+.pi .pn{display:flex;flex-direction:column;min-width:0;flex:1}
+.pi small{color:var(--ink-3);font-size:12px}
+.pi .pw{color:var(--warn)}.pi.lvl-danger .pw{color:var(--danger)}
+.pi.on{background:var(--accent-soft)}.pi .pon{font-size:11px;color:var(--accent);font-weight:600}
+.pop-clear{border:0;border-top:1px solid var(--line);background:none;color:var(--danger);font:inherit;padding:8px 12px;text-align:left;cursor:pointer}
+.side{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto}
+.side h3 span{text-transform:none;letter-spacing:0;margin-left:6px;color:var(--ink-2)}
+.freel{margin:2px 0 0;font-size:12.5px;color:var(--ink-3);line-height:1.6}
+/* --- assegnazione: righe, ztl, footer --- */
+.alayout2{display:block}
+.tw{overflow-x:auto}
+.at td{padding:9px 8px}
+.at tr.ar.hasw td{border-bottom:0;padding-bottom:3px}
+.at tr.wr td{padding:0 8px 8px;border-bottom:1px solid var(--line)}
+.at tr.wr.paired td:first-child{border-left:3px solid hsl(var(--h) 45% 55%)}
+.at tr.wr:hover{background:none}
+.wl{list-style:none;margin:0;padding:0 0 0 4px;display:flex;gap:4px 14px;flex-wrap:wrap}
+.wl li{display:flex;gap:5px;align-items:center;font-size:12px}
+.wl svg{width:12px;height:12px;flex:none}
+.wl .warn{color:var(--warn)}.wl .danger{color:var(--danger)}
+.c-tm{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.c-g b,.c-s .svt{font-weight:600}
+.c-s .svt{display:block;max-width:340px;line-height:1.3}
+.c-p{text-align:center}
+.px{display:inline-block;min-width:30px;text-align:center;font-variant-numeric:tabular-nums;font-weight:600;padding:2px 6px;border-radius:6px;background:var(--surface-2)}
+.px.bad{background:var(--danger-soft);color:var(--danger)}
+.c-h{min-width:140px;color:var(--ink-2)}
+.c-z{min-width:130px}
+.zt{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;padding:1px 7px;border-radius:5px;background:var(--surface-2);color:var(--ink);border:1px solid var(--line-strong);margin-right:5px}
+.zt.z-B,.zt.z-A,.zt.z-A1{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.zt.z-C{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.zt.z-VAT,.zt.z-COL,.zt.z-G,.zt[class*="z-B"]:not(.z-B){background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.zok{font-size:11.5px;color:var(--accent);font-weight:600}
+.zno{font-size:11.5px;color:var(--warn);font-weight:600}
+.ztlbox{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+.ztlbox select{font:inherit;padding:7px 8px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);color:var(--ink)}
+.ztlhint{margin:0;font-size:12.5px;color:var(--ink-2);min-height:0}.ztlhint:empty{display:none}
+.foot{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;align-items:start}
+@media (max-width:900px){.foot{grid-template-columns:1fr}}
+.foot h3{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px;font-family:var(--f-body)}
+.foot h3 span{text-transform:none;letter-spacing:0;margin-left:6px;color:var(--ink-2)}
+.fl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.fi{display:flex;flex-direction:column;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:13px;min-width:0}
+.fi b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fi small{color:var(--ink-3);font-size:11.5px}
+.foot>.btn{grid-column:1/-1;justify-self:start}
+/* --- assegnazione a blocchi --- */
+.atw{overflow-x:auto;padding-bottom:4px}
+.atw>*{min-width:900px}
+.row{display:grid;grid-template-columns:70px 78px minmax(130px,1.2fr) 54px minmax(170px,2fr) minmax(120px,1fr) minmax(120px,1fr);gap:0 10px;align-items:start;padding:9px 10px}
+.row.ah{padding:4px 10px;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line)}
+.row [data-action]{cursor:pointer}
+.solos{border-bottom:1px solid var(--line)}
+.solos .row:hover{background:var(--surface-2)}
+.blk{margin:12px 0;border:1px solid var(--line-strong);border-left:5px solid hsl(var(--h) 50% 50%);border-radius:10px;background:var(--surface);overflow:hidden}
+.blk .row{border-top:1px solid var(--line)}
+.blk .row:hover{background:var(--surface-2)}
+.bh{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;padding:9px 10px;background:color-mix(in srgb,hsl(var(--h) 50% 50%) 10%,var(--surface))}
+.bn{font-family:var(--f-display);font-size:19px;font-weight:600;color:hsl(var(--h) 55% 38%);white-space:nowrap}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bn{color:hsl(var(--h) 60% 72%)}}
+:root[data-theme="dark"] .bn{color:hsl(var(--h) 60% 72%)}
+.bm{font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.bp{margin-left:auto;display:flex;align-items:center;gap:6px 8px;flex-wrap:wrap}
+.bl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.bp .rbtn{width:170px}
+.blk .wl{padding:6px 12px;border-top:1px solid var(--line)}
+.blk.lvl-danger{border-color:var(--danger);border-left-color:var(--danger)}
+.blk.lvl-warn{border-color:var(--warn);border-left-color:var(--warn)}
+.ai{display:flex;gap:4px;align-items:center}
+.acci{width:58px;font:inherit;font-weight:600;padding:4px 2px;cursor:pointer;border:1px dashed var(--line-strong);border-radius:7px;background:var(--surface);color:var(--ink)}
+.acci.on{border:1px solid transparent;background:hsl(var(--h) 45% 90%);color:hsl(var(--h) 55% 25%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .acci.on{background:hsl(var(--h) 35% 24%);color:hsl(var(--h) 60% 85%)}}
+:root[data-theme="dark"] .acci.on{background:hsl(var(--h) 35% 24%);color:hsl(var(--h) 60% 85%)}
+.accnew{width:24px;height:26px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface);color:var(--ink-2);cursor:pointer;font:inherit;line-height:1}
+.accnew:hover{border-color:var(--accent);color:var(--accent)}
+.hint2{margin:12px 2px 0;font-size:12.5px;color:var(--ink-3);max-width:70ch}
+.grp{display:flex;align-items:baseline;gap:10px;margin:16px 2px 4px;padding-bottom:3px;border-bottom:2px solid var(--ink)}.grp b{font-family:var(--f-display);font-size:19px;font-weight:600}.grp span{font-size:12.5px;color:var(--ink-3)}
+.rh{margin:14px 0 2px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+/* --- servizi: lista a giornate --- */
+.svhead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:4px 0 22px}
+.svhead h1{font-family:var(--f-display);font-size:clamp(42px,6vw,68px);line-height:.88;font-weight:600;letter-spacing:-.01em}
+.btn.big{padding:11px 22px;font-size:15px;border-radius:999px}
+.dsec{display:grid;grid-template-columns:128px minmax(0,1fr);gap:0 24px;padding:22px 0;border-top:1px solid var(--line)}
+.dsec.past{opacity:.62}
+.dd{position:sticky;top:16px;align-self:start;display:flex;flex-direction:column;line-height:1}
+.dw{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.dn{font-family:var(--f-display);font-size:88px;font-weight:600;line-height:.9;margin:3px 0 5px;letter-spacing:-.02em}
+.dmo{font-size:13px;color:var(--ink-2);text-transform:capitalize}
+.dtd{margin-top:10px;align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:3px 9px;border-radius:999px}
+.dl{display:flex;flex-direction:column;gap:8px;min-width:0}
+.dmeta{font-size:13px;color:var(--ink-2);margin:2px 2px 4px}.dmeta b{color:var(--warn);font-weight:600}
+.sv{display:grid;grid-template-columns:62px minmax(0,1fr) 52px minmax(90px,150px) 100px minmax(150px,220px);gap:6px 18px;align-items:center;padding:13px 18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;transition:border-color .12s,transform .12s,box-shadow .12s}
+.sv:hover,.sv:focus-visible{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:var(--shadow)}
+.sv time{font-family:var(--f-mono);font-size:19px;font-weight:600;letter-spacing:-.02em}
+.sm{min-width:0}
+.s1 b{font-weight:600;font-size:15px}.s1 span{color:var(--ink-2);margin-left:8px;font-size:13px}
+.s2{font-size:13.5px}.s2 em{font-style:normal;color:var(--ink-3);margin-left:8px}
+.s3{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spx{text-align:center}.spx b{font-size:19px;display:block;line-height:1;font-variant-numeric:tabular-nums}.spx small{font-size:11px;color:var(--ink-3)}
+.sz{min-width:0}
+.spr{text-align:right}.spr b{display:block;font-variant-numeric:tabular-nums}.spr small{color:var(--ink-3);font-size:11.5px}
+.sst{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2)}
+.sst i{width:9px;height:9px;border-radius:50%;background:var(--line-strong);flex:none}
+.sst.ok i{background:var(--accent)}.sst.acc i{background:var(--warn)}.sst.ext i{background:var(--ink-3)}
+.sst .wd{margin-left:auto;color:var(--warn);display:inline-flex}.sst .wd svg{width:15px;height:15px}
+.pastlink{margin-top:18px;text-align:center}
+@media (max-width:1100px){.dsec{grid-template-columns:minmax(0,1fr);gap:10px}.dd{position:static;flex-direction:row;align-items:baseline;gap:10px}.dn{font-size:44px;margin:0}.dtd{margin:0}
+ .sv{grid-template-columns:56px minmax(0,1fr) 46px;padding:12px 14px}.sv .sz,.sv .spr,.sv .sst{grid-column:2/-1;text-align:left}}
+/* --- auto --- */
+.autobar{align-items:center}
+.check.inline{max-width:360px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0 14px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--surface)}
+.tile b{display:block;font-family:var(--f-display);font-size:36px;line-height:1;font-weight:600}
+.tile span{font-size:12.5px;color:var(--ink-3)}
+.tile.bad{border-color:var(--danger)}.tile.bad b{color:var(--danger)}
+.rchip{padding:2px 10px;border-radius:999px;font-size:13px;font-weight:600;background:var(--accent-soft);color:var(--accent)}
+.rchip.danger{background:var(--danger-soft);color:var(--danger)}
+.row.mini{grid-template-columns:58px minmax(130px,1.2fr) 54px minmax(170px,2fr) minmax(120px,1fr);cursor:default}
+.autoexp{max-width:760px;margin-top:6px}
+.autoexp h3{margin-bottom:8px}.autoexp ul{margin:0 0 10px;padding-left:18px;display:flex;flex-direction:column;gap:6px;color:var(--ink-2)}
+.skipbox{margin-top:14px;border:1px dashed var(--line-strong);border-radius:12px;padding:12px 16px}
+.skipbox h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+.skipbox ul{margin:0;padding-left:18px}
+.applybar{position:sticky;bottom:12px;margin-top:16px;display:flex;gap:10px;align-items:center;justify-content:flex-end;padding:10px 14px;background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;box-shadow:var(--shadow)}
+.applybar span{margin-right:auto;color:var(--ink-2);font-size:13px}
+.dsum{padding:5px 12px 7px;font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line);background:var(--surface)}
+.dsum.warn{color:var(--warn)}
+
+/* --- rifinitura estetica --- */
+.autoexp.card{padding:20px 24px}
+.autoexp h3{font-family:var(--f-display);font-size:22px;font-weight:600;letter-spacing:.02em;text-transform:uppercase}
+.autoexp li{line-height:1.55}
+.autoexp .sub{margin-top:12px}
+.row .c-s .sub{margin-top:3px}
+.row{padding:11px 12px;align-items:center}
+.row.ah{padding:6px 12px}
+.row .c-tm{font-family:var(--f-display);font-size:24px;font-weight:600;letter-spacing:0;line-height:1}
+.row .c-p .px{background:none;font-family:var(--f-display);font-size:22px;font-weight:600;min-width:0;padding:0}
+.row .c-p .px.bad{background:none}
+.row .c-h{font-size:13.5px;color:var(--ink-2)}
+.blk{box-shadow:0 1px 2px rgba(22,38,44,.05);border-radius:12px}
+.blk .row{border-top:1px solid var(--line)}
+.bh{padding:10px 14px}
+.bn{font-size:24px;letter-spacing:.02em}
+.rchip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:13px;background:var(--surface-2);border:1px solid var(--line)}
+.rchip.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.rchip.danger{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.solos .row{border-top:1px solid var(--line)}
+.solos{border-bottom:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden}
+/* riposi: celle più leggere */
+.rc{min-height:64px;padding:7px 9px}
+.rc.none{background:var(--surface)}
+.rc.none .t,.rc.none .l{font-family:var(--f-body);font-size:12px;font-weight:400;color:var(--ink-3);opacity:.55}
+.rc.none .t{letter-spacing:.04em;text-transform:uppercase}
+.rc .t{font-size:18px}
+.rc.free .t{font-size:13px;font-family:var(--f-body);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.rc.free .l{font-size:11.5px}
+.rvt .who{padding:8px 12px}
+.rvt .who small{display:block}
+.rvt .who .ex{margin:2px 0 0;display:inline-block}
+/* tabelle risorse */
+.rtbl td{padding-block:9px}
+.rvt td{height:1px}.rvt td>.rc{height:100%}
+.rc .t{font-size:17px}
+
+/* --- assegnazione più snella --- */
+.sect{display:flex;align-items:baseline;gap:8px;margin:16px 0 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.sect span{background:var(--warn-soft);color:var(--warn);border-radius:999px;padding:0 7px;font-size:11px;letter-spacing:0}
+.sect+.solos{border-color:var(--warn);}
+.row{padding:6px 10px;gap:0 8px}
+.row.ah{padding:4px 10px}
+.row .c-tm{font-size:19px}
+.row .c-p .px{font-size:18px}
+.row .c-g .sub,.row .c-s .sub{font-size:11.5px;margin-top:0}
+.row .c-s .sub+.sub{display:none}
+.row .c-h{font-size:12.5px}
+.acci{width:40px;padding:2px;font-size:13px}
+.blk{margin:8px 0;border-left-width:4px;box-shadow:none}
+.bh{padding:5px 12px;gap:6px 12px}
+.bn{font-size:19px}
+.bm{font-size:12px}
+.rchip,.bp .rbtn{font-size:12.5px}
+.bp .rbtn{padding:2px 8px;width:150px}
+.dsum{padding:3px 12px;font-size:12px}
+.blk .wl{padding:3px 12px}
+.dayhead{margin-bottom:2px}
+.foot{margin-top:14px;padding-top:10px}
+.sect span.mute{background:var(--surface-2);color:var(--ink-2)}
+.sect+.solos:has(.row){border-color:var(--warn)}
+.sect+.solos.vet{border-color:var(--line)}
+
+/* --- Fleetline: identità blu --- */
+body{background:var(--bg);position:relative}
+body::before{content:"";position:fixed;right:-30px;bottom:-40px;width:620px;height:620px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><g transform='translate(-12 0)'><path d='M139 145.0H317L291 195.0H113z' fill='%232557E8' stroke='%232557E8' stroke-width='18' stroke-linejoin='round'/><path d='M353 145.0H431L405 195.0H327z' fill='%232557E8' stroke='%232557E8' stroke-width='18' stroke-linejoin='round'/><path d='M139 231.0H239L213 281.0H113z' fill='%232557E8' stroke='%232557E8' stroke-width='18' stroke-linejoin='round'/><path d='M275 231.0H431L405 281.0H249z' fill='%232557E8' stroke='%232557E8' stroke-width='18' stroke-linejoin='round'/><path d='M139 317.0H317L291 367.0H113z' fill='%232557E8' stroke='%232557E8' stroke-width='18' stroke-linejoin='round'/><path d='M353 317.0H431L405 367.0H327z' fill='%232557E8' stroke='%232557E8' stroke-width='18' stroke-linejoin='round'/></g></svg>") no-repeat center/contain;opacity:.085;pointer-events:none;z-index:60}
+.wrap{position:relative;z-index:1}
+.top{background:none;box-shadow:none;clip-path:none;border-bottom:0;padding-top:14px;margin-bottom:0;position:relative;isolation:isolate}
+.top::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:calc(50% - 50vw);width:100vw;background:linear-gradient(95deg,#0A1633 0%,#0F2A66 55%,#1A4BC4 120%)}
+.top::after{content:"";position:absolute;left:calc(50% - 50vw);width:100vw;bottom:0;height:2px;background:linear-gradient(90deg,#22D3EE,#2557E8 40%,transparent 85%);opacity:.85}
+.brand{padding-bottom:12px;gap:12px}
+.brand svg.logo{width:44px;height:44px;display:block;flex:none;color:initial;filter:drop-shadow(0 4px 10px rgba(34,211,238,.25))}
+.wm{display:flex;align-items:baseline;gap:7px;font-family:var(--f-display);font-style:italic;font-size:30px;line-height:1;letter-spacing:.04em;transform:skewX(-4deg)}
+.wm span{font-weight:700;color:#fff}
+.wm i{font-weight:500;color:var(--cyan);letter-spacing:.1em}
+.nav button{color:#9FB3E2;font-weight:500}
+.nav button:hover{color:#fff}
+.nav button[aria-current="page"]{color:#fff;font-weight:700;border-bottom-color:var(--cyan)}
+.sync{color:#9FB3E2}
+.badge.danger{background:#FF5B4F;color:#fff}
+main{padding-top:24px}
+.banner{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent)}
+.btn.primary{background:linear-gradient(135deg,#3D7BFF,#2557E8);border-color:transparent;box-shadow:0 2px 8px rgba(37,87,232,.3)}
+/* stati ok in verde, il blu resta per azione e selezione */
+.chip.ok,.rchip.ok,.rc.free,.rl li.free .st,.zok,.acc.lvl-ok{}
+.chip.ok,.rchip.ok{background:var(--ok-soft);color:var(--ok)}
+.rc.free{background:var(--ok-soft);color:var(--ok)}.rc.free .l{color:var(--ok)}
+.rl li.free .st,.zok{color:var(--ok)}
+.sst.ok i{background:var(--ok)}
+/* blocchi */
+.bh{background:linear-gradient(90deg,color-mix(in srgb,hsl(var(--h) 60% 50%) 12%,var(--surface)),var(--surface) 70%)!important}
+.bn{font-weight:700;color:hsl(var(--h) 60% 36%)!important}
+.blk{border-color:var(--line);border-left-color:hsl(var(--h) 55% 48%);box-shadow:0 1px 3px rgba(14,26,51,.06)}
+.blk.lvl-danger{border-color:var(--danger);border-left-color:var(--danger)}.blk.lvl-warn{border-color:var(--warn);border-left-color:var(--warn)}
+.dayhead h2{font-size:26px;font-weight:700}
+.sect{font-weight:700}
+.sect span{font-weight:700}
+/* grassetti utili */
+.row .c-tm{font-weight:700}
+.row .c-g b{font-weight:700;font-size:14.5px}
+.row .c-p .px{font-weight:700}
+.row .c-s .svt{font-weight:600}
+.row .c-h{font-weight:500;color:var(--ink)}
+.bm{font-weight:500;color:var(--ink-2)}
+.bm b,.bp .rbtn:not(.empty){font-weight:600}
+.dsum b{font-weight:700}
+.row.ah,.sect,.bl{font-weight:600}
+.tile b{font-weight:700;color:var(--accent)}
+.tile.bad b{color:var(--danger)}
+.rvt .who b{font-weight:700}
+.rtbl td b{font-weight:700}
+.acci.on{font-weight:700}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bn{color:hsl(var(--h) 70% 74%)!important}:root:not([data-theme="light"]) body::before{opacity:.14}}
+:root[data-theme="dark"] .bn{color:hsl(var(--h) 70% 74%)!important}
+
+/* --- hero e cruscotto --- */
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:18px 24px;border-radius:16px;background:linear-gradient(110deg,#0A1633,#0F2A66 55%,#1A4BC4);color:#fff;margin-bottom:12px}
+.hero .hbg{position:absolute;right:-20px;top:-60px;width:250px;height:250px;opacity:.1;transform:rotate(-8deg);pointer-events:none}
+.hl{display:flex;align-items:center;gap:16px;position:relative;min-width:0}
+.hlogo{width:58px;height:58px;flex:none;filter:drop-shadow(0 6px 14px rgba(34,211,238,.3))}
+.hello{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9FB3E2;margin-bottom:2px}
+.hero h1{display:flex;gap:9px;align-items:baseline;font-family:var(--f-display);font-style:italic;font-size:36px;line-height:1;letter-spacing:.04em}
+.hero h1 span{font-weight:700;color:#fff}.hero h1 i{font-weight:500;color:var(--cyan);letter-spacing:.1em}
+.hero p{margin-top:5px;color:#B9C8EC;font-size:12.5px;text-transform:capitalize}
+.hero .btn.primary{position:relative;background:#fff;color:#0A1633;box-shadow:0 4px 14px rgba(0,0,0,.25);border-radius:999px;padding:9px 18px}
+.cru{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:14px}
+.crubar{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin-bottom:10px}
+.crubar h2{font-family:var(--f-display);font-size:19px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0}
+.crud{color:var(--ink-2);font-size:12.5px;text-transform:capitalize}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:9px 12px;background:var(--surface-2);display:flex;flex-direction:column;gap:1px;min-width:0}
+.kpi.hero2{background:linear-gradient(135deg,#0F2A66,#2557E8);border:0;color:#fff}
+.kpi.hero2 .kl,.kpi.hero2 small{color:#C4D3F5}.kpi.hero2 b{font-size:30px}.kpi.hero2 .mm{margin-top:3px;color:#7FE7F8;font-weight:600}
+.kpi.rk{flex-direction:row;align-items:center;gap:11px}
+.rg{width:50px;height:50px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--line) 0);display:grid;place-items:center;flex:none}
+.rg span{width:38px;height:38px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-weight:700;font-size:11.5px;font-variant-numeric:tabular-nums}
+.kl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.kpi b{font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.kpi b em{font-style:normal;font-family:var(--f-body);font-size:12px;font-weight:500;color:var(--ink-3)}
+.kpi small{font-size:11.5px;color:var(--ink-3);line-height:1.35}
+.pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.pl{font-size:11px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.pl.ok{background:var(--ok-soft);color:var(--ok);border-color:transparent}.pl.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}.pl.bad{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.week{margin-top:10px}.wh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.wleg{font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:5px}.wleg i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.wleg i.a,.wb i.a{background:var(--accent)}.wleg i.b,.wb i.b{background:var(--cyan)}
+.wcols{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.wc{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px 5px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);cursor:pointer;min-width:0}
+.wc:hover{border-color:var(--line-strong)}.wc.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 0 0 1px var(--accent) inset}
+.wc .wv{font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.wb{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:46px;width:100%}
+.wb i{width:13px;border-radius:4px 4px 1px 1px;display:block;min-height:0}
+.wc .wd2{font-size:11px;color:var(--ink-2);text-transform:capitalize;white-space:nowrap}.wc.today .wd2{color:var(--accent);font-weight:700}
+.prog{display:flex;align-items:baseline;gap:12px;margin:4px 2px 4px}.prog h2{font-family:var(--f-display);font-size:19px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0}.prog span{color:var(--ink-3);font-size:12.5px}
+/* --- grafica più snella --- */
+body{font-size:13px}
+.wm{font-size:25px}.brand svg.logo{width:38px;height:38px}.brand{padding-bottom:10px}.top{padding-top:10px}
+.nav button{padding:8px 12px 9px}main{padding-top:16px}
+.dsec{padding:12px 0;grid-template-columns:92px minmax(0,1fr);gap:0 18px}.dn{font-size:54px}.dw{font-size:11px}.dmo{font-size:12px}.dd{top:10px}
+.dl{gap:6px}.sv{padding:8px 14px;border-radius:10px;gap:4px 14px}.sv time{font-size:16px}.s1 b{font-size:13.5px}.s2{font-size:12.5px}.s3{font-size:11.5px}.spx b{font-size:16px}.spr b{font-size:13px}
+.dmeta{font-size:12px}
+.dayhead h2{font-size:22px}.tile b{font-size:28px}.tile{padding:9px 12px}
+.row .c-tm{font-size:17px}.row .c-g b{font-size:13px}.row .c-p .px{font-size:16px}.row .c-s .svt{font-size:12.5px;font-weight:600}.row .c-h{font-size:12px}
+.bn{font-size:17px}.bm{font-size:11.5px}.bh{padding:4px 12px}.row{padding:5px 10px}.blk{margin:6px 0}
+.rbtn,.bp .rbtn{font-size:12px}.dsum{font-size:11.5px}.sect{margin:12px 0 4px}
+.btn{padding:6px 11px;font-size:12.5px}.btn.sm{padding:3px 8px;font-size:12px}.btn.big{padding:9px 18px;font-size:13px}
+.field>span{font-size:11px}input[type=text],input[type=number],input[type=date],input[type=time],input[type=search],input[type=tel],select,textarea{padding:5px 9px;font-size:12.5px}
+.autoexp li{font-size:12.5px}
+.rc .t{font-size:15px}.rc{min-height:54px}.rvt thead th{font-size:14px}
+@media (max-width:1100px){.dsec{grid-template-columns:minmax(0,1fr)}}
+.kpi.rk>div:last-child{display:flex;flex-direction:column;gap:1px;min-width:0}
+.hero p{text-transform:none}.hero p::first-letter{text-transform:uppercase}
+.kpi small.mm{display:block}.kpi small.mm::first-letter{text-transform:uppercase}
+.kpi b{display:block}
+
+/* --- cruscotto v2 --- */
+.cru{padding:16px 18px;border-radius:16px;box-shadow:0 1px 3px rgba(14,26,51,.06)}
+.ctop{display:block;margin-bottom:12px}
+@media (max-width:900px){.ctop{grid-template-columns:minmax(0,1fr)}}
+.rev{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 40px;position:relative;overflow:hidden;border-radius:14px;padding:16px 18px;color:#fff;background:radial-gradient(120% 120% at 100% 0%,#2E6BFF 0%,#1038A8 45%,#0A1D55 100%);display:flex;flex-direction:column;gap:8px}
+.rev::after{content:"";position:absolute;right:-30px;bottom:-40px;width:150px;height:150px;border-radius:50%;background:rgba(34,211,238,.16);filter:blur(2px)}
+.rev .kl{color:#B8CCFA}.rev b{display:block;font-family:var(--f-display);font-size:40px;font-weight:700;line-height:1;letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.rsub{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:#C4D3F5}.rsub em{font-style:normal;color:#fff;font-weight:600}
+.inc{display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:#C4D3F5}.incb{height:6px;border-radius:99px;background:rgba(255,255,255,.18);overflow:hidden}.incb i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#22D3EE,#7FF0FF)}
+.mm{display:flex;justify-content:center;gap:10px;align-items:baseline;margin-top:2px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);font-size:12px;color:#C4D3F5;text-transform:capitalize}.mm em{font-style:normal;font-family:var(--f-display);font-size:20px;font-weight:700;color:#7FF0FF}
+.chw{border:1px solid var(--line);border-radius:14px;padding:10px 14px 4px;background:var(--surface-2);min-width:0}
+.wh{display:flex;justify-content:space-between;align-items:center}
+.cht{width:100%;height:auto;display:block}
+.cht .gl{stroke:var(--line);stroke-dasharray:3 4}
+.cht .hit{fill:transparent}.cht .cc{cursor:pointer;outline:none}.cht .cc:hover .hit,.cht .cc:focus-visible .hit{fill:color-mix(in srgb,var(--accent) 8%,transparent)}
+.cht .cc.on .hit{fill:color-mix(in srgb,var(--accent) 14%,transparent);stroke:var(--accent);stroke-width:1.2}
+.cht .bar0{fill:var(--line-strong)}
+.cht .bv{font:700 11.5px var(--f-body);fill:var(--ink);font-variant-numeric:tabular-nums}
+.cht .bd{font:500 11.5px var(--f-body);fill:var(--ink-2);text-transform:capitalize}.cht .cc.today .bd{fill:var(--accent);font-weight:700}
+.cht .ln{fill:none;stroke:#22D3EE;stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.cht .dot{fill:#fff;stroke:#22D3EE;stroke-width:2.4}
+.kgrid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.kpi{padding:12px 14px;border-radius:14px;background:var(--surface-2)}
+.kpi.rk{gap:14px}
+svg.rg{width:62px;height:62px;flex:none;background:none;border-radius:0;display:block}
+svg.rg .rt{font:700 13px var(--f-body);fill:var(--ink);font-variant-numeric:tabular-nums}
+.kpi b{font-size:26px}
+
+/* fatturato */
+.fhead{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;margin-bottom:12px}
+.fhead h2{font-family:var(--f-display);font-size:19px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0}
+.fyear{font-family:var(--f-display);font-size:20px;font-weight:700;min-width:54px;text-align:center}
+.fsum{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+@media (max-width:900px){.fsum{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fsum .rev{flex-direction:column;align-items:flex-start;gap:8px}
+.fchart{border:1px solid var(--line);border-radius:14px;background:var(--surface-2);padding:10px 14px 4px;margin-bottom:12px}
+.fchart svg{width:100%;height:auto;display:block}
+.fchart .gl{stroke:var(--line);stroke-dasharray:3 4}
+.fchart .cc{cursor:pointer;outline:none}.fchart .hit{fill:transparent}.fchart .cc:hover .hit{fill:color-mix(in srgb,var(--accent) 8%,transparent)}
+.fchart .cc.on .hit{fill:color-mix(in srgb,var(--accent) 14%,transparent);stroke:var(--accent);stroke-width:1.2}
+.fchart .bv{font:700 10.5px var(--f-body);fill:var(--ink);font-variant-numeric:tabular-nums}
+.fchart .bd{font:500 11.5px var(--f-body);fill:var(--ink-2);text-transform:capitalize}
+.fchart .cur .bd{fill:var(--accent);font-weight:700}
+.ftw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.ft{width:100%;border-collapse:collapse;min-width:720px;font-variant-numeric:tabular-nums}
+.ft th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;text-align:right;padding:9px 12px;border-bottom:1px solid var(--line)}
+.ft td{text-align:right;padding:9px 12px;border-bottom:1px solid var(--line);font-size:13px}
+.ft th:first-child,.ft td:first-child{text-align:left}
+.ft td:first-child{text-transform:capitalize;font-weight:600}
+.ft tbody tr[data-action]{cursor:pointer}.ft tbody tr[data-action]:hover{background:var(--surface-2)}
+.ft tr.on td{background:color-mix(in srgb,var(--accent) 9%,transparent)}
+.ft td.tt{font-weight:700}.ft tr.zero td{color:var(--ink-3)}
+.ft tfoot td{font-weight:700;border-bottom:0;background:var(--surface-2)}
+.fdet{margin-top:12px}
+.fdet h3{font-family:var(--f-display);font-size:16px;margin:0 0 8px;text-transform:capitalize}
+
+.fone{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 30px;margin-bottom:12px}
+.fone .rsub{font-size:13px;gap:6px 18px;position:relative;z-index:1}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.mcard{font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface-2);color:var(--ink)}
+.mcard:hover{border-color:var(--accent)}.mcard.cur{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.mcard .kl{text-transform:capitalize;font-size:11.5px}
+.mcard b{font-family:var(--f-display);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.mcard small{font-size:11.5px;color:var(--ink-3)}.mcard.zero{opacity:.55}
+.ft{min-width:0}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span id="brandlogo"></span>
+      <b class="wm" aria-label="Fleetline"><span>FLEET</span><i>LINE</i></b>
+    </div>
+    <nav class="nav" id="nav" aria-label="Sezioni">
+      <button data-action="tab" data-tab="servizi">Servizi</button>
+      <button data-action="tab" data-tab="assegna">Assegnazione <span class="badge warn" id="b-assegna" hidden></span></button>
+      <button data-action="tab" data-tab="auto">Auto-accoppia</button>
+      <button data-action="tab" data-tab="fatturato">Fatturato</button>
+      <button data-action="tab" data-tab="riposi">Riposi</button>
+      <button data-action="tab" data-tab="avvisi">Avvisi <span class="badge danger" id="b-avvisi" hidden></span></button>
+      <button data-action="tab" data-tab="risorse">Pullman e autisti</button>
+    </nav>
+    <div class="sync" id="sync"></div>
+  </header>
+  <main id="app"></main>
+</div>
+
+<div id="scrim" hidden data-action="close-drawer"></div>
+<aside id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle" hidden>
+  <header><h2 id="dtitle"></h2><button class="btn ico" data-action="close-drawer" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+  <div class="dbody" id="dbody"></div>
+  <div class="dfoot" id="dfoot"></div>
+</aside>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+/*LOGIC-START*/
+const DEFAULTS = { maxOre: 15, riposoOre: 9, maxGiorni: 7, riposoLungoOre: 45, oreCitta: 1.5, oreHtlFco: 2, oreFcoHtl: 3, oreFull: 8, oreHalf: 3, tolleranzaFco: 45, minSosta: 10, minPerKm: 3.5, minFco: 60, minCia: 45, minPorto: 120, oreTour: 10, attesaMaxOre: 0, sogliaPiccoli: 7, avvSovrapp: 0, avvPosti: 1, ivaPct: 10 };
+const pad = n => String(n).padStart(2, '0');
+const dayNum = s => { const [y, m, d] = s.split('-').map(Number); return Math.floor(Date.UTC(y, m - 1, d) / 86400000); };
+const numDay = n => { const t = new Date(n * 86400000); return t.getUTCFullYear() + '-' + pad(t.getUTCMonth() + 1) + '-' + pad(t.getUTCDate()); };
+const hmin = s => { const [h, m] = s.split(':').map(Number); return h * 60 + m; };
+const absMin = (d, t) => dayNum(d) * 1440 + hmin(t);
+const clock = a => { const md = ((a % 1440) + 1440) % 1440; return pad(Math.floor(md / 60)) + ':' + pad(md % 60); };
+const dateOf = a => numDay(Math.floor(a / 1440));
+const dm = a => { const d = dateOf(a); return d.slice(8) + '/' + d.slice(5, 7); };
+const dur = m => { m = Math.max(0, Math.round(m)); const h = Math.floor(m / 60), r = m % 60; return r ? h + 'h' + pad(r) : h + 'h'; };
+
+// Nessuna ora di fine: la durata si stima dal tipo di servizio.
+//  Htl x Fco (partenza) 2h · Fco x Htl (arrivo) 3h · transfer in città 2h · full/half day: ore scritte nel servizio o nelle note
+//  tour fuori Roma: già organizzati, contano solo dall'orario di inizio.
+const APT = '(?:fco|fiumicino|cia|ciampino)';
+function kindOf(s) {
+  const t = String(s.servizio || '');
+  if (new RegExp('^\\s*' + APT + '[^x]*\\bx\\s*htl', 'i').test(t)) return 'arr';
+  if (new RegExp('^\\s*htl\\s*x\\s*' + APT + '\\b', 'i').test(t)) return 'dep';
+  if (/full\s*-?\s*day/i.test(t)) return 'full';
+  if (/half\s*-?\s*day/i.test(t)) return 'half';
+  return s.citta ? 'citta' : 'fuori';
+}
+function hoursIn(s) {
+  for (const t of [s.servizio, s.note, s.altreNote]) { const m = String(t || '').match(/(\d+(?:[.,]\d+)?)\s*ore\b/i); if (m) return parseFloat(m[1].replace(',', '.')); }
+  return null;
+}
+// Civitavecchia: da Roma un bus ci mette `minPorto` minuti a tratta. Se il servizio parte dal porto conta il viaggio verso Roma (più Fiumicino se «x Htl x Fco»);
+// se parte da un hotel e va al porto contano andata e ritorno.
+function portoOre(s, set) {
+  const t = String(s.servizio || ''), tratta = (set.minPorto ?? 120) / 60;
+  if (/^\s*(civitavecchia|porto)/i.test(t)) return tratta + (/x\s*htl\s*x\s*(fco|fiumicino|cia|ciampino)/i.test(t) ? set.oreHtlFco : 0);
+  return tratta * 2;
+}
+function spanOf(s, set) {
+  const start = absMin(s.data, s.ora), k = kindOf(s);
+  const porto = /civitavecchia/i.test(String(s.servizio || '')) && k === 'citta';
+  const h = porto && hoursIn(s) == null ? portoOre(s, set) : k === 'dep' ? set.oreHtlFco : k === 'arr' ? set.oreFcoHtl : k === 'citta' ? (hoursIn(s) ?? set.oreCitta) : k === 'full' ? (hoursIn(s) ?? set.oreFull) : k === 'half' ? (hoursIn(s) ?? set.oreHalf) : 0;
+  let end = start + Math.round(h * 60);
+  // le cene durano fino a tardi: almeno fino a mezzanotte, nessun servizio attaccato prima
+  if (k !== 'fuori' && /\bcen[ae]\b/i.test(String(s.servizio || ''))) end = Math.max(end, absMin(s.data, '00:00') + 1440);
+  return { start, end, est: h > 0 || end > start, kind: k };
+}
+const clk = it => (it.sp.end > it.sp.start ? clock(it.sp.start) + '–' + clock(it.sp.end) : clock(it.sp.start));
+const descr = it => `${it.s.gruppo || 'servizio'} (${dm(it.sp.start)} ${clk(it)})`;
+const prep = (list, set) => list.map(s => ({ s, sp: spanOf(s, set) })).sort((a, b) => a.sp.start - b.sp.start || a.sp.end - b.sp.end);
+// b parte dopo a nell'ordinamento. Una partenza Htl x Fco seguita da un arrivo Fco x Htl si può accoppiare anche
+// se l'arrivo cade fino a 45 minuti prima della fine della partenza: i clienti escono tardi dall'aeroporto.
+const clash = (a, b, set) => {
+  const tol = a.sp.kind === 'dep' && b.sp.kind === 'arr' ? (set.tolleranzaFco || 0) : 0;
+  return tol ? b.sp.start + tol < a.sp.end : (b.sp.start < a.sp.end || b.sp.start === a.sp.start);
+};
+
+function pairs(items, fn, set) {
+  for (let i = 0; i < items.length; i++)
+    for (let j = i + 1; j < items.length && (items[j].sp.start < items[i].sp.end || items[j].sp.start === items[i].sp.start); j++)
+      if (clash(items[i], items[j], set)) fn(items[i], items[j]);
+}
+
+const MINI_MAX = 30; // fino a 30 posti = minibus, se il tipo non è indicato
+const isMini = b => !!b && (b.tipo ? b.tipo === 'minibus' : (Number(b.posti) || 0) > 0 && Number(b.posti) <= MINI_MAX);
+const busLabel = b => b ? (isMini(b) ? 'Minibus' : 'Pullman') + (b.posti ? ' ' + b.posti + ' posti' : '') : '';
+function busWarnings(list, bus, set) {
+  const out = [];
+  if (!bus) return out;
+  const items = prep(list, set);
+  if (bus.posti) for (const it of items) if (Number(it.s.pax) > Number(bus.posti))
+    out.push({ svc: it.s.id, key: 'posti:' + it.s.id, level: 'danger', type: 'posti', text: `Posti insufficienti: ${it.s.pax} persone, ${bus.nome} (${isMini(bus) ? 'minibus' : 'pullman'}) ha ${bus.posti} posti` });
+  if (set.avvSovrapp) pairs(items, (a, b) => {
+    out.push({ svc: a.s.id, key: `ovb:${a.s.id}:${b.s.id}`, level: 'danger', type: 'ovb', text: `${bus.nome} è già impegnato: ${descr(b)}` });
+    out.push({ svc: b.s.id, key: `ovb:${b.s.id}:${a.s.id}`, level: 'danger', type: 'ovb', text: `${bus.nome} è già impegnato: ${descr(a)}` });
+  }, set);
+  return out;
+}
+
+function driverAnalysis(list, drv, set) {
+  const out = [], days = new Map();
+  if (!drv) return { out, days };
+  const nm = drv.nome;
+  const it = prep(list, set);
+  if (set.avvSovrapp) pairs(it, (a, b) => {
+    out.push({ svc: a.s.id, key: `ovd:${a.s.id}:${b.s.id}`, level: 'danger', type: 'ovd', text: `${nm} è già impegnato: ${descr(b)}` });
+    out.push({ svc: b.s.id, key: `ovd:${b.s.id}:${a.s.id}`, level: 'danger', type: 'ovd', text: `${nm} è già impegnato: ${descr(a)}` });
+  }, set);
+  const groups = new Map();
+  for (const x of it) { if (!groups.has(x.s.data)) groups.set(x.s.data, []); groups.get(x.s.data).push(x); }
+  const dates = [...groups.keys()].sort();
+  // massimo ore nella giornata: dal primo inizio alla fine dell'ultimo servizio
+  for (const k of dates) {
+    const g = groups.get(k);
+    const first = Math.min(...g.map(x => x.sp.start)), last = Math.max(...g.map(x => x.sp.end));
+    days.set(k, { first, last, count: g.length, ids: g.map(x => x.s.id), restBefore: null, prevEnd: null, streak: 0 });
+    if (last - first > set.maxOre * 60) {
+      const est = g.some(x => x.sp.end === last && x.sp.est);
+      for (const x of g) out.push({ svc: x.s.id, key: 'h:' + x.s.id, level: 'warn', type: 'h15',
+        text: `${nm} lavorerebbe ${dur(last - first)} il ${dm(first)} (dalle ${clock(first)} alle ${clock(last)}${est ? ', fine stimata' : ''}): massimo ${set.maxOre}h` });
+    }
+  }
+  // riposo minimo tra una giornata e la successiva
+  let prevEnd = -Infinity, prevIt = null;
+  for (const k of dates) {
+    const g = groups.get(k);
+    const firstIt = g.reduce((a, b) => (b.sp.start < a.sp.start ? b : a));
+    if (prevIt) {
+      const gap = firstIt.sp.start - prevEnd;
+      days.get(k).restBefore = gap; days.get(k).prevEnd = prevEnd;
+      if (gap < set.riposoOre * 60) {
+        out.push({ svc: firstIt.s.id, key: `r:${prevIt.s.id}:${firstIt.s.id}`, level: 'warn', type: 'rest',
+          text: `${nm} avrebbe solo ${dur(gap)} di riposo dal servizio precedente, ${descr(prevIt)}: minimo ${set.riposoOre}h` });
+        out.push({ svc: prevIt.s.id, key: `r2:${prevIt.s.id}:${firstIt.s.id}`, level: 'warn', type: 'rest',
+          text: `Dopo questo servizio ${nm} avrebbe solo ${dur(gap)} di riposo prima di ${descr(firstIt)}: minimo ${set.riposoOre}h` });
+      }
+    }
+    for (const x of g) if (x.sp.end > prevEnd) { prevEnd = x.sp.end; prevIt = x; }
+  }
+  // giorni consecutivi e riposo lungo
+  let streak = [], lastEnd = -Infinity, lastIt = null;
+  for (const x of it) {
+    const sd = Math.floor(x.sp.start / 1440), ed = Math.max(sd, Math.floor((x.sp.end - 1) / 1440));
+    if (streak.length) {
+      const gap = x.sp.start - lastEnd, lastDay = streak[streak.length - 1];
+      if (gap >= set.riposoLungoOre * 60) streak = [];
+      else if (sd > lastDay + 1) {
+        if (streak.length >= set.maxGiorni) {
+          out.push({ svc: x.s.id, key: 'g45:' + x.s.id, level: 'warn', type: 'streak',
+            text: `Dopo ${streak.length} giorni consecutivi ${nm} ha bisogno di ${set.riposoLungoOre}h di riposo dalla fine dell'ultimo servizio (${descr(lastIt)}): ne avrebbe ${dur(gap)}` });
+          out.push({ svc: lastIt.s.id, key: `g45b:${lastIt.s.id}:${x.s.id}`, level: 'warn', type: 'streak',
+            text: `Dopo ${streak.length} giorni consecutivi ${nm} ha bisogno di ${set.riposoLungoOre}h di riposo da questo servizio, ma ${descr(x)} inizia dopo ${dur(gap)}` });
+        }
+        streak = [];
+      }
+    }
+    for (let d = sd; d <= ed; d++) if (!streak.includes(d)) streak.push(d);
+    const di = days.get(x.s.data); if (di) di.streak = Math.max(di.streak, streak.length);
+    if (streak.length > set.maxGiorni)
+      out.push({ svc: x.s.id, key: 'g:' + x.s.id, level: 'warn', type: 'streak',
+        text: `${nm} sarebbe al ${streak.length}° giorno consecutivo di lavoro (massimo ${set.maxGiorni}): poi servono ${set.riposoLungoOre}h di riposo` });
+    if (x.sp.end > lastEnd) { lastEnd = x.sp.end; lastIt = x; }
+  }
+  return { out, days };
+}
+const driverWarnings = (list, drv, set) => driverAnalysis(list, drv, set).out;
+
+function groupBy(arr, f) { const m = new Map(); for (const x of arr) { const k = x[f]; if (!m.has(k)) m.set(k, []); m.get(k).push(x); } return m; }
+
+// servizi "effettivi": ognuno porta pullman e autista del proprio accoppiamento (busId, driverId, accId, accN)
+function analyze(servizi, pullman, autisti, set) {
+  const W = new Map();
+  const push = w => { if (!W.has(w.svc)) W.set(w.svc, []); W.get(w.svc).push(w); };
+  for (const [id, list] of groupBy(servizi.filter(s => s.accId), 'accId')) if (list.length > 1 && set.avvSovrapp)
+    pairs(prep(list, set), (a, b) => {
+      push({ svc: a.s.id, key: `ovs:${a.s.id}:${b.s.id}`, level: 'danger', type: 'ovs', text: `Nello stesso accoppiamento c'è un servizio sovrapposto: ${descr(b)}` });
+      push({ svc: b.s.id, key: `ovs:${b.s.id}:${a.s.id}`, level: 'danger', type: 'ovs', text: `Nello stesso accoppiamento c'è un servizio sovrapposto: ${descr(a)}` });
+    }, set);
+  for (const [id, list] of groupBy(servizi.filter(s => s.busId), 'busId')) busWarnings(list, pullman.find(b => b.id === id), set).forEach(push);
+  for (const [id, list] of groupBy(servizi.filter(s => s.driverId), 'driverId')) driverWarnings(list, autisti.find(d => d.id === id), set).forEach(push);
+  return W;
+}
+
+// Cosa succederebbe assegnando la risorsa a tutti i servizi di un accoppiamento (solo avvisi nuovi)
+function whatIf(servizi, pullman, autisti, set, group, kind, resId) {
+  const field = kind === 'bus' ? 'busId' : 'driverId';
+  const res = (kind === 'bus' ? pullman : autisti).find(r => r.id === resId);
+  const fn = kind === 'bus' ? busWarnings : driverWarnings;
+  const ids = new Set(group.map(g => g.id));
+  const others = servizi.filter(x => x[field] === resId && !ids.has(x.id));
+  const before = new Set(fn(others, res, set).map(w => w.key));
+  const after = fn([...others, ...group.map(g => ({ ...g, [field]: resId }))], res, set);
+  const seen = new Set();
+  return after.filter(w => !before.has(w.key)).filter(w => (seen.has(w.text) ? false : (seen.add(w.text), true)));
+}
+
+// ---- accoppiamento automatico -------------------------------------------------------------
+// Obiettivo: meno pullman (= meno accoppiamenti) possibile. I servizi si mettono in fila per orario e durata,
+// anche con numeri di persone diversi. Regole:
+//  - i tour fuori Roma restano fuori (sono già organizzati);
+//  - i servizi piccoli (fino a `sogliaPiccoli` persone) non vanno mai su un pullman: il blocco che li contiene va su un minibus;
+//  - un blocco non supera `maxOre` ore di lavoro; il pullman deve avere i posti per il servizio più numeroso;
+//  - nessuna sovrapposizione (con la tolleranza partenza Htl x Fco + arrivo Fco x Htl).
+// Non dipende dai flag degli avvisi. I tour fuori Roma già assegnati a mano occupano il mezzo per `oreTour` ore.
+function autoSpan(s, set) { const sp = spanOf(s, set); if (sp.kind === 'fuori') sp.end = sp.start + Math.round((set.oreTour || 10) * 60); return sp; }
+// ---- spostamenti: dal punto dove finisce un servizio a quello dove parte il successivo (stime, regolabili in Avvisi) ----
+const ROMA = [41.9, 12.49];
+const CAP_LL = { '00184': [41.895, 12.497], '00185': [41.893, 12.508], '00186': [41.898, 12.476], '00187': [41.903, 12.488], '00192': [41.909, 12.463], '00193': [41.906, 12.46], '00195': [41.918, 12.46], '00196': [41.915, 12.47],
+  '00197': [41.922, 12.488], '00198': [41.922, 12.5], '00199': [41.93, 12.52], '00153': [41.884, 12.47], '00154': [41.873, 12.48], '00183': [41.886, 12.51], '00182': [41.876, 12.52], '00181': [41.875, 12.53], '00179': [41.86, 12.53],
+  '00165': [41.897, 12.44], '00167': [41.9, 12.42], '00152': [41.88, 12.45], '00145': [41.83, 12.48], '00144': [41.83, 12.47], '00142': [41.83, 12.49], '00191': [41.95, 12.47], '00135': [41.95, 12.42], '00136': [41.93, 12.43],
+  '00161': [41.915, 12.515], '00162': [41.92, 12.525], '00100': ROMA, '00118': ROMA };
+const llOf = s => CAP_LL[((String(s.hotelInd || '').match(/\b00\d{3}\b/) || [])[0])] || ROMA;
+const kmBetween = (p, q) => { const R = 6371, r = Math.PI / 180, dLa = (q[0] - p[0]) * r, dLo = (q[1] - p[1]) * r;
+  const h = Math.sin(dLa / 2) ** 2 + Math.cos(p[0] * r) * Math.cos(q[0] * r) * Math.sin(dLo / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+const airCode = s => (/\b(cia|ciampino)\b/i.test(String(s.servizio || '')) ? 'cia' : 'fco');
+function placeStart(s, k) { // dove parte il servizio
+  const t = String(s.servizio || '');
+  if (k === 'arr') return { t: 'air', code: airCode(s) };
+  if (/^\s*(civitavecchia|porto)/i.test(t)) return { t: 'porto' };
+  if (/^\s*htl\b/i.test(t)) return { t: 'hotel', name: String(s.hotel || '').trim().toLowerCase(), ll: llOf(s) };
+  return { t: 'centro', ll: ROMA };
+}
+function placeEnd(s, k) { // dove si libera il mezzo (le durate stimate includono già l'andata e il rientro)
+  const t = String(s.servizio || '');
+  if (k === 'dep') return { t: 'centro', ll: ROMA };
+  if (k === 'arr' || k === 'full' || k === 'half' || /\bx\s*htl\s*$/i.test(t)) return { t: 'hotel', name: String(s.hotel || '').trim().toLowerCase(), ll: llOf(s) };
+  return { t: 'centro', ll: ROMA };
+}
+function travelMin(a, b, set) { // minuti per andare dalla fine di a all'inizio di b
+  if (a.sp.kind === 'dep' && b.sp.kind === 'arr') return 0; // il pullman è già all'aeroporto: vale la tolleranza
+  const e = placeEnd(a.s, a.sp.kind), st = placeStart(b.s, b.sp.kind), sosta = set.minSosta ?? 10;
+  if (st.t === 'air') return st.code === 'cia' ? (set.minCia ?? 45) : (set.minFco ?? 60);
+  if (st.t === 'porto') return set.minPorto ?? 90;
+  if (e.t === 'hotel' && st.t === 'hotel' && e.name && e.name === st.name) return sosta;
+  return Math.round(sosta + kmBetween(e.ll, st.ll) * (set.minPerKm ?? 3.5));
+}
+const compatIt = (a, b, set) => b.sp.start + (a.sp.kind === 'dep' && b.sp.kind === 'arr' ? (set.tolleranzaFco || 0) : 0) >= a.sp.end + travelMin(a, b, set); // b dopo a, con il tempo per raggiungere il punto di partenza
+const freeOf = (x, y, set) => (x.sp.start <= y.sp.start ? compatIt(x, y, set) : compatIt(y, x, set));
+
+function autoPlan(servizi, pullman, autisti, set, opts) {
+  const day = opts.day, redo = !!opts.redo, small = Number(set.sogliaPiccoli) || 0;
+  const miniSeats = pullman.filter(isMini).map(b => Number(b.posti) || 0), maxMini = miniSeats.length ? Math.max(...miniSeats) : 0;
+  const isSmall = s => (Number(s.pax) || 0) <= small;
+  const dayS = servizi.filter(s => s.data === day);
+  const mine = s => redo || !s.accId;
+  const skipped = [];
+  const items = dayS.filter(s => {
+    if (!mine(s)) return false;
+    if (s.vettore) { skipped.push({ s, why: `Lo fa un vettore esterno (${s.vettore})` }); return false; }
+    if (kindOf(s) === 'fuori') { skipped.push({ s, why: 'Tour fuori Roma: già organizzato' }); return false; }
+    return true;
+  }).sort((a, b) => a.ora.localeCompare(b.ora));
+  const itemIds = new Set(items.map(s => s.id));
+  const skipIds = new Set(skipped.map(x => x.s.id));
+  const keep = servizi.filter(s => !itemIds.has(s.id) && !(redo && s.data === day && mine(s) && skipIds.has(s.id)));
+  const seats = pullman.map(b => Number(b.posti) || Infinity), maxSeats = seats.length ? Math.max(...seats) : Infinity;
+  const cap = set.attesaMaxOre > 0 ? set.attesaMaxOre * 60 : Infinity;
+  // 1) catene: ogni servizio entra nella catena compatibile "migliore"; si apre una catena nuova solo se non c'è posto
+  const chains = [];
+  for (const s of items) {
+    const it = { s, sp: autoSpan(s, set) }, pax = Number(s.pax) || 0, sm = isSmall(s);
+    let best = null, bs = Infinity;
+    for (const c of chains) {
+      if ((c.small || sm) && Math.max(c.maxPax, pax) > maxMini) continue; // con un servizio piccolo il blocco sta su un minibus
+      const last = c.items[c.items.length - 1];
+      if (!compatIt(last, it, set)) continue;
+      if (it.sp.end - c.items[0].sp.start > set.maxOre * 60) continue;
+      const gap = it.sp.start - last.sp.end;
+      if (gap > cap) continue;
+      if (Math.max(c.maxPax, pax) > maxSeats) continue;
+      let sc = Math.max(gap, 0);
+      if (last.s.hotel && last.s.hotel === s.hotel) sc -= 90;
+      if (last.sp.kind === 'dep' && it.sp.kind === 'arr') sc -= 90;
+      if (sc < bs) { bs = sc; best = c; }
+    }
+    if (best) { best.items.push(it); best.maxPax = Math.max(best.maxPax, pax); best.small = best.small || sm; }
+    else chains.push({ items: [it], maxPax: pax, small: sm });
+  }
+  // 2) pullman e autista
+  const use = { bus: new Map(), drv: new Map() };
+  const addUse = (kind, id, its) => { if (!use[kind].has(id)) use[kind].set(id, []); use[kind].get(id).push(...its); };
+  for (const s of keep) { const sp = { s, sp: autoSpan(s, set) }; if (s.busId) addUse('bus', s.busId, [sp]); if (s.driverId) addUse('drv', s.driverId, [sp]); }
+  const clear = (list, its) => !(list || []).some(x => its.some(y => !freeOf(x, y, set)));
+  const dayLoad = id => (use.drv.get(id) || []).filter(x => x.s.data === day).reduce((m, x) => m + (x.sp.end - x.sp.start), 0);
+  const usedBus = new Set(), usedDrv = new Set();
+  const busFor = c => pullman.filter(b => (!c.small || isMini(b)) && (Number(b.posti) || Infinity) >= c.maxPax && clear(use.bus.get(b.id), c.items))
+    .sort((a, b) => ((Number(a.posti) || Infinity) - (Number(b.posti) || Infinity)) || (usedBus.has(b.id) ? -1 : 0) - (usedBus.has(a.id) ? -1 : 0) || a.nome.localeCompare(b.nome, 'it'));
+  const done = [];
+  const queue = chains.slice().sort((a, b) => b.maxPax - a.maxPax || a.items[0].sp.start - b.items[0].sp.start);
+  while (queue.length) {
+    const c = queue.shift();
+    {
+      let bc = busFor(c);
+      if (!bc.length && c.items.length > 1) { // nessun mezzo libero per tutto il blocco: stacco il servizio più numeroso (a parità l'ultimo) e riprovo
+        let k = 0; c.items.forEach((it, i) => { if ((Number(it.s.pax) || 0) >= (Number(c.items[k].s.pax) || 0)) k = i; });
+        const [out] = c.items.splice(k, 1);
+        c.maxPax = Math.max(...c.items.map(i => Number(i.s.pax) || 0)); c.small = c.items.some(i => isSmall(i.s));
+        queue.push({ items: [out], maxPax: Number(out.s.pax) || 0, small: isSmall(out.s) });
+        queue.sort((x, y) => y.maxPax - x.maxPax); queue.unshift(c);
+        continue;
+      }
+      c.busId = bc.length ? bc[0].id : null;
+      c.noBus = !bc.length ? (c.small ? `Servizio fino a ${small} persone: serve un minibus con ${c.maxPax} posti, nessuno libero` : c.maxPax > maxSeats ? `Nessun mezzo con ${c.maxPax} posti` : 'Nessun mezzo libero con posti sufficienti') : '';
+    }
+    const group = c.items.map(i => i.s);
+    const cands = autisti.filter(d => clear(use.drv.get(d.id), c.items)).map(d => {
+      const mineList = (use.drv.get(d.id) || []).map(x => x.s), before = new Set(driverWarnings(mineList, d, set).map(w => w.key));
+      const after = driverWarnings([...mineList, ...group], d, set), ws = after.filter(w => !before.has(w.key));
+      const seen = new Set(), texts = ws.map(w => w.text).filter(t => !seen.has(t) && seen.add(t));
+      return { d, texts, n: texts.length, load: dayLoad(d.id) };
+    }).sort((a, b) => a.n - b.n || a.load - b.load || a.d.nome.localeCompare(b.d.nome, 'it'));
+    if (cands.length) { c.driverId = cands[0].d.id; c.warns = cands[0].texts; } else { c.driverId = null; c.warns = []; c.noDriver = 'Nessun autista libero'; }
+    if (c.busId) { addUse('bus', c.busId, c.items); usedBus.add(c.busId); }
+    if (c.driverId) { addUse('drv', c.driverId, c.items); usedDrv.add(c.driverId); }
+    done.push(c);
+  }
+  // 3) numeri Acc. (da 1, saltando quelli dei blocchi che restano)
+  const taken = new Set(dayS.filter(s => s.accId && !itemIds.has(s.id)).map(s => s.accN)); // numeri dei blocchi che restano (anche di servizi esclusi dalla proposta)
+  let n = 0;
+  const out = done.slice().sort((a, b) => a.items[0].sp.start - b.items[0].sp.start).map(c => {
+    do n++; while (taken.has(n));
+    const its = c.items.slice().sort((a, b) => a.sp.start - b.sp.start);
+    return { n, ids: its.map(i => i.s.id), busId: c.busId, driverId: c.driverId, maxPax: c.maxPax, small: !!c.small, start: its[0].sp.start, end: Math.max(...its.map(i => i.sp.end)),
+      warns: c.warns, noBus: c.noBus || '', noDriver: c.noDriver || '',
+      airport: its.some((x, i) => i && its[i - 1].sp.kind === 'dep' && x.sp.kind === 'arr') };
+  });
+  const big = out;
+  return { day, redo, chains: out, skipped, stats: { services: items.length, blocks: out.length, bigBlocks: big.length, smallBlocks: out.length - big.length, buses: usedBus.size, minibus: [...usedBus].filter(id => isMini(pullman.find(b => b.id === id))).length, drivers: usedDrv.size, noBus: out.filter(c => !c.busId).length, noDriver: out.filter(c => !c.driverId).length } };
+}
+/*LOGIC-END*/
+
+/* ---------- stato ---------- */
+const todayStr = () => { const t = new Date(); return t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate()); };
+const S = {
+  tab: 'servizi', mode: 'boot', ready: false, loaded: {},
+  servizi: [], pullman: [], autisti: [], accoppiamenti: [], hotel: [], settings: {},
+  eff: [], W: new Map(),
+  auto: { day: todayStr(), redo: false, plan: null }, svPast: false, sv: { day: '' }, fat: { year: 0, month: '' },
+  fa: { day: todayStr(), q: '', mostra: 'tutti', sort: 'ora' },
+
+  rv: { from: todayStr(), n: 14 },
+  showPast: false,
+};
+let DB = null;
+const cfg = () => { const o = { ...DEFAULTS }; for (const k in DEFAULTS) { const v = Number(S.settings[k]); if (S.settings[k] !== undefined && S.settings[k] !== '' && !isNaN(v)) o[k] = v; } return o; };
+function recompute() {
+  const am = new Map(S.accoppiamenti.map(a => [a.id, a]));
+  S.eff = S.servizi.map(s => { const a = s.accId && am.get(s.accId); return { ...s, accId: a ? a.id : null, accN: a ? a.n : null, busId: a ? a.busId || null : null, driverId: a ? a.driverId || null : null }; });
+  S.W = analyze(S.eff, S.pullman, S.autisti, cfg());
+}
+
+/* ---------- utilità ---------- */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const eur = n => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(n || 0);
+const dlabel = (d, o) => new Date(dayNum(d) * 86400000).toLocaleDateString('it-IT', { timeZone: 'UTC', ...o });
+const newId = p => p + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const byTime = (a, b) => a.data.localeCompare(b.data) || a.ora.localeCompare(b.ora);
+const bus = id => S.pullman.find(b => b.id === id);
+const drv = id => S.autisti.find(d => d.id === id);
+const accOf = id => S.accoppiamenti.find(a => a.id === id);
+const accSvcs = id => S.eff.filter(s => s.accId === id).sort(byTime);
+const stato = s => (s.busId && s.driverId ? 'ok' : (s.accId ? 'acc' : 'none'));
+const warnsOf = s => S.W.get(s.id) || [];
+const worst = ws => (ws.some(x => x.level === 'danger') ? 'danger' : (ws.length ? 'warn' : 'ok'));
+const accWarns = id => { const seen = new Set(), out = []; for (const s of accSvcs(id)) for (const w of warnsOf(s)) if (!seen.has(w.text)) { seen.add(w.text); out.push(w); } return out; };
+function accLabel(id) { const g = [...new Set(accSvcs(id).map(s => s.gruppo))]; return g.length > 2 ? g.slice(0, 2).join(' + ') + ' + altri ' + (g.length - 2) : g.join(' + '); }
+function priceInfo(s) { const p = Number(s.prezzo) || 0, r = cfg().ivaPct / 100; return s.iva === 'incl' ? { imp: p / (1 + r), tot: p } : { imp: p, tot: p * (1 + r) }; }
+const I = {
+  warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18.2v.1"/></svg>',
+  plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  l: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  r: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+};
+function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 4200); }
+
+/* ---------- persistenza ---------- */
+const HOTEL_BASE = ["Hotel Artemide|Via Nazionale, 22, 00184 Roma", "Hotel Quirinale|Via Nazionale, 7, 00184 Roma", "Hotel Metropole|Via Principe Amedeo, 3, 00185 Roma", "Hotel Giglio dell'Opera|Via Principe Amedeo, 14, 00185 Roma", "Hotel Mediterraneo|Via Cavour, 15, 00184 Roma", "Hotel Palatino|Via Cavour, 213, 00184 Roma", "Hotel Valle|Via Cavour, 134, 00184 Roma", "Hotel Continentale|Via Filippo Turati, 4, 00185 Roma", "Hotel Radisson Blu es.|Via Filippo Turati, 171, 00185 Roma", "Hotel Nord Nuova Roma|Via Giovanni Amendola, 3, 00185 Roma", "Starhotels Terminus|Via Giovanni Giolitti, 47, 00185 Roma", "Hotel Britannia|Via Napoli, 64, 00184 Roma", "Hotel Artorius|Via del Boschetto, 13, 00184 Roma", "Hotel Viminale|Via Cesare Balbo, 31, 00184 Roma", "Palazzo Montemartini|Via Cesare Balbo, 33, 00184 Roma", "Hotel Quattro Fontane|Via Quattro Fontane, 149, 00184 Roma", "Hotel Napoleon|Piazza Vittorio Emanuele II, 105, 00185 Roma", "Hotel Mecenate Palace|Via Carlo Alberto, 3, 00185 Roma", "Anantara Palazzo Naiadi|Piazza della Repubblica, 47, 00185 Roma", "The St. Regis Rome|Via Vittorio Emanuele Orlando, 3, 00185 Roma", "Hotel Palazzo Manfredi|Via Labicana, 125, 00184 Roma", "Hotel Duca d'Alba|Via Leonina, 12, 00184 Roma", "Hotel Forum|Via Tor de' Conti, 25, 00184 Roma", "Hotel Capo d'Africa|Via Capo d'Africa, 54, 00184 Roma", "Hotel Celio|Via dei Santi Quattro, 35c, 00184 Roma", "Grand Hotel Palace|Via Vittorio Veneto, 70, 00187 Roma", "Hotel Ambasciatori Palace|Via Vittorio Veneto, 62, 00187 Roma", "Hotel Majestic|Via Vittorio Veneto, 50, 00187 Roma", "Hotel Regina Baglioni|Via Vittorio Veneto, 72, 00187 Roma", "The Westin Excelsior|Via Vittorio Veneto, 125, 00187 Roma", "Marriott Grand Hotel Flora|Via Vittorio Veneto, 191, 00187 Roma", "Hotel Eden|Via Ludovisi, 49, 00187 Roma", "Hotel Savoy|Via Ludovisi, 15, 00187 Roma", "Hotel Bernini Bristol|Piazza Barberini, 23, 00187 Roma", "Hotel Rose Garden Palace|Via Boncompagni, 19, 00187 Roma", "Hotel Marcella Royal|Via Flavia, 106, 00187 Roma", "Hotel Aleph Rome|Via San Basilio, 15, 00187 Roma", "Sofitel Rome Villa Borghese|Via Lombardia, 47, 00187 Roma", "Hotel Aldrovandi Villa Borghese|Via Ulisse Aldrovandi, 15, 00197 Roma", "Hotel Lord Byron|Via Giuseppe de Notaris, 5, 00197 Roma", "Hotel Parco dei Principi|Via Gerolamo Frescobaldi, 5, 00198 Roma", "Hotel de Russie|Via del Babuino, 9, 00187 Roma", "Hotel Art|Via Margutta, 56, 00187 Roma", "Hotel Hassler|Piazza della Trinità dei Monti, 6, 00187 Roma", "Hotel d'Inghilterra|Via Bocca di Leone, 14, 00187 Roma", "Hotel Valadier|Via della Fontanella, 15, 00187 Roma", "Hotel Mozart|Via dei Greci, 23b, 00187 Roma", "Hotel Barocco|Via della Purificazione, 4, 00187 Roma", "Hotel Plaza|Via del Corso, 126, 00186 Roma", "Hotel Nazionale|Piazza di Montecitorio, 131, 00186 Roma", "Hotel Locarno|Via della Penna, 22, 00186 Roma", "Bulgari Hotel Roma|Piazza Augusto Imperatore, 10, 00186 Roma", "Palazzo Ripetta|Via di Ripetta, 231, 00186 Roma", "Hotel Raphael|Largo Febo, 2, 00186 Roma", "Hotel Navona|Via dei Sediari, 8, 00186 Roma", "Hotel Tiziano|Corso Vittorio Emanuele II, 110, 00186 Roma", "Hotel Teatro di Pompeo|Largo del Pallaro, 8, 00186 Roma", "Hotel Campo de' Fiori|Via del Biscione, 6, 00186 Roma", "Hotel Albergo del Senato|Piazza della Rotonda, 73, 00186 Roma", "Hotel Sole al Pantheon|Piazza della Rotonda, 63, 00186 Roma", "Hotel Abruzzi|Piazza della Rotonda, 69, 00186 Roma", "Hotel Pantheon|Via dei Pastini, 131, 00186 Roma", "Grand Hotel de la Minerve|Piazza della Minerva, 69, 00186 Roma", "Hotel Cesari|Via di Pietra, 89a, 00186 Roma", "Hotel Ponte Sisto|Via dei Pettinari, 64, 00186 Roma", "Hotel Santa Maria|Vicolo del Piede, 2, 00153 Roma", "Hotel Columbus|Via della Conciliazione, 33, 00193 Roma", "Hotel Palazzo Cardinal Cesi|Via della Conciliazione, 51, 00193 Roma", "Hotel Atlante Star|Via Vitelleschi, 34, 00193 Roma", "Hotel Cicerone|Via Cicerone, 55c, 00193 Roma", "Hotel Visconti Palace|Via Federico Cesi, 37, 00193 Roma", "Hotel Farnese|Via Alessandro Farnese, 30, 00192 Roma", "Starhotels Michelangelo|Via della Stazione di San Pietro, 14, 00165 Roma", "Crowne Plaza Rome - St. Peter's|Via Aurelia Antica, 415, 00165 Roma", "Hotel Domus Mariae|Via Aurelia, 481, 00165 Roma", "Hotel Villa Pamphili|Via della Nocetta, 105, 00164 Roma", "Grand Hotel Gianicolo|Viale delle Mura Gianicolensi, 107, 00152 Roma", "Hotel Domus Aventina|Via di Santa Prisca, 11b, 00153 Roma", "Hotel Sant'Anselmo|Piazza Sant'Anselmo, 2, 00153 Roma", "Hotel Aventino|Via San Domenico, 10, 00153 Roma", "Hotel Villa San Pio|Via di Santa Melania, 19, 00153 Roma", "Rome Cavalieri, Waldorf Astoria|Via Alberto Cadlolo, 101, 00136 Roma", "Sheraton Roma Hotel|Viale del Pattinaggio, 100, 00144 Roma", "Sheraton Parco de' Medici|Viale Salvatore Rebecchini, 39, 00148 Roma", "Holiday Inn Rome Eur Parco dei Medici|Viale Castello della Magliana, 65, 00148 Roma", "Marriott Park Hotel Rome|Via Colonnello Tommaso Masala, 54, 00148 Roma", "Hilton Rome Airport|Via Arturo Ferrarin, 2, 00054 Fiumicino"].map(x => x.split("|"));
+const COLLS = ['servizi', 'pullman', 'autisti', 'accoppiamenti', 'hotel'];
+const ZTL_T = { // zone e permessi ZTL per bus turistici di Roma (fonte: Roma Servizi per la Mobilità e operatori; verifica i varchi sul sito di Roma Mobilità)
+  A: ['Bus A', 'ZTL Bus A: periferia, dentro il GRA · attiva 24h su 24, tutti i giorni', 'Zone'],
+  A1: ['A1 · Vaticano', 'Permesso A1: accesso all\'area Vaticano', 'Permessi giornalieri'],
+  B: ['Bus B', 'ZTL Bus B: dentro le Mura Aureliane, centro storico escluso · attiva dalle 5 alle 24, tutti i giorni', 'Zone'],
+  B1: ['B1', 'Permesso B1 · Vaticano (varco B1)', 'Permessi giornalieri'],
+  B2: ['B2', 'Permesso B2 · Vaticano (varco B2)', 'Permessi giornalieri'],
+  B3: ['B3', 'Permesso B3 · Vaticano (varco B3)', 'Permessi giornalieri'],
+  B4: ['B4', 'Permesso B4 · Vaticano (varco B4), tariffa ridotta rispetto agli altri B', 'Permessi giornalieri'],
+  B5: ['B5', 'Permesso B5 · area Colosseo (varco B5)', 'Permessi giornalieri'],
+  B51: ['B51', 'Permesso B51 · Colosseo e Vaticano', 'Permessi giornalieri'],
+  B52: ['B52', 'Permesso B52 · Colosseo e Vaticano', 'Permessi giornalieri'],
+  B53: ['B53', 'Permesso B53 · Colosseo e Vaticano', 'Permessi giornalieri'],
+  B54: ['B54', 'Permesso B54 · Colosseo e Vaticano, tariffa ridotta', 'Permessi giornalieri'],
+  B55: ['B55', 'Permesso B55 · varco B55', 'Permessi giornalieri'],
+  C: ['Bus C', 'ZTL Bus C: centro storico · attiva 24h su 24. Vietata ai bus turistici, salvo autorizzazione C (gite di scuola primaria, ospiti di hotel con almeno 40 camere, max 60 minuti)', 'Zone'],
+  VAT: ['Vaticano', 'Area Vaticano: permesso a numero chiuso, mattina (fino alle 13:30) o pomeriggio (dopo le 13:30)', 'Aree a numero chiuso'],
+  COL: ['Colosseo', 'Area Colosseo: permesso a numero chiuso, con prenotazione dello stallo a fasce di 30 minuti', 'Aree a numero chiuso'],
+  G: ['G · Grandi eventi', 'Permesso G per i grandi eventi, tariffa fissa, valido dalle 00:00 alle 23:59', 'Permessi giornalieri'],
+  GT: ['Gran Turismo (annuale)', 'Abbonamento annuale Gran Turismo per zone A, B e/o C, legato a una targa e a un itinerario', 'Permessi giornalieri'],
+  ALTRO: ['Altro', 'Altra ztl o permesso: descrivilo nel testo', 'Altro'],
+};
+const ztlCell = s => (s.ztlTipo || s.ztl || s.ztlOk) ? `${s.ztlTipo && ZTL_T[s.ztlTipo] ? `<span class="zt z-${s.ztlTipo}" title="${esc(ZTL_T[s.ztlTipo][1])}">${ZTL_T[s.ztlTipo][0]}</span>` : ''}${s.ztlOk ? '<span class="zok" title="Permesso acquistato">✓ permesso</span>' : (s.ztlTipo ? '<span class="zno" title="Permesso da acquistare">da prendere</span>' : '')}${s.ztl ? `<span class="sub">${esc(s.ztl)}</span>` : ''}` : '<span class="sub">—</span>';
+const SERV_PRESET = ['Htl x Fco', 'Fco x Htl', 'Htl x Fullday', 'Htl x Halfday'];
+const isFcoHtl = t => /^\s*fco\s*x\s*htl/i.test(t || '');
+const Q = new Map();
+function enqueue(path, fn) { const p = (Q.get(path) || Promise.resolve()).then(fn).catch(e => toast('Salvataggio non riuscito: ' + ((e && e.message) || e))); Q.set(path, p); }
+const clean = o => JSON.parse(JSON.stringify(o));
+function saveLocalAll() { try { const o = { settings: S.settings }; COLLS.forEach(c => { o[c] = S[c]; }); localStorage.setItem('gsp-v2', JSON.stringify(o)); } catch (e) {} }
+const SAMPLE = {"servizi":[{"id":"s01","accId":null,"citta":true,"data":"2026-10-21","esempio":true,"gruppo":"Gruppo Rossi","iva":"escl","note":"Bagagli a carico del gruppo","ora":"07:30","pax":48,"prezzo":380,"servizio":"Transfer Fiumicino → hotel centro","ztl":"Permesso ZTL Roma centro, ingresso 08:00-10:00"},{"id":"s02","accId":null,"citta":false,"data":"2026-10-21","esempio":true,"gruppo":"Scuola Media Manzoni","iva":"escl","note":"2 accompagnatori","ora":"09:30","pax":52,"prezzo":950,"servizio":"Gita Orvieto andata e ritorno","ztl":""},{"id":"s03","accId":null,"citta":false,"data":"2026-10-21","esempio":true,"gruppo":"Gruppo Verdi","iva":"incl","note":"","ora":"22:30","pax":45,"prezzo":540,"servizio":"Ritiro gruppo dopo cena a Trastevere","ztl":"ZTL Trastevere, permesso serale"},{"id":"s04","accId":"a5","citta":true,"data":"2026-10-22","esempio":true,"gruppo":"Gruppo Bianchi","iva":"escl","note":"","ora":"06:00","pax":16,"prezzo":160,"servizio":"Transfer Ciampino → hotel","ztl":""},{"id":"s05","accId":"a3","citta":false,"data":"2026-10-22","esempio":true,"gruppo":"Gruppo Neri","iva":"escl","note":"","ora":"06:00","pax":50,"prezzo":700,"servizio":"Pellegrinaggio Cassino","ztl":""},{"id":"s06","accId":"a4","citta":false,"data":"2026-10-22","esempio":true,"gruppo":"Associazione Il Girasole","iva":"incl","note":"","ora":"06:30","pax":47,"prezzo":620,"servizio":"Gita Castelli Romani","ztl":""},{"id":"s07","accId":"a4","citta":false,"data":"2026-10-22","esempio":true,"gruppo":"Gruppo Bianchi","iva":"escl","note":"","ora":"22:30","pax":40,"prezzo":480,"servizio":"Ritiro gruppo al Teatro dell'Opera","ztl":"Permesso ZTL centro"},{"id":"s08","accId":"a_mvh04o3e2zig","citta":true,"data":"2026-10-22","esempio":true,"gruppo":"Gruppo Conti","iva":"escl","note":"","ora":"15:00","pax":30,"prezzo":220,"servizio":"Transfer hotel → stazione Termini","ztl":""},{"id":"s09","accId":"a6","citta":false,"data":"2026-10-23","esempio":true,"gruppo":"Parrocchia San Marco","iva":"escl","note":"","ora":"08:00","pax":51,"prezzo":1100,"servizio":"Gita Assisi","ztl":""},{"id":"s10","accId":null,"citta":true,"data":"2026-10-23","esempio":true,"gruppo":"Gruppo Esposito","iva":"incl","note":"","ora":"10:00","pax":12,"prezzo":140,"servizio":"Transfer Roma → Fiumicino","ztl":""},{"id":"s11","accId":"a_mvh1hl684i8y","citta":true,"cliente":"Malatesta Viaggi","data":"2026-10-26","esempio":true,"gruppo":"RIF 2026/4701","hotel":"Hotel Valle","hotelInd":"Via Cavour, 134, 00184 Roma","iva":"escl","note":"","ora":"06:00","pax":16,"prezzo":150,"servizio":"Htl x Fco","ztl":"","ztlOk":true,"ztlTipo":"B"},{"id":"s12","accId":"a_mvh0gntxh6iz","citta":false,"cliente":"Servizio Navale","data":"2026-10-26","esempio":true,"gruppo":"SERVIZIO 34475","hotel":"Hotel Domus Mariae","hotelInd":"Via Aurelia, 481, 00165 Roma","iva":"escl","note":"Bagagli da caricare","ora":"06:30","pax":40,"prezzo":520,"servizio":"Civitavecchia Porto x Htl x Fco","ztl":"","ztlOk":false,"ztlTipo":""},{"id":"s13","accId":"a_mvh1hl68t2mh","citta":true,"cliente":"Malatesta Viaggi","data":"2026-10-26","esempio":true,"gruppo":"RIF 2026/4702","hotel":"Hotel Artemide","hotelInd":"Via Nazionale, 22, 00184 Roma","iva":"incl","note":"","ora":"07:00","pax":2,"prezzo":90,"servizio":"Htl x Fco","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s14","accId":"a_mvh0h5rh9i9s","citta":false,"cliente":"Pellegrinaggi Sud","data":"2026-10-26","esempio":true,"gruppo":"PS 26/091","hotel":"Hotel Parco dei Principi","hotelInd":"Via Gerolamo Frescobaldi, 5, 00198 Roma","iva":"escl","note":"Rientro previsto in serata","ora":"07:30","pasti":15,"pax":44,"prezzo":1250,"servizio":"Napoli - Pompei - San Giovanni Rotondo","ztl":"Permesso B giornaliero","ztlOk":true,"ztlTipo":"B"},{"id":"s15","accId":"a_mvh12g6f0wdf","citta":false,"cliente":"Marcus Bus","data":"2026-10-26","esempio":true,"gruppo":"MARCUS BUS 2","hotel":"Hotel Atlante Star","hotelInd":"Via Vitelleschi, 34, 00193 Roma","iva":"escl","note":"","ora":"08:00","pax":51,"prezzo":980,"servizio":"Perugia - Assisi - Perugia","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s16","accId":"a_mvh1hl68ft9p","citta":true,"cliente":"Sunrise Travel","data":"2026-10-26","esempio":true,"gruppo":"SRT 081/E","hotel":"Hotel Visconti Palace","hotelInd":"Via Federico Cesi, 37, 00193 Roma","iva":"escl","note":"","ora":"08:00","pax":29,"prezzo":720,"servizio":"Htl x Fullday Roma - Dispo di 8 ore","ztl":"","ztlOk":true,"ztlTipo":"B"},{"id":"s17","accId":"a_mvh1hl684i8y","citta":true,"cliente":"Global Pilgrim","data":"2026-10-26","esempio":true,"gruppo":"GP-2210","hotel":"Hotel Columbus","hotelInd":"Via della Conciliazione, 33, 00193 Roma","iva":"escl","note":"","ora":"08:30","pax":48,"prezzo":890,"servizio":"Htl x Fullday Roma Classica - Dispo di 8 ore - Colosseo","ztl":"Stallo Colosseo 09:00","ztlOk":true,"ztlTipo":"COL"},{"id":"s18","accId":"a_mvh1hl68wutf","citta":true,"cliente":"Vatican Tours","data":"2026-10-26","esempio":true,"gruppo":"VT-4410","hotel":"Hotel Cicerone","hotelInd":"Via Cicerone, 55c, 00193 Roma","iva":"escl","note":"","ora":"08:30","pax":30,"prezzo":520,"servizio":"Htl x Musei Vaticani (Dispo 5 ore)","ztl":"Area Vaticano mattina","ztlOk":false,"ztlTipo":"VAT"},{"id":"s19","accId":"a_mvh1hl68gue4","citta":true,"cliente":"Trinity Tours","data":"2026-10-26","esempio":true,"gruppo":"TT-OCT-118","hotel":"Hotel Quirinale","hotelInd":"Via Nazionale, 7, 00184 Roma","iva":"escl","note":"","ora":"08:30","pax":38,"prezzo":160,"servizio":"Htl x Fco","ztl":"","ztlOk":true,"ztlTipo":"B"},{"id":"s20","accId":"a_mvh1hl68t2mh","citta":true,"cliente":"Malatesta Viaggi","data":"2026-10-26","esempio":true,"gruppo":"RIF 2026/4703","hotel":"Hotel Mediterraneo","hotelInd":"Via Cavour, 15, 00184 Roma","iva":"escl","note":"","ora":"09:00","pax":14,"prezzo":130,"servizio":"Fco x Htl","volo":"AZ 611 ore 08.40","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s21","accId":null,"citta":false,"cliente":"Alpina Reisen","costoVett":320,"data":"2026-10-26","esempio":true,"gruppo":"AR-5520","hotel":"Grand Hotel Palace","hotelInd":"Via Vittorio Veneto, 70, 00187 Roma","iva":"escl","note":"Fatto da vettore esterno","ora":"10:00","pax":52,"prezzo":450,"servizio":"Htl x Fco","vettore":"LOAN SERVICE","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s22","accId":"a_mvh1hl68gue4","citta":true,"cliente":"Eden Travel","data":"2026-10-26","esempio":true,"gruppo":"EDEN 26/118","hotel":"Hotel Plaza","hotelInd":"Via del Corso, 126, 00186 Roma","iva":"escl","note":"","ora":"10:30","pax":22,"prezzo":210,"servizio":"Fco x Htl","volo":"BA 546 ore 10.05","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s23","accId":"a_mvh1hl68qhzn","citta":true,"cliente":"Basiliche Tour","data":"2026-10-26","esempio":true,"gruppo":"BT 26/37","hotel":"Hotel Majestic","hotelInd":"Via Vittorio Veneto, 50, 00187 Roma","iva":"escl","note":"Rientro in hotel entro le 16.30","ora":"13:30","pax":36,"prezzo":380,"servizio":"Htl x Halfday Basiliche (tot. 3 ore)","ztl":"","ztlOk":true,"ztlTipo":"B"},{"id":"s24","accId":"a_mvh1hl68wutf","citta":true,"cliente":"EGR","data":"2026-10-26","esempio":true,"gruppo":"EGR","hotel":"Hotel Eden","hotelInd":"Via Ludovisi, 49, 00187 Roma","iva":"incl","note":"","ora":"14:00","pax":2,"prezzo":280,"servizio":"Htl x Halfday (tot. 3 ore)","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s25","accId":"a_mvh1hl684i8y","citta":true,"cliente":"Sunrise Travel","data":"2026-10-26","esempio":true,"gruppo":"SRT 082/E","hotel":"Hotel Napoleon","hotelInd":"Piazza Vittorio Emanuele II, 105, 00185 Roma","iva":"escl","note":"","ora":"17:25","pax":29,"prezzo":190,"servizio":"Ciampino Apt x Htl","volo":"FR 625 ore 17.25","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s26","accId":"a_mvh1hl68wutf","citta":true,"cliente":"Adulti Group","data":"2026-10-26","esempio":true,"gruppo":"ADULTI","hotel":"Hotel Metropole","hotelInd":"Via Principe Amedeo, 3, 00185 Roma","iva":"escl","note":"","ora":"18:00","pax":27,"prezzo":170,"servizio":"Htl x Fco","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s27","accId":"a_mvh1hl68qhzn","citta":true,"cliente":"Cena Roma","data":"2026-10-26","esempio":true,"gruppo":"CR 26/12","hotel":"Hotel Santa Maria","hotelInd":"Vicolo del Piede, 2, 00153 Roma","iva":"escl","note":"","ora":"19:30","pax":35,"prezzo":300,"servizio":"Htl x Cena a Trastevere","ztl":"Sosta Lungotevere","ztlOk":true,"ztlTipo":"B"},{"id":"s28","accId":"a_mvh1hl689mw3","citta":true,"cliente":"Cena Roma","data":"2026-10-26","esempio":true,"gruppo":"CR 26/12","hotel":"Hotel Santa Maria","hotelInd":"Vicolo del Piede, 2, 00153 Roma","iva":"escl","note":"Ritiro a fine cena","ora":"23:00","pax":35,"prezzo":250,"servizio":"Rientro da Trastevere x Htl","ztl":"","ztlOk":true,"ztlTipo":"B"},{"id":"s29","accId":"a_mvh1hl68h9nw","citta":true,"cliente":"Opera Club","data":"2026-10-26","esempio":true,"gruppo":"OC 26/04","hotel":"Hotel Majestic","hotelInd":"Via Vittorio Veneto, 50, 00187 Roma","iva":"escl","note":"","ora":"22:30","pax":40,"prezzo":480,"servizio":"Ritiro gruppo al Teatro dell'Opera x Htl","ztl":"","ztlOk":false,"ztlTipo":"B"},{"id":"s30","accId":"a_mvh1hl68ft9p","citta":true,"cliente":"Malatesta Viaggi","data":"2026-10-26","esempio":true,"gruppo":"RIF 2026/4704","hotel":"Hotel Artorius","hotelInd":"Via del Boschetto, 13, 00184 Roma","iva":"escl","note":"","ora":"05:30","pax":18,"prezzo":140,"servizio":"Htl x Fco","ztl":"","ztlOk":true,"ztlTipo":"B"}],"pullman":[{"id":"b1","nome":"Pullman 50","note":"","posti":50,"targa":"","tipo":"pullman"},{"id":"b11","nome":"Minibus 8","note":"","posti":8,"targa":"","tipo":"minibus"},{"id":"b2","nome":"Pullman 54","note":"","posti":54,"targa":"","tipo":"pullman"},{"id":"b3","nome":"Minibus 20","note":"","posti":20,"targa":"","tipo":"minibus"},{"id":"b4","nome":"Minibus 16","note":"","posti":16,"targa":"","tipo":"minibus"},{"id":"b5","nome":"Minibus 30","note":"","posti":30,"targa":"","tipo":"minibus"},{"id":"b6","nome":"Pullman 56","note":"","posti":56,"targa":"","tipo":"pullman"},{"id":"b7","nome":"Pullman 58","note":"","posti":58,"targa":"","tipo":"pullman"},{"id":"b8","nome":"Pullman 64","note":"","posti":64,"targa":"","tipo":"pullman"}],"autisti":[{"id":"d1","esempio":true,"nome":"Mario R.","note":"","telefono":""},{"id":"d10","esempio":true,"nome":"Davide P.","note":"","telefono":""},{"id":"d11","esempio":true,"nome":"Marco G.","note":"","telefono":""},{"id":"d12","esempio":true,"nome":"Andrea V.","note":"","telefono":""},{"id":"d13","esempio":true,"nome":"Fabio T.","note":"","telefono":""},{"id":"d14","esempio":true,"nome":"Enrico N.","note":"","telefono":""},{"id":"d2","esempio":true,"nome":"Luca B.","note":"","telefono":""},{"id":"d3","esempio":true,"nome":"Giorgio S.","note":"","telefono":""},{"id":"d4","esempio":true,"nome":"Paolo T.","note":"","telefono":""},{"id":"d5","esempio":true,"nome":"Giuseppe M.","note":"","telefono":""},{"id":"d6","esempio":true,"nome":"Paolo S.","note":"","telefono":""},{"id":"d7","esempio":true,"nome":"Antonio C.","note":"","telefono":""},{"id":"d8","esempio":true,"nome":"Roberto F.","note":"","telefono":""},{"id":"d9","esempio":true,"nome":"Stefano L.","note":"","telefono":""}],"accoppiamenti":[{"id":"a3","busId":"b1","driverId":"d1","n":1},{"id":"a4","busId":"b2","driverId":"d3","n":2},{"id":"a5","busId":"b3","driverId":"d4","n":3},{"id":"a6","busId":"b1","driverId":"d2","n":1},{"id":"a_mvh04o3e2zig","busId":"b1","driverId":"d2","n":8},{"id":"a_mvh0gntxh6iz","busId":null,"driverId":null,"n":3},{"id":"a_mvh0h5rh9i9s","busId":null,"driverId":null,"n":4},{"id":"a_mvh12g6f0wdf","busId":null,"driverId":null,"n":7},{"id":"a_mvh1hl684i8y","busId":"b1","driverId":"d12","n":2},{"id":"a_mvh1hl689mw3","busId":"b2","driverId":"d13","n":8},{"id":"a_mvh1hl68ft9p","busId":"b7","driverId":"d5","n":1},{"id":"a_mvh1hl68gue4","busId":"b2","driverId":"d10","n":4},{"id":"a_mvh1hl68h9nw","busId":"b1","driverId":"d7","n":7},{"id":"a_mvh1hl68qhzn","busId":"b6","driverId":"d14","n":6},{"id":"a_mvh1hl68t2mh","busId":"b4","driverId":"d2","n":3},{"id":"a_mvh1hl68wutf","busId":"b5","driverId":"d3","n":5}]};
+function loadLocal() { try { const o = JSON.parse(localStorage.getItem('gsp-v2') || '{}'); COLLS.forEach(c => { S[c] = o[c] || []; }); S.settings = o.settings || {}; } catch (e) {} }
+function put(coll, obj, quiet) {
+  const arr = S[coll], i = arr.findIndex(x => x.id === obj.id);
+  if (i >= 0) arr[i] = obj; else arr.push(obj);
+  const { id, ...body } = obj;
+  if (DB) enqueue(coll + '/' + id, () => DB.doc(coll + '/' + id).set(clean(body))); else saveLocalAll();
+  if (!quiet) { recompute(); render(); }
+}
+const persist = (coll, obj) => put(coll, obj, false);
+function del(coll, id, quiet) {
+  S[coll] = S[coll].filter(x => x.id !== id);
+  if (DB) enqueue(coll + '/' + id, () => DB.doc(coll + '/' + id).delete()); else saveLocalAll();
+  if (!quiet) { recompute(); render(); }
+}
+// Lo stesso numero Acc. nello stesso giorno è un solo accoppiamento: se per qualunque motivo ce ne sono due, li unisco in un unico blocco
+function mergeDupAcc() {
+  const groups = new Map();
+  for (const a of S.accoppiamenti) { const sv = S.servizi.find(x => x.accId === a.id); if (!sv) continue; const k = sv.data + '|' + a.n; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(a); }
+  let n = 0;
+  for (const list of groups.values()) {
+    if (list.length < 2) continue;
+    const score = a => (a.driverId ? 2 : 0) + (a.busId ? 1 : 0);
+    list.sort((x, y) => score(y) - score(x));
+    let keep = list[0];
+    for (const a of list.slice(1)) {
+      S.servizi.filter(x => x.accId === a.id).forEach(x => put('servizi', { ...x, accId: keep.id }, true));
+      if ((!keep.busId && a.busId) || (!keep.driverId && a.driverId)) { keep = { ...keep, busId: keep.busId || a.busId || null, driverId: keep.driverId || a.driverId || null }; put('accoppiamenti', keep, true); }
+      del('accoppiamenti', a.id, true); n++;
+    }
+  }
+  return n;
+}
+function pruneAcc() { // elimina gli accoppiamenti rimasti senza servizi
+  mergeDupAcc();
+  for (const a of [...S.accoppiamenti]) if (!S.servizi.some(s => s.accId === a.id)) { del('accoppiamenti', a.id, true); }
+  recompute(); render();
+}
+function saveSettings(patch) {
+  S.settings = { ...S.settings, ...patch };
+  recompute(); render();
+  if (DB) enqueue('config/impostazioni', () => DB.doc('config/impostazioni').set(clean(S.settings))); else saveLocalAll();
+}
+function subscribe() {
+  const mark = k => { S.loaded[k] = true; if ([...COLLS, 'settings'].every(x => S.loaded[x])) S.ready = true; if (S.ready) mergeDupAcc(); recompute(); schedule(); };
+  const err = e => toast('Collegamento ai dati interrotto: ' + ((e && e.message) || 'riapri la pagina'));
+  for (const c of COLLS) DB.collection(c).onSnapshot(snap => { S[c] = snap.docs.map(d => ({ id: d.id, ...d.data() })); mark(c); }, err);
+  DB.doc('config/impostazioni').onSnapshot(snap => { S.settings = snap.exists ? (snap.data() || {}) : {}; mark('settings'); }, err);
+}
+let raf = 0;
+function schedule() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; render(); }); }
+
+/* ---------- viste ---------- */
+const $app = document.getElementById('app');
+function chipsFor(s) {
+  const seen = new Set(), out = [], set = cfg();
+  const L = { ovb: 'Pullman occupato', ovd: 'Autista occupato', ovs: 'Servizi sovrapposti', posti: 'Posti insufficienti', h15: `Oltre ${set.maxOre}h`, rest: `Riposo sotto ${set.riposoOre}h`, streak: 'Giorni consecutivi' };
+  for (const x of warnsOf(s)) if (!seen.has(x.type)) { seen.add(x.type); out.push(`<span class="chip ${x.level}" title="${esc(x.text)}">${I.warn}${esc(L[x.type])}</span>`); }
+  return out.join('');
+}
+const resChip = (kind, id, hasAcc) => { const r = kind === 'bus' ? bus(id) : drv(id); return r ? `<span class="chip ok">${esc(r.nome)}</span>` : `<span class="chip empty">${hasAcc ? 'da assegnare' : '—'}</span>`; };
+const exTag = x => (x.esempio ? '<span class="ex">Esempio</span>' : '');
+const msgList = ws => (ws.length ? `<ul class="msgs">${ws.map(x => `<li class="${x.level}">${I.warn}<span>${esc(x.text)}</span></li>`).join('')}</ul>` : '');
+const matchQ = (s, q) => !q || `${s.gruppo} ${s.cliente || ''} ${s.servizio} ${s.hotel || ''} ${s.vettore || ''} ${s.note} ${s.ztl}`.toLowerCase().includes(q);
+
+/* --- Cruscotto --- */
+const LOGO_SVG = (cls, id) => `<svg class="${cls}" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="b${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#0B1B3F"/></linearGradient><linearGradient id="c${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5BE3F7"/><stop offset="1" stop-color="#1FC4E8"/></linearGradient><linearGradient id="w${id}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#E4EEFF"/></linearGradient></defs><rect width="512" height="512" rx="116" fill="url(#b${id})"/><g transform="translate(-12 0)"><path d="M139 145.0H317L291 195.0H113z" fill="url(#w${id})" stroke="url(#w${id})" stroke-width="18" stroke-linejoin="round"/><path d="M353 145.0H431L405 195.0H327z" fill="url(#c${id})" stroke="url(#c${id})" stroke-width="18" stroke-linejoin="round"/><path d="M139 231.0H239L213 281.0H113z" fill="url(#c${id})" stroke="url(#c${id})" stroke-width="18" stroke-linejoin="round"/><path d="M275 231.0H431L405 281.0H249z" fill="url(#w${id})" stroke="url(#w${id})" stroke-width="18" stroke-linejoin="round"/><path d="M139 317.0H317L291 367.0H113z" fill="url(#w${id})" stroke="url(#w${id})" stroke-width="18" stroke-linejoin="round"/><path d="M353 317.0H431L405 367.0H327z" fill="url(#c${id})" stroke="url(#c${id})" stroke-width="18" stroke-linejoin="round"/></g></svg>`;
+const svDay = () => {
+  if (S.sv && S.sv.day) return S.sv.day;
+  const t = todayStr(), ds = [...new Set(S.servizi.map(s => s.data))].sort();
+  return ds.includes(t) ? t : (ds.find(d => d > t) || ds[ds.length - 1] || t);
+};
+function dayStats(day) {
+  const set = cfg(), all = S.eff.filter(s => s.data === day), own = all.filter(s => !s.vettore);
+  let tot = 0, imp = 0, costi = 0, pax = 0;
+  for (const s of all) { const p = priceInfo(s); tot += p.tot; imp += p.imp; costi += Number(s.costoVett) || 0; pax += Number(s.pax) || 0; }
+  const blocks = new Map();
+  for (const s of own) if (s.accId) { if (!blocks.has(s.accId)) blocks.set(s.accId, []); blocks.get(s.accId).push(s); }
+  const busIds = new Set(), drvIds = new Set(); let minutes = 0, seatsSum = 0, paxSum = 0;
+  for (const list of blocks.values()) {
+    const sp = list.map(s => spanOf(s, set)), a = Math.min(...sp.map(x => x.start)), b = Math.max(...sp.map(x => x.end));
+    const bs = bus(list[0].busId);
+    if (list[0].busId) { busIds.add(list[0].busId); minutes += b - a; }
+    if (list[0].driverId) drvIds.add(list[0].driverId);
+    if (bs && Number(bs.posti)) { seatsSum += Number(bs.posti); paxSum += Math.max(...list.map(s => Number(s.pax) || 0)); }
+  }
+  const nBus = S.pullman.length, nMini = S.pullman.filter(isMini).length;
+  const usedMini = [...busIds].filter(id => isMini(bus(id))).length;
+  return {
+    n: all.length, tot, imp, costi, vet: all.filter(s => s.vettore).length, pax,
+    daAcc: own.filter(s => !s.accId).length, daAss: own.filter(s => !(s.busId && s.driverId)).length, blocks: blocks.size,
+    bus: busIds.size, nBus, mini: usedMini, nMini, drv: drvIds.size, nDrv: S.autisti.length,
+    busPct: nBus ? busIds.size / nBus : 0, drvPct: S.autisti.length ? drvIds.size / S.autisti.length : 0,
+    potPct: nBus ? Math.min(1, minutes / (nBus * set.maxOre * 60)) : 0, minutes,
+    fill: seatsSum ? paxSum / seatsSum : 0, warn: all.filter(s => warnsOf(s).length).length,
+  };
+}
+const pctS = x => Math.round(x * 100) + '%';
+const eurK = n => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n || 0);
+function cruscotto(day) {
+  const st = dayStats(day), dt = new Date(dayNum(day) * 86400000), t = todayStr(), mese = day.slice(0, 7);
+  const dayAll = S.eff.filter(s => s.data === day);
+  const incassato = dayAll.filter(s => s.incasso).reduce((a, s) => a + priceInfo(s).tot, 0);
+  const meseTot = S.eff.filter(s => s.data.slice(0, 7) === mese).reduce((a, s) => a + priceInfo(s).tot, 0);
+  const days = [...Array(7)].map((_, i) => numDay(dayNum(day) + i)), ds = days.map(d => ({ d, s: dayStats(d) })), mx = Math.max(1, ...ds.map(x => x.s.tot));
+  const ring = (p, color) => { const r = 24, c = 2 * Math.PI * r; return `<svg class="rg" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="${r}" fill="none" stroke="var(--line)" stroke-width="6"/><circle cx="30" cy="30" r="${r}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round" stroke-dasharray="${(c * Math.min(1, p)).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 30 30)"/><text x="30" y="34" text-anchor="middle" class="rt">${pctS(p)}</text></svg>`; };
+  // grafico: barre = fatturato, linea = mezzi in uso
+  const W = 700, H = 190, pl = 12, pr = 12, pt = 28, pb = 34, cw = (W - pl - pr) / 7, bh = H - pt - pb;
+  const pts = ds.map(({ s }, i) => [pl + cw * i + cw / 2, pt + bh * (1 - s.busPct)]);
+  const chart = `<svg class="cht" viewBox="0 0 ${W} ${H}" role="img" aria-label="Fatturato e mezzi in uso dei prossimi 7 giorni"><defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B8CFF"/><stop offset="1" stop-color="#2557E8"/></linearGradient></defs>
+    ${[0, .5, 1].map(f => `<line x1="${pl}" x2="${W - pr}" y1="${pt + bh * f}" y2="${pt + bh * f}" class="gl"/>`).join('')}
+    ${ds.map(({ d, s }, i) => { const x = pl + cw * i, h = s.tot ? Math.max(4, bh * s.tot / mx) : 0, y = pt + bh - h, xx = new Date(dayNum(d) * 86400000);
+      return `<g class="cc ${d === day ? 'on' : ''} ${d === t ? 'today' : ''}" data-action="sv-day" data-set="${d}" tabindex="0"><title>${esc(dlabel(d, { weekday: 'long', day: 'numeric', month: 'long' }))} · ${esc(eur(s.tot))} · mezzi ${pctS(s.busPct)}</title>
+        <rect x="${x + 2}" y="0" width="${cw - 4}" height="${H}" rx="10" class="hit"/>
+        ${h ? `<rect x="${x + cw / 2 - 17}" y="${y}" width="34" height="${h}" rx="7" fill="url(#bg1)" class="bar"/>` : `<rect x="${x + cw / 2 - 17}" y="${pt + bh - 3}" width="34" height="3" rx="1.5" class="bar0"/>`}
+        <text x="${x + cw / 2}" y="${Math.max(14, y - 7)}" text-anchor="middle" class="bv">${s.tot ? eurK(s.tot) : ''}</text>
+        <text x="${x + cw / 2}" y="${H - 10}" text-anchor="middle" class="bd">${esc(xx.toLocaleDateString('it-IT', { timeZone: 'UTC', weekday: 'short' }))} ${xx.getUTCDate()}</text></g>`; }).join('')}
+    <polyline points="${pts.map(p => p.join(',')).join(' ')}" class="ln"/>
+    ${pts.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="${ds[i].s.busPct ? 4.5 : 3}" class="dot"/>`).join('')}</svg>`;
+  return `<section class="cru">
+    <div class="crubar"><h2>Cruscotto</h2>
+      <div class="daynav">
+        <button class="btn sm" data-action="sv-day" data-d="-1" aria-label="Giorno precedente">◀</button>
+        <input type="date" id="sv-day" data-fs="sv" data-filter="day" value="${esc(day)}" aria-label="Giorno del cruscotto">
+        <button class="btn sm" data-action="sv-day" data-d="1" aria-label="Giorno successivo">▶</button>
+        <button class="btn sm" data-action="sv-day" data-set="${t}">Oggi</button>
+      </div>
+      <span class="crud">${esc(dt.toLocaleDateString('it-IT', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}</span></div>
+    <div class="ctop">
+      <div class="rev"><span class="kl">Fatturato del giorno</span><b>${eur(st.tot)}</b>
+        <div class="rsub"><span>Imponibile <em>${eurK(st.imp)}</em></span>${st.costi ? `<span>Vettori <em>${eurK(st.costi)}</em></span><span>Margine <em>${eurK(st.imp - st.costi)}</em></span>` : ''}</div>
+        <div class="inc"><div class="incb"><i style="width:${st.tot ? Math.round(incassato / st.tot * 100) : 0}%"></i></div><span>Incassato ${eurK(incassato)} su ${eurK(st.tot)}</span></div>
+        <div class="mm"><span>${esc(dt.toLocaleDateString('it-IT', { timeZone: 'UTC', month: 'long' }))}</span><em>${eurK(meseTot)}</em></div></div>
+    </div>
+    <div class="kgrid">
+      <div class="kpi rk">${ring(st.busPct, '#2557E8')}<div><span class="kl">Mezzi in uso</span><b>${st.bus} <em>di ${st.nBus}</em></b><small>${st.bus - st.mini} pullman · ${st.mini} minibus</small></div></div>
+      <div class="kpi rk">${ring(st.drvPct, '#7C5CFF')}<div><span class="kl">Autisti in servizio</span><b>${st.drv} <em>di ${st.nDrv}</em></b><small>${st.nDrv - st.drv} liberi</small></div></div>
+      <div class="kpi rk">${ring(st.fill, '#12A06B')}<div><span class="kl">Posti occupati</span><b>${st.pax} <em>persone</em></b><small>sui posti dei mezzi assegnati</small></div></div>
+      <div class="kpi"><span class="kl">Servizi</span><b>${st.n}</b><small>${st.blocks} accoppiament${st.blocks === 1 ? 'o' : 'i'}${st.vet ? ` · ${st.vet} vettore` : ''}</small>
+        <div class="pills">${st.daAcc ? `<span class="pl warn">${st.daAcc} da accoppiare</span>` : '<span class="pl ok">tutti accoppiati</span>'}${st.daAss ? `<span class="pl warn">${st.daAss} da assegnare</span>` : ''}${st.warn ? `<span class="pl bad">${st.warn} con avvisi</span>` : ''}</div></div>
+    </div>
+  </section>`;
+}
+function hero() {
+  const h = new Date().getHours(), hello = h < 13 ? 'Buongiorno' : h < 18 ? 'Buon pomeriggio' : 'Buonasera', t = todayStr();
+  const n = S.eff.filter(s => s.data === t).length;
+  return `<header class="hero">${LOGO_SVG('hbg', 'hg2')}
+    <div class="hl">${LOGO_SVG('hlogo', 'hg1')}<div><span class="hello">${hello}</span><h1><span>FLEET</span><i>LINE</i></h1>
+      <p>${esc(dlabel(t, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))} · ${n ? `${n} serviz${n === 1 ? 'io' : 'i'} oggi` : 'nessun servizio oggi'}</p></div></div>
+    <button class="btn primary big" data-action="new-s">${I.plus}Nuovo servizio</button></header>`;
+}
+
+
+function vFatturato() {
+  const yr = S.fat.year || (S.fat.year = new Date().getFullYear()), sel = S.fat.month;
+  const mname = i => new Date(Date.UTC(2000, i, 1)).toLocaleDateString('it-IT', { timeZone: 'UTC', month: 'long' });
+  const agg = (pred, key) => { const o = {}; for (const s of S.eff) { if (!pred(s)) continue; const p = priceInfo(s), k = key(s), d = o[k] || (o[k] = { sv: 0, imp: 0, tot: 0, costi: 0, inc: 0 }); d.sv++; d.imp += p.imp; d.tot += p.tot; d.costi += Number(s.costoVett) || 0; if (s.incasso) d.inc += p.tot; } return o; };
+  const sum = L => L.reduce((a, x) => ({ sv: a.sv + x.sv, imp: a.imp + x.imp, tot: a.tot + x.tot, costi: a.costi + x.costi, inc: a.inc + x.inc }), { sv: 0, imp: 0, tot: 0, costi: 0, inc: 0 });
+  if (sel) { // dettaglio di un mese
+    const D = agg(s => String(s.data).slice(0, 7) === sel, s => s.data), days = Object.keys(D).sort(), T = sum(days.map(d => D[d]));
+    const mi = Number(sel.slice(5, 7)) - 1, ny = sel.slice(0, 4);
+    const shift = n => { const d = new Date(Date.UTC(Number(ny), mi + n, 1)); return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`; };
+    const rows = days.map(d => { const x = D[d], dt = new Date(dayNum(d) * 86400000); return `<tr data-action="fat-day" data-day="${d}" title="Apri il giorno in Assegnazione"><td>${esc(dt.toLocaleDateString('it-IT', { timeZone: 'UTC', weekday: 'short', day: 'numeric' }))}</td><td>${x.sv}</td><td class="tt">${eur(x.tot)}</td><td>${eur(x.inc)}</td></tr>`; }).join('');
+    return `<section class="cru">
+      <div class="fhead"><button class="btn sm" data-action="fat-month" data-m="">← Tutti i mesi</button>
+        <button class="btn sm" data-action="fat-month" data-m="${shift(-1)}" aria-label="Mese precedente">◀</button><h2 style="text-transform:capitalize">${mname(mi)} ${ny}</h2><button class="btn sm" data-action="fat-month" data-m="${shift(1)}" aria-label="Mese successivo">▶</button></div>
+      <div class="rev fone"><div><span class="kl">Fatturato del mese</span><b>${eur(T.tot)}</b></div>
+        <div class="rsub"><span>${T.sv} servizi</span><span>Imponibile <em>${eurK(T.imp)}</em></span>${T.costi ? `<span>Vettori <em>${eurK(T.costi)}</em></span><span>Margine <em>${eurK(T.imp - T.costi)}</em></span>` : ''}<span>Incassato <em>${eurK(T.inc)}</em></span><span>Da incassare <em>${eurK(T.tot - T.inc)}</em></span></div></div>
+      ${days.length ? `<div class="ftw"><table class="ft"><thead><tr><th>Giorno</th><th>Servizi</th><th>Totale</th><th>Incassato</th></tr></thead><tbody>${rows}</tbody></table></div>` : `<div class="card empty"><p>Nessun servizio in questo mese.</p></div>`}
+    </section>`;
+  }
+  const A = agg(s => String(s.data).slice(0, 4) === String(yr), s => String(s.data).slice(0, 7)), nowK = todayStr().slice(0, 7);
+  const T = sum(Object.values(A));
+  const cards = [...Array(12)].map((_, i) => { const k = `${yr}-${String(i + 1).padStart(2, '0')}`, x = A[k]; return `<button class="mcard ${x ? '' : 'zero'} ${k === nowK ? 'cur' : ''}" data-action="fat-month" data-m="${k}"><span class="kl">${mname(i)}</span><b>${x ? eurK(x.tot) : '—'}</b><small>${x ? `${x.sv} serviz${x.sv === 1 ? 'io' : 'i'}` : 'nessun servizio'}</small></button>`; }).join('');
+  return `<section class="cru">
+    <div class="fhead"><h2>Fatturato</h2>
+      <button class="btn sm" data-action="fat-year" data-d="-1" aria-label="Anno precedente">◀</button><span class="fyear">${yr}</span><button class="btn sm" data-action="fat-year" data-d="1" aria-label="Anno successivo">▶</button></div>
+    <div class="rev fone"><div><span class="kl">Totale ${yr}</span><b>${eur(T.tot)}</b></div>
+      <div class="rsub"><span>${T.sv} servizi</span><span>Imponibile <em>${eurK(T.imp)}</em></span><span>Incassato <em>${eurK(T.inc)}</em></span><span>Da incassare <em>${eurK(T.tot - T.inc)}</em></span></div></div>
+    <div class="mgrid">${cards}</div>
+    <p class="hint2" style="margin-top:10px">Clicca un mese per vedere il dettaglio giorno per giorno.</p></section>`;
+}
+function vServizi() {
+  const t = todayStr(), head = hero();
+  if (!S.servizi.length) return `${head}<div class="card empty"><h3>Nessun servizio registrato</h3><p>Registra il primo servizio: data, ora, gruppo, persone, prezzo. Poi li accoppi nella sezione Assegnazione, oppure lasci fare all'accoppiamento automatico.</p></div>`;
+  const all = S.eff.slice().sort(byTime), nPast = all.filter(s => s.data < t).length;
+  const list = S.svPast ? all : all.filter(s => s.data >= t);
+  const days = groupBy(list, 'data');
+  const stt = s => {
+    if (s.vettore) return { c: 'ext', l: `Vettore · ${esc(s.vettore)}` };
+    if (s.busId && s.driverId) return { c: 'ok', l: `${esc(drv(s.driverId).nome)} · ${esc(bus(s.busId).nome)}` };
+    if (s.accId) return { c: 'acc', l: `Acc. ${s.accN} · ${!s.driverId ? 'manca l\'autista' : 'manca il pullman'}` };
+    return { c: 'none', l: 'Da accoppiare' };
+  };
+  const card = s => {
+    const p = priceInfo(s), z = stt(s), w = warnsOf(s).filter(x => !['ovb', 'ovd', 'ovs', 'posti'].includes(x.type));
+    return `<article class="sv" data-action="edit-s" data-id="${s.id}" tabindex="0">
+      <time>${esc(s.ora)}</time>
+      <div class="sm"><div class="s1"><b>${esc(s.gruppo)}</b>${s.cliente ? `<span>${esc(s.cliente)}</span>` : ''}${exTag(s)}</div>
+        <div class="s2">${esc(s.servizio)}${s.volo ? `<em>✈ ${esc(s.volo)}</em>` : ''}</div>
+        ${s.hotel || s.note ? `<div class="s3">${s.hotel ? esc(s.hotel) : ''}${s.hotel && s.note ? ' · ' : ''}${s.note ? esc(s.note) : ''}</div>` : ''}</div>
+      <div class="spx"><b>${esc(s.pax)}</b><small>pers.</small></div>
+      <div class="sz">${s.ztlTipo || s.ztl || s.ztlOk ? ztlCell(s) : ''}</div>
+      <div class="spr">${s.prezzo ? `<b>${eur(s.prezzo)}</b><small>${s.iva === 'incl' ? 'ivato' : '+ IVA'}${s.incasso ? ' · incassato' : ''}</small>` : '<small>—</small>'}</div>
+      <div class="sst ${z.c}"><i></i><span>${z.l}</span>${w.length ? `<span class="wd" title="${esc(w.map(x => x.text).join('\n'))}">${I.warn}</span>` : ''}</div>
+    </article>`;
+  };
+  const secs = [...days.keys()].map(d => {
+    const g = days.get(d), tot = g.reduce((a, x) => a + priceInfo(x).tot, 0), dt = new Date(dayNum(d) * 86400000);
+    const open = g.filter(x => !(x.busId && x.driverId) && !x.vettore).length;
+    return `<section class="dsec ${d < t ? 'past' : ''} ${d === t ? 'today' : ''}">
+      <div class="dd"><span class="dw">${esc(dt.toLocaleDateString('it-IT', { timeZone: 'UTC', weekday: 'short' }))}</span><span class="dn">${dt.getUTCDate()}</span><span class="dmo">${esc(dt.toLocaleDateString('it-IT', { timeZone: 'UTC', month: 'long', year: 'numeric' }))}</span>${d === t ? '<span class="dtd">oggi</span>' : ''}</div>
+      <div class="dl"><div class="dmeta">${g.length} serviz${g.length === 1 ? 'io' : 'i'}${open ? ` · <b>${open} da assegnare</b>` : ' · tutti assegnati'} · ${eur(tot)} con IVA</div>${g.map(card).join('')}</div>
+    </section>`;
+  }).join('');
+  return `${head}${cruscotto(svDay())}`;
+}
+
+/* --- Assegnazione: elenco fitto del giorno, accoppiamento e assegnazione sulla stessa riga --- */
+const accHue = n => ((n || 0) * 53) % 360;
+const BUS_T = ['ovb', 'posti'], DRV_T = ['ovd', 'h15', 'rest', 'streak'];
+function resSelect(s, kind, wsAll) {
+  const field = kind === 'bus' ? 'busId' : 'driverId', r = (kind === 'bus' ? bus : drv)(s[field]);
+  if (!(kind === 'bus' ? S.pullman : S.autisti).length) return `<button class="btn sm" data-action="tab" data-tab="risorse">${kind === 'bus' ? 'Aggiungi pullman' : 'Aggiungi autisti'}</button>`;
+  const ws = (wsAll || warnsOf(s)).filter(x => (kind === 'bus' ? BUS_T : DRV_T).includes(x.type));
+  const lvl = !r ? 'empty' : (ws.length ? worst(ws) : 'ok');
+  return `<button class="rbtn ${lvl}" data-action="pick-res" data-kind="${kind}" data-svc="${s.id}" aria-haspopup="listbox" title="${esc(ws.map(x => x.text).join('\n'))}">${r ? esc(r.nome) : (kind === 'bus' ? 'Pullman' : 'Autista')}</button>`;
+}
+
+/* selettore di pullman/autisti: ricerca + elenco già ordinato per disponibilità (pensato per decine di mezzi e autisti) */
+let POP = null;
+function closePop() { if (POP) { POP.el.remove(); POP = null; } }
+function assignTo(svcId, kind, resId) {
+  const sv = rawSvc(svcId); if (!sv) return;
+  const fld = kind === 'bus' ? 'busId' : 'driverId';
+  let a = sv.accId && accOf(sv.accId);
+  if (!a) { // servizio non ancora accoppiato: ne creo uno da solo
+    a = { id: newId('a_'), n: nextAccN(sv.data), busId: null, driverId: null };
+    put('accoppiamenti', a, true); put('servizi', { ...sv, accId: a.id }, true);
+  }
+  put('accoppiamenti', { ...a, [fld]: resId || null }, true); recompute(); render();
+}
+function openPop(btn) {
+  closePop();
+  const kind = btn.dataset.kind, sv = S.eff.find(x => x.id === btn.dataset.svc); if (!sv) return;
+  const res = kind === 'bus' ? S.pullman : S.autisti, field = kind === 'bus' ? 'busId' : 'driverId', set = cfg();
+  const group = sv.accId ? accSvcs(sv.accId) : [sv], rank = { ok: 0, warn: 1, danger: 2 };
+  const items = res.map(r => {
+    const w = whatIf(S.eff, S.pullman, S.autisti, set, group, kind, r.id);
+    const lvl = w.some(x => x.level === 'danger') ? 'danger' : (w.length ? 'warn' : 'ok');
+    const same = S.eff.filter(x => x[field] === r.id && x.data === sv.data && x.accId !== sv.accId).length;
+    return { r, w, lvl, same, on: sv[field] === r.id };
+  }).sort((x, y) => rank[x.lvl] - rank[y.lvl] || (kind === 'bus' ? (x.r.posti || 0) - (y.r.posti || 0) : x.same - y.same) || x.r.nome.localeCompare(y.r.nome, 'it'));
+  const GL = { ok: 'Liberi', warn: 'Con avvisi', danger: 'In conflitto' };
+  let last = '', html = '';
+  for (const it of items) {
+    if (it.lvl !== last) { last = it.lvl; html += `<div class="pgh" data-g="${it.lvl}">${GL[it.lvl]}</div>`; }
+    const meta = kind === 'bus' ? [it.r.targa, it.r.posti ? (isMini(it.r) ? 'minibus ' : '') + it.r.posti + ' posti' : ''].filter(Boolean).join(' · ') : (it.r.telefono || '');
+    const info = it.w.length ? it.w[0].text : (it.same ? `${it.same} altr${it.same === 1 ? 'o servizio' : 'i servizi'} oggi` : '');
+    html += `<button class="pi lvl-${it.lvl} ${it.on ? 'on' : ''}" data-action="pop-set" data-id="${it.r.id}" data-g="${it.lvl}" data-q="${esc((it.r.nome + ' ' + (it.r.targa || '')).toLowerCase())}"><span class="dot"></span><span class="pn"><b>${esc(it.r.nome)}</b><small>${esc(meta)}</small>${info ? `<small class="pw">${esc(info)}</small>` : ''}</span>${it.on ? '<span class="pon">scelto</span>' : ''}</button>`;
+  }
+  const el = document.createElement('div');
+  el.className = 'pop'; el.setAttribute('role', 'dialog');
+  el.innerHTML = `<div class="pop-h"><input type="search" placeholder="${kind === 'bus' ? 'Cerca pullman o targa' : 'Cerca autista'}" aria-label="Cerca"><span class="pop-t">${esc(sv.gruppo)} · ${esc(sv.ora)} · ${esc(sv.pax)} pers.</span></div><div class="pop-l">${html || '<p class="sub" style="padding:10px">Nessuno inserito.</p>'}</div>${sv[field] ? `<button class="pop-clear" data-action="pop-set" data-id="">Togli ${kind === 'bus' ? 'il pullman' : "l'autista"}</button>` : ''}`;
+  document.body.appendChild(el);
+  POP = { el, svc: sv.id, kind };
+  const r = btn.getBoundingClientRect(), w = Math.min(340, innerWidth - 16);
+  el.style.width = w + 'px'; el.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px';
+  const h = el.offsetHeight; el.style.top = (r.bottom + 4 + h > innerHeight - 8 ? Math.max(8, r.top - h - 4) : r.bottom + 4) + 'px';
+  const inp = el.querySelector('input'), apply = () => {
+    const q = inp.value.trim().toLowerCase();
+    el.querySelectorAll('.pi').forEach(b => { b.hidden = !!q && !b.dataset.q.includes(q); });
+    el.querySelectorAll('.pgh').forEach(g => { g.hidden = ![...el.querySelectorAll(`.pi[data-g="${g.dataset.g}"]`)].some(b => !b.hidden); });
+  };
+  inp.addEventListener('input', apply);
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { const f = [...el.querySelectorAll('.pi')].find(b => !b.hidden); if (f) f.click(); } });
+  inp.focus();
+}
+function footPanel(all) {
+  const prev = numDay(dayNum(S.fa.day) - 1);
+  const busy = f => new Set(all.map(x => x[f]).filter(Boolean));
+  const bd = busy('driverId'), bb = busy('busId');
+  const freeD = S.autisti.filter(d => !bd.has(d.id)).map(d => {
+    const y = S.eff.filter(x => x.driverId === d.id && x.data === prev).map(x => x.ora).sort();
+    return { d, y: y.length ? y[y.length - 1] : '' };
+  }).sort((a, b) => a.d.nome.localeCompare(b.d.nome, 'it'));
+  const freeB = S.pullman.filter(b => !bb.has(b.id)).sort((a, b) => (a.posti || 0) - (b.posti || 0) || a.nome.localeCompare(b.nome, 'it'));
+  const dChips = freeD.map(({ d, y }) => `<li class="fi" title="${y ? 'Ieri ha lavorato fino ai servizi delle ' + y : 'Nessun servizio ieri'}"><b>${esc(d.nome)}</b>${y ? `<small>ieri ${y}</small>` : ''}</li>`).join('');
+  const bChips = freeB.map(b => `<li class="fi" title="${esc(b.targa || '')}"><b>${esc(b.nome)}</b><small>${b.posti ? (isMini(b) ? 'minibus ' : '') + b.posti + ' posti' : ''}${b.targa ? ' · ' + esc(b.targa) : ''}</small></li>`).join('');
+  return `<footer class="foot">
+    <section><h3>Autisti liberi <span>${freeD.length} su ${S.autisti.length}</span></h3>${freeD.length ? `<ul class="fl">${dChips}</ul>` : `<p class="sub">${S.autisti.length ? 'Tutti gli autisti hanno un servizio.' : 'Nessun autista inserito.'}</p>`}</section>
+    <section><h3>Pullman liberi <span>${freeB.length} su ${S.pullman.length}</span></h3>${freeB.length ? `<ul class="fl">${bChips}</ul>` : `<p class="sub">${S.pullman.length ? 'Tutti i pullman hanno un servizio.' : 'Nessun pullman inserito.'}</p>`}</section>
+    <button class="btn link sm" data-action="tab" data-tab="riposi">Tutti i riposi</button>
+  </footer>`;
+}
+
+const dayAccs = day => S.accoppiamenti.filter(a => S.eff.some(x => x.accId === a.id && x.data === day));
+const nextAccN = day => { const u = new Set(dayAccs(day).map(a => a.n)); let n = 1; while (u.has(n)) n++; return n; };
+function setAcc(svcId, raw) { // numero Acc. scritto a mano: stesso numero nello stesso giorno = stesso accoppiamento
+  const sv = rawSvc(svcId); if (!sv) return;
+  const txt = String(raw || '').trim();
+  if (!txt) { put('servizi', { ...sv, accId: null }, true); pruneAcc(); recompute(); render(); return; }
+  const n = parseInt(txt, 10);
+  if (!(n >= 1)) { render(); return; }
+  let a = dayAccs(sv.data).find(x => x.n === n);
+  if (!a) { a = { id: newId('a_'), n, busId: null, driverId: null }; put('accoppiamenti', a, true); }
+  if (sv.accId !== a.id) put('servizi', { ...sv, accId: a.id }, true);
+  pruneAcc(); recompute(); render();
+}
+const ACC_MAX = 50;
+const accCell = s => {
+  const use = new Map(); dayAccs(s.data).forEach(a => use.set(a.n, S.eff.filter(x => x.accId === a.id && x.data === s.data).length));
+  const used = [...use.keys()].sort((x, y) => x - y), free = [...Array(ACC_MAX)].map((_, i) => i + 1).filter(n => !use.has(n));
+  const o = n => `<option value="${n}" ${s.accN === n ? 'selected' : ''}>${n}</option>`;
+  return `<div class="ai"><select class="acci ${s.accId ? 'on' : ''}" data-change="accset" data-svc="${s.id}" aria-label="Numero accoppiamento" title="Scegli il numero dell'accoppiamento: stesso numero = stesso blocco"><option value="" ${s.accId ? '' : 'selected'}>—</option>${used.length ? `<optgroup label="Già in uso">${used.map(o).join('')}</optgroup>` : ''}<optgroup label="Liberi">${free.map(o).join('')}</optgroup></select>${s.accId ? '' : `<button class="accnew" data-action="acc-new" data-id="${s.id}" title="Crea un nuovo accoppiamento con il primo numero libero" aria-label="Nuovo accoppiamento">+</button>`}</div>`;
+};
+
+function driverLine(a, day) { // ore di lavoro e riposo dell'autista in quel giorno
+  const d = a.driverId && drv(a.driverId); if (!d) return '';
+  const set = cfg(), da = driverAnalysis(S.eff.filter(x => x.driverId === d.id), d, set).days.get(day); if (!da) return '';
+  const work = da.last - da.first, bad = work > set.maxOre * 60 || (da.restBefore != null && da.restBefore < set.riposoOre * 60) || da.streak > set.maxGiorni;
+  return `<div class="dsum ${bad ? 'warn' : ''}"><b>${esc(d.nome)}</b> · ${clock(da.first)}–${clock(da.last)} · ${dur(work)} di lavoro${da.restBefore != null ? ` · riposo prima ${dur(da.restBefore)}` : ''}${da.streak > 1 ? ` · ${da.streak}° giorno di fila` : ''}</div>`;
+}
+function vAssegna() {
+  if (!S.servizi.length) return `<div class="card empty"><h3>Prima registra i servizi</h3><p>Qui compare l'elenco dei servizi inseriti, da accoppiare e assegnare.</p><button class="btn primary" data-action="new-s">${I.plus}Nuovo servizio</button></div>`;
+  const f = S.fa, q = f.q.trim().toLowerCase(), day = f.day || todayStr();
+  const all = S.eff.filter(s => s.data === day).sort(byTime);
+  const nm = (r, id) => { const x = r(id); return x ? x.nome : '￿'; };
+  const CMP = {
+    ora: byTime,
+    pullman: (a, b) => nm(bus, a.busId).localeCompare(nm(bus, b.busId), 'it') || byTime(a, b),
+    autista: (a, b) => nm(drv, a.driverId).localeCompare(nm(drv, b.driverId), 'it') || byTime(a, b),
+    hotel: (a, b) => String(a.hotel || '￿').localeCompare(String(b.hotel || '￿'), 'it') || byTime(a, b),
+    gruppo: (a, b) => String(a.gruppo).localeCompare(String(b.gruppo), 'it') || byTime(a, b),
+  };
+  const list = all.filter(s => (f.mostra !== 'da' || !(s.busId && s.driverId)) && matchQ(s, q)).sort(CMP[f.sort] || byTime);
+  const nUn = all.filter(s => !s.accId && !s.vettore).length, nOpen = all.filter(s => !s.vettore && !(s.busId && s.driverId)).length, nW = all.filter(s => warnsOf(s).length).length;
+  const row = s => {
+    const seat = warnsOf(s).some(x => x.type === 'posti'), ed = `data-action="edit-s" data-id="${s.id}"`;
+    return `<div class="row ${s.accId ? '' : 'solo'}" ${s.accId ? `style="--h:${accHue(s.accN)}"` : ''}>
+      <div class="c-a">${accCell(s)}</div>
+      <div class="c-tm" ${ed} title="Modifica servizio">${esc(s.ora)}</div>
+      <div class="c-g" ${ed}><b>${esc(s.gruppo)}</b>${exTag(s)}${s.cliente ? `<span class="sub">${esc(s.cliente)}</span>` : ''}</div>
+      <div class="c-p" ${ed}><span class="px ${seat ? 'bad' : ''}">${esc(s.pax)}</span></div>
+      <div class="c-s" ${ed}><span class="svt">${esc(s.servizio)}</span>${s.volo ? `<span class="sub">✈ ${esc(s.volo)}</span>` : ''}${s.citta || s.vettore ? `<span class="sub">${s.citta ? 'transfer in città' : ''}${s.citta && s.vettore ? ' · ' : ''}${s.vettore ? 'vettore: ' + esc(s.vettore) : ''}</span>` : ''}</div>
+      <div class="c-h" ${ed} ${s.hotelInd ? `title="${esc(s.hotelInd)}"` : ''}>${s.hotel ? esc(s.hotel) : '<span class="sub">—</span>'}</div>
+      <div class="c-z" ${ed}>${ztlCell(s)}</div>
+    </div>`;
+  };
+  // unità: blocchi (stesso Acc.) e servizi singoli. L'ordine vale per i blocchi interi, non per le singole righe
+  const done = new Set(), units = [];
+  for (const s of list) {
+    if (!s.accId) { units.push({ solo: true, vet: !!s.vettore, html: row(s), t: absMin(s.data, s.ora), hot: s.hotel || '', grp: s.gruppo, n: Infinity }); continue; }
+    if (done.has(s.accId)) continue; done.add(s.accId);
+    const a = accOf(s.accId), mem = list.filter(x => x.accId === s.accId).sort(byTime), tot = accSvcs(s.accId);
+    const ws = accWarns(s.accId), mx = Math.max(...tot.map(x => Number(x.pax) || 0));
+    const hrs = tot.map(x => x.ora).sort(), rng = hrs[0] === hrs[hrs.length - 1] ? hrs[0] : `${hrs[0]}–${hrs[hrs.length - 1]}`;
+    const lvl = ws.length ? worst(ws) : ((a.busId && a.driverId) ? 'ok' : 'none');
+    units.push({ busId: a.busId, driverId: a.driverId, t: absMin(mem[0].data, mem[0].ora), hot: mem[0].hotel || '', grp: mem[0].gruppo, n: a.n, html: `<section class="blk lvl-${lvl}" style="--h:${accHue(a.n)}">
+      <header class="bh"><span class="bn" title="Accoppiamento ${a.n}">Acc. ${a.n}</span>
+        <span class="bm">${tot.length} serviz${tot.length === 1 ? 'io' : 'i'} · ${rng} · fino a ${mx} pers.</span>
+        <span class="bp"><span class="bl">Autista</span>${resSelect(tot[0], 'driver', ws)}<span class="bl">Pullman</span>${resSelect(tot[0], 'bus', ws)}</span>
+        <button class="btn link sm" data-action="unpair-acc" data-id="${a.id}" title="Libera tutti i servizi dall'accoppiamento">Sciogli</button></header>
+      ${driverLine(a, day)}
+      ${ws.length ? `<ul class="wl">${ws.map(x => `<li class="${x.level}">${I.warn}${esc(x.text)}</li>`).join('')}</ul>` : ''}
+      ${mem.map(row).join('')}</section>` });
+  }
+  const bn = u => (bus(u.busId) || {}).nome || '\uffff', dn = u => (drv(u.driverId) || {}).nome || '\uffff', L = (x, y) => String(x).localeCompare(String(y), 'it');
+  const UCMP = {
+    ora: (x, y) => x.t - y.t,
+    pullman: (x, y) => L(bn(x), bn(y)) || x.t - y.t,
+    autista: (x, y) => L(dn(x), dn(y)) || x.t - y.t,
+    hotel: (x, y) => L(x.hot || '\uffff', y.hot || '\uffff') || x.t - y.t,
+    gruppo: (x, y) => L(x.grp, y.grp) || x.t - y.t,
+    acc: (x, y) => (x.n - y.n) || x.t - y.t,
+  };
+  units.sort(UCMP[f.sort] || UCMP.ora);
+  let lastK = null, unitsHtml = '';
+  const vetU = units.filter(u => u.vet), soloU = units.filter(u => u.solo && !u.vet), blkU = units.filter(u => !u.solo);
+  if (vetU.length) unitsHtml += `<div class="sect"><b>Vettore esterno</b><span class="mute">${vetU.length}</span></div><div class="solos vet">${vetU.map(u => u.html).join('')}</div>`;
+  if (soloU.length) unitsHtml += `<div class="sect"><b>Da accoppiare</b><span>${soloU.length}</span></div><div class="solos">${soloU.map(u => u.html).join('')}</div>`;
+  if ((soloU.length || vetU.length) && blkU.length) unitsHtml += `<div class="sect"><b>Accoppiati</b><span>${blkU.length}</span></div>`;
+  for (const u of blkU) {
+    if (f.sort === 'pullman' || f.sort === 'autista') {
+      const isB = f.sort === 'pullman', r = isB ? bus(u.busId) : drv(u.driverId), k = r ? r.id : '';
+      if (k !== lastK) { lastK = k; const cnt = blkU.filter(x => (isB ? x.busId : x.driverId) === (k || undefined) || (!k && !(isB ? x.busId : x.driverId))).length;
+        unitsHtml += `<div class="grp"><b>${r ? esc(r.nome) : (isB ? 'Senza pullman' : 'Senza autista')}</b><span>${r && isB && r.posti ? r.posti + ' posti · ' : ''}${cnt} ${cnt === 1 ? 'blocco o servizio' : 'blocchi o servizi'}</span></div>`; }
+    }
+    unitsHtml += u.html;
+  }
+  return `
+  <div class="bar">
+    <div class="daynav">
+      <button class="btn sm" data-action="fa-day" data-d="-1" aria-label="Giorno precedente">◀</button>
+      <input type="date" id="fa-day" data-fs="fa" data-filter="day" value="${esc(day)}" aria-label="Giorno">
+      <button class="btn sm" data-action="fa-day" data-d="1" aria-label="Giorno successivo">▶</button>
+      <button class="btn sm" data-action="fa-day" data-set="${todayStr()}">Oggi</button>
+    </div>
+    <label class="field"><span>Ordina per</span><select id="fa-sort" data-fs="fa" data-filter="sort">${[['ora', 'Ora'], ['pullman', 'Pullman'], ['autista', 'Autista'], ['hotel', 'Hotel'], ['gruppo', 'Gruppo'], ['acc', 'Acc.']].map(([k, l]) => `<option value="${k}" ${f.sort === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+    <label class="field"><span>Mostra</span><select id="fa-mostra" data-fs="fa" data-filter="mostra"><option value="tutti" ${f.mostra === 'tutti' ? 'selected' : ''}>Tutti i servizi</option><option value="da" ${f.mostra === 'da' ? 'selected' : ''}>Solo da assegnare</option></select></label>
+    <label class="field grow"><span>Cerca</span><input type="search" id="fa-q" data-fs="fa" data-filter="q" value="${esc(f.q)}" placeholder="Cliente, gruppo, servizio, hotel"></label>
+    <button class="btn" data-action="new-s">${I.plus}Nuovo servizio</button>
+  </div>
+  <div class="dayhead"><h2>${esc(dlabel(day, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}</h2>
+    <span>${all.length} serviz${all.length === 1 ? 'io' : 'i'} · ${nUn} da accoppiare · ${nOpen} da assegnare${nW ? ` · <b class="wcount">${nW} con avvisi</b>` : ''}</span></div>
+  <div class="atw">
+    ${list.length ? `<div class="row ah"><div>Acc.</div><div>Ora</div><div>Gruppo</div><div>Pers.</div><div>Servizio</div><div>Hotel</div><div>ZTL</div></div>${unitsHtml}
+    <p class="hint2">Per accoppiare scegli lo stesso numero (da 1 a 50) nella colonna Acc. dei servizi, oppure premi + per prendere il primo numero libero. I servizi con lo stesso numero formano un blocco: poi scegli autista e pullman dal blocco.</p>`
+    : `<div class="card empty"><h3>${all.length ? 'Nessun servizio con questi filtri' : 'Nessun servizio in questo giorno'}</h3><p>${all.length ? 'Cambia filtro o ricerca.' : 'Scegli un altro giorno dalla barra sopra o registra un nuovo servizio.'}</p></div>`}
+  </div>
+  ${footPanel(all)}`;
+}
+
+function vAuto() {
+  const A = S.auto, day = A.day, set = cfg();
+  const P = A.plan && A.plan.day === day && A.plan.redo === A.redo ? A.plan : null;
+  const dayS = S.eff.filter(s => s.data === day);
+  const nTodo = dayS.filter(s => !s.vettore && kindOf(s) !== 'fuori' && (A.redo || !s.accId)).length, nPaired = dayS.filter(s => s.accId).length;
+  const mini = id => {
+    const s = S.eff.find(x => x.id === id); if (!s) return '';
+    return `<div class="row mini"><div class="c-tm">${esc(s.ora)}</div><div class="c-g"><b>${esc(s.gruppo)}</b>${s.cliente ? `<span class="sub">${esc(s.cliente)}</span>` : ''}</div><div class="c-p"><span class="px">${esc(s.pax)}</span></div><div class="c-s"><span class="svt">${esc(s.servizio)}</span>${s.volo ? `<span class="sub">✈ ${esc(s.volo)}</span>` : ''}</div><div class="c-h">${s.hotel ? esc(s.hotel) : '<span class="sub">—</span>'}</div></div>`;
+  };
+  const blocks = P ? P.chains.map(c => {
+    const b = bus(c.busId), d = drv(c.driverId), lvl = (c.noBus || c.noDriver) ? 'danger' : (c.warns.length ? 'warn' : 'ok');
+    return `<section class="blk lvl-${lvl}" style="--h:${accHue(c.n)}">
+      <header class="bh"><span class="bn">Acc. ${c.n}</span>
+        <span class="bm">${c.ids.length} serviz${c.ids.length === 1 ? 'io' : 'i'} · ${clock(c.start)}–${clock(c.end)} · fino a ${c.maxPax} pers.</span>
+        ${c.airport ? '<span class="tag">partenza + arrivo aeroporto</span>' : ''}${c.small ? `<span class="tag">servizio piccolo: minibus</span>` : ''}
+        <span class="bp"><span class="bl">Autista</span><span class="rchip ${d ? 'ok' : 'danger'}">${d ? esc(d.nome) : 'nessuno'}</span><span class="bl">Pullman</span><span class="rchip ${b ? 'ok' : 'danger'}">${b ? esc(b.nome) + (b.posti ? ' · ' + (isMini(b) ? 'minibus ' : '') + b.posti + ' posti' : '') : 'nessuno'}</span></span></header>
+      ${(c.noBus || c.noDriver || c.warns.length) ? `<ul class="wl">${[c.noBus, c.noDriver].filter(Boolean).map(x => `<li class="danger">${I.warn}${esc(x)}</li>`).join('')}${c.warns.map(x => `<li class="warn">${I.warn}${esc(x)}</li>`).join('')}</ul>` : ''}
+      ${c.ids.map(mini).join('')}</section>`;
+  }).join('') : '';
+  const st = P ? P.stats : null;
+  return `
+  <div class="bar autobar">
+    <div class="daynav">
+      <button class="btn sm" data-action="auto-day" data-d="-1" aria-label="Giorno precedente">◀</button>
+      <input type="date" id="auto-day" data-fs="auto" data-filter="day" value="${esc(day)}" aria-label="Giorno">
+      <button class="btn sm" data-action="auto-day" data-d="1" aria-label="Giorno successivo">▶</button>
+      <button class="btn sm" data-action="auto-day" data-set="${todayStr()}">Oggi</button>
+    </div>
+    <label class="check inline"><input type="checkbox" data-change="autoredo" ${A.redo ? 'checked' : ''}><span>Rifai anche i blocchi già fatti<small>Altrimenti li lascio come sono e uso solo i servizi non accoppiati.</small></span></label>
+    <button class="btn primary" data-action="auto-run" ${nTodo ? '' : 'disabled'}>${I.plus}Genera proposta</button>
+  </div>
+  <div class="dayhead"><h2>${esc(dlabel(day, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}</h2>
+    <span>${dayS.length} serviz${dayS.length === 1 ? 'io' : 'i'} · ${nTodo} da sistemare${nPaired && !A.redo ? ` · ${nPaired} già accoppiati` : ''}</span></div>
+  ${P ? `
+  <div class="tiles">
+    <div class="tile"><b>${st.blocks}</b><span>accoppiamenti</span></div>
+    <div class="tile"><b>${st.buses}</b><span>mezzi usati su ${S.pullman.length}${st.minibus ? ` (${st.minibus} minibus)` : ''}</span></div>
+    <div class="tile"><b>${st.drivers}</b><span>autisti usati su ${S.autisti.length}</span></div>
+    <div class="tile ${st.noBus + st.noDriver ? 'bad' : ''}"><b>${st.noBus + st.noDriver}</b><span>senza mezzo o autista</span></div>
+  </div>
+  <div class="atw">${blocks || '<div class="card empty"><h3>Niente da proporre</h3><p>Non ci sono servizi da sistemare in questo giorno.</p></div>'}</div>
+  ${P.skipped.length ? `<div class="skipbox"><h3>Fuori dalla proposta</h3><ul>${P.skipped.map(x => `<li><b>${esc(x.s.ora)} ${esc(x.s.gruppo)}</b> · ${esc(x.s.servizio)} <span class="sub">${esc(x.why)}</span></li>`).join('')}</ul></div>` : ''}
+  <div class="applybar"><span>${st.services} serviz${st.services === 1 ? 'io' : 'i'} in ${st.blocks} blocchi${A.redo ? ' · sostituisce gli accoppiamenti già fatti di questo giorno' : ''}</span><button class="btn" data-action="auto-discard">Scarta</button><button class="btn primary" data-action="auto-apply" ${st.blocks ? '' : 'disabled'}>Applica proposta</button></div>`
+  : `<div class="autoexp card">
+    <h3>Come ragiona</h3>
+    <ul>
+      <li>Obiettivo: meno pullman possibile, quindi meno accoppiamenti possibile. Mette nello stesso blocco i servizi che si susseguono senza sovrapporsi, anche con numero di persone diverso (il pullman deve avere i posti per il gruppo più grande). Durate stimate: partenza Htl x Fco ${set.oreHtlFco} ore, arrivo Fco x Htl ${set.oreFcoHtl} ore, transfer in città ${set.oreCitta} ore, full e half day dalle ore scritte.</li>
+      <li>Tra un servizio e il successivo controllo anche il tempo per spostarsi: dalla zona dove finisce (CAP dell'hotel) a quella dove parte, più ${set.minSosta} minuti di sosta; verso Fiumicino ${set.minFco}, Ciampino ${set.minCia}, Civitavecchia ${set.minPorto}. Sono stime. Una partenza Htl x Fco e un arrivo Fco x Htl vanno insieme anche con ${set.tolleranzaFco} minuti di anticipo. A parità di tempi preferisce servizi dello stesso hotel.</li>
+      <li>I tour fuori Roma restano fuori (già organizzati). I servizi fino a ${set.sogliaPiccoli} persone non vanno mai su un pullman: il blocco che li contiene va su un minibus (8, 16, 20, 30 posti a seconda di quelli che hai). Un blocco non supera le ${set.maxOre} ore di lavoro.</li>
+      <li>Sceglie il mezzo più piccolo con posti sufficienti e l'autista meno carico che rispetta ore di lavoro e riposo. I servizi fatti da un vettore esterno restano fuori.</li>
+    </ul>
+    <p class="sub">Vedi prima la proposta e la applichi solo se ti va bene. I parametri si cambiano in Avvisi.</p>
+  </div>`}`;
+}
+
+/* --- Riposi --- */
+function vRiposi() {
+  const set = cfg(), { from, n } = S.rv, t = todayStr();
+  const dates = [...Array(n)].map((_, i) => numDay(dayNum(from) + i));
+  if (!S.autisti.length) return `<div class="card empty"><h3>Nessun autista</h3><p>Aggiungi gli autisti per vedere i loro riposi giorno per giorno.</p><button class="btn primary" data-action="tab" data-tab="risorse">Vai a Pullman e autisti</button></div>`;
+  const DT = ['ovd', 'h15', 'rest', 'streak'];
+  let body = '';
+  for (const d of S.autisti.slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it'))) {
+    const mine = S.eff.filter(s => s.driverId === d.id);
+    const { days } = driverAnalysis(mine, d, set), spans = prep(mine, set);
+    const lastEndBefore = abs => spans.reduce((m, x) => (x.sp.start < abs ? Math.max(m, x.sp.end) : m), -Infinity);
+    let worked = 0, nw = 0, cells = '';
+    for (const dt of dates) {
+      const di = days.get(dt), abs = dayNum(dt) * 1440;
+      if (di) {
+        worked++;
+        const ws = di.ids.flatMap(id => (S.W.get(id) || []).filter(w => DT.includes(w.type)));
+        nw += ws.length ? 1 : 0;
+        const lvl = ws.length ? worst(ws) : 'ok', uniq = [...new Set(ws.map(w => w.text))];
+        const restBad = di.restBefore !== null && di.restBefore < set.riposoOre * 60;
+        const t1 = di.last > di.first ? `${clock(di.first)}–${clock(di.last)}` : clock(di.first);
+        cells += `<td><button class="rc ${lvl === 'ok' ? '' : 'lvl-' + lvl}" data-action="go-svc" data-id="${di.ids[0]}" ${uniq.length ? `title="${esc(uniq.join('\n'))}"` : ''}>
+          <span class="t">${t1}</span>
+          <span class="l">${di.count} serviz${di.count === 1 ? 'io' : 'i'}${di.last > di.first ? ' · ' + dur(di.last - di.first) : ''}</span>
+          <span class="l ${restBad ? 'bad' : ''}">${di.restBefore === null ? 'primo servizio' : 'riposo prima: ' + dur(di.restBefore)}</span>
+          <span class="l ${di.streak > set.maxGiorni ? 'bad' : ''}">${di.streak > 1 ? di.streak + '° giorno di fila' : '1° giorno'}</span></button></td>`;
+      } else {
+        const e = lastEndBefore(abs);
+        if (e === -Infinity) cells += `<td><div class="rc none"><span class="t">Libero</span></div></td>`;
+        else cells += `<td><div class="rc free"><span class="t">Riposo</span>${e >= abs - 1440 ? `<span class="l">dalle ${clock(e)} del ${dm(e)}</span>` : ''}</div></td>`;
+      }
+    }
+    body += `<tr><th class="who" scope="row"><b>${esc(d.nome)}</b>${exTag(d)}<small>${worked} giorn${worked === 1 ? 'o' : 'i'} di lavoro${nw ? ` · <span style="color:var(--warn)">${nw} con avvisi</span>` : ''}</small></th>${cells}</tr>`;
+  }
+  const head = dates.map(dt => `<th class="${dt === t ? 'today' : ''}">${esc(dlabel(dt, { weekday: 'short', day: 'numeric' }))}<small>${esc(dlabel(dt, { month: 'short' }))}</small></th>`).join('');
+  return `<div class="bar">
+      <button class="btn ico" data-action="rv-move" data-d="-${n}" aria-label="Periodo precedente">${I.l}</button>
+      <button class="btn ico" data-action="rv-move" data-d="${n}" aria-label="Periodo successivo">${I.r}</button>
+      <button class="btn" data-action="rv-today">Oggi</button>
+      <label class="field"><span>Dal</span><input type="date" id="rv-from" data-change="rvfrom" value="${from}"></label>
+      <label class="field"><span>Giorni</span><select id="rv-n" data-change="rvn">${[7, 14, 21, 28].map(x => `<option value="${x}" ${x === n ? 'selected' : ''}>${x}</option>`).join('')}</select></label>
+    </div>
+    <div class="card rv-wrap"><table class="rvt"><thead><tr><th class="who">Autista</th>${head}</tr></thead><tbody>${body}</tbody></table></div>
+    <div class="legend"><span><i style="background:var(--surface-2)"></i>Giorno di lavoro</span><span><i style="background:var(--accent-soft)"></i>Riposo</span><span><i style="background:var(--warn-soft)"></i>Regola non rispettata (riposo sotto ${set.riposoOre}h, oltre ${set.maxOre}h, oltre ${set.maxGiorni} giorni o meno di ${set.riposoLungoOre}h dopo ${set.maxGiorni} giorni)</span><span>Il riposo è contato dalla fine dell'ultimo servizio all'inizio del primo servizio successivo. Clicca un giorno per aprire il servizio.</span></div>`;
+}
+
+function vAvvisi() {
+  const t = todayStr(), set = cfg();
+  const items = S.eff.filter(s => (S.showPast || s.data >= t) && warnsOf(s).length).sort(byTime);
+  const n = items.reduce((a, s) => a + warnsOf(s).length, 0);
+  const field = (k, label, hint, step) => `<label class="field"><span>${label}</span><input type="number" step="${step || 1}" min="0" data-change="setting" data-k="${k}" id="set-${k}" value="${set[k]}"></label>${hint ? `<p class="hint">${hint}</p>` : ''}`;
+  return `<div class="vgrid"><div>
+    <div class="bar"><h2 style="font-family:var(--f-display);font-size:28px;font-weight:600">${items.length ? `${n} avvis${n === 1 ? 'o' : 'i'} su ${items.length} serviz${items.length === 1 ? 'io' : 'i'}` : 'Nessun avviso'}</h2>
+      <label class="check" style="margin-left:auto"><input type="checkbox" data-change="showpast" ${S.showPast ? 'checked' : ''}> Includi servizi passati</label></div>
+    ${items.length ? `<div class="alist">${items.map(s => {
+      const w = warnsOf(s);
+      return `<article class="card acard lvl-${worst(w)}"><header><h3>${esc(dlabel(s.data, { weekday: 'short', day: 'numeric', month: 'short' }))} ${esc(s.ora)}<span>${esc(s.gruppo)} · ${esc(s.servizio)}</span></h3><button class="btn sm" data-action="go-svc" data-id="${s.id}">Apri in assegnazione</button></header>${msgList(w)}</article>`;
+    }).join('')}</div>` : `<div class="card empty"><h3>Tutto in regola</h3><p>Nessun limite di ore di lavoro o di riposo superato${S.showPast ? '' : ' nei servizi in programma'}.</p></div>`}
+  </div>
+  <aside class="card rules"><h3>Regole degli avvisi</h3>
+    ${field('maxOre', 'Ore massime in una giornata', 'Dall\'inizio del primo servizio alla fine dell\'ultimo.')}
+    <h4 class="rh">Avvisi attivi</h4>
+    <label class="check"><input type="checkbox" data-change="settingflag" data-k="avvSovrapp" ${set.avvSovrapp ? 'checked' : ''}><span>Sovrapposizioni di orario<small>Pullman o autista su due servizi insieme. Spenti i parametri di durata restano salvati e li usa l'accoppiamento automatico.</small></span></label>
+    <h4 class="rh">Durata stimata dei servizi</h4>
+    <p class="hint">I servizi non hanno ora di fine: la durata si stima dal tipo di servizio. I tour fuori Roma sono già organizzati e contano solo dall'ora di inizio.</p>
+    ${field('oreCitta', 'Transfer in città (ore)', '', 0.5)}
+    ${field('oreHtlFco', 'Partenza Htl x Fco (ore)', '', 0.5)}
+    ${field('oreFcoHtl', 'Arrivo Fco x Htl (ore)', '', 0.5)}
+    ${field('oreFull', 'Full day (ore, se non scritte)', 'Se nel servizio o nelle note scrivi la durata (es. «8 ore») conta quella.', 0.5)}
+    ${field('oreHalf', 'Half day (ore, se non scritte)', '', 0.5)}
+    ${field('oreTour', 'Tour fuori Roma già assegnati: ore di occupazione', 'Il tour fuori Roma già assegnato a mano tiene occupati pullman e autista queste ore, per l\'accoppiamento automatico.', 0.5)}
+    ${field('minSosta', 'Spostamento tra due servizi: sosta e carico (minuti)', 'Solo per l\'accoppiamento automatico. Tempo minimo tra la fine di un servizio e l\'inizio del successivo.', 5)}
+    ${field('minPerKm', 'Spostamento in città (minuti per km)', 'Stima dal CAP degli hotel: la distanza tra il punto dove finisce un servizio e quello dove parte il successivo, per questi minuti al km.', 0.5)}
+    ${field('minFco', 'Verso Fiumicino da Roma (minuti)', 'Per raggiungere un arrivo Fco x Htl dopo un altro servizio.', 5)}
+    ${field('minCia', 'Verso Ciampino da Roma (minuti)', '', 5)}
+    ${field('minPorto', 'Civitavecchia: minuti a tratta da Roma', 'Per raggiungere il porto dopo un altro servizio e per la durata dei servizi da o per Civitavecchia.', 5)}
+    ${field('sogliaPiccoli', 'Servizi piccoli: fino a quante persone', 'Questi servizi vanno sempre su un minibus nell\'accoppiamento automatico, mai su un pullman.', 1)}
+    ${field('attesaMaxOre', 'Attesa massima tra due servizi dello stesso blocco (ore, 0 = nessun limite)', 'Solo per l\'accoppiamento automatico. Con 0 conta solo il minor numero di pullman.', 0.5)}
+    ${field('tolleranzaFco', 'Partenza Htl x Fco + arrivo Fco x Htl: tolleranza (minuti)', 'Un arrivo può iniziare fino a questi minuti prima della fine della partenza e il servizio resta accoppiabile: i clienti escono tardi dall\'aeroporto.', 5)}
+    ${field('riposoOre', 'Riposo minimo tra una giornata e la successiva (ore)', 'Dalla fine dell\'ultimo servizio all\'inizio del primo del giorno dopo.')}
+    ${field('maxGiorni', 'Giorni consecutivi massimi')}
+    ${field('riposoLungoOre', 'Riposo dopo i giorni consecutivi (ore)', 'Calcolato dalla fine dell\'ultimo servizio.')}
+    ${field('ivaPct', 'Aliquota IVA (%)', 'Per il calcolo dei totali. Verifica l\'aliquota corretta con il tuo commercialista.')}
+  </aside></div>`;
+}
+
+function vRisorse() {
+  const count = (f, id) => S.eff.filter(s => s[f] === id && s.data >= todayStr()).length;
+  return `<div class="rgrid">
+    <section class="card res"><header><h3>Pullman</h3><button class="btn sm primary" data-action="new-r" data-kind="pullman">${I.plus}Aggiungi</button></header>
+    ${S.pullman.length ? `<table class="rtbl"><thead><tr><th>Nome</th><th>Tipo</th><th>Targa</th><th class="num">Posti</th><th class="num">Servizi in programma</th><th></th></tr></thead><tbody>${S.pullman.slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it', { numeric: true })).map(b => `<tr><td><b>${esc(b.nome)}</b>${exTag(b)}${b.note ? `<span class="sub">${esc(b.note)}</span>` : ''}</td><td>${isMini(b) ? 'Minibus' : 'Pullman'}</td><td>${esc(b.targa)}</td><td class="num">${esc(b.posti)}</td><td class="num">${count('busId', b.id)}</td><td><button class="btn sm" data-action="edit-r" data-kind="pullman" data-id="${b.id}">Modifica</button></td></tr>`).join('')}</tbody></table>` : `<div class="empty" style="padding:30px 0"><p>Nessun pullman. Aggiungi la flotta con nome, targa e numero di posti: servono al controllo automatico della capienza.</p></div>`}</section>
+    <section class="card res"><header><h3>Autisti</h3><button class="btn sm primary" data-action="new-r" data-kind="autisti">${I.plus}Aggiungi</button></header>
+    ${S.autisti.length ? `<table class="rtbl"><thead><tr><th>Nome</th><th>Telefono</th><th class="num">Servizi in programma</th><th></th></tr></thead><tbody>${S.autisti.slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it')).map(d => `<tr><td><b>${esc(d.nome)}</b>${exTag(d)}${d.note ? `<span class="sub">${esc(d.note)}</span>` : ''}</td><td>${esc(d.telefono)}</td><td class="num">${count('driverId', d.id)}</td><td><button class="btn sm" data-action="edit-r" data-kind="autisti" data-id="${d.id}">Modifica</button></td></tr>`).join('')}</tbody></table>` : `<div class="empty" style="padding:30px 0"><p>Nessun autista. Aggiungi gli autisti: servono ai controlli su ore di lavoro, riposo e giorni consecutivi.</p></div>`}</section>
+    <section class="card res hotelcard"><header><h3>Hotel</h3><span class="sub">${HOTEL_BASE.length} di base · ${S.hotel.length} aggiunti da te</span></header>
+      <p class="sub" style="margin:0 0 8px">Nella registrazione scrivi il nome e l'hotel si completa con l'indirizzo. Gli hotel già usati nei servizi si aggiungono da soli. L'elenco di base è una selezione dei principali hotel di Roma: per completarlo incolla qui sotto i tuoi, uno per riga come <b>Nome; Indirizzo</b> (va bene anche copiato da Excel).</p>
+      <textarea id="imp-hotel" rows="5" placeholder="Hotel Viminale; Via Cesare Balbo 31, 00184 Roma"></textarea>
+      <div style="margin-top:8px"><button class="btn sm primary" data-action="import-hotel">Importa hotel</button></div>
+      ${S.hotel.length ? `<table class="rtbl" style="margin-top:10px"><tbody>${S.hotel.slice().sort((a, b) => a.nome.localeCompare(b.nome, 'it')).slice(0, 80).map(h => `<tr><td>${esc(h.nome)}</td><td>${esc(h.indirizzo || '')}</td><td><button class="btn link sm" data-action="del-hotel" data-id="${h.id}">Elimina</button></td></tr>`).join('')}</tbody></table>` : ''}
+    </section>
+    ${S.mode === 'local' ? `<section class="card res"><header><h3>Backup dati</h3></header>
+      <p class="sub" style="margin:0 0 8px">I dati stanno solo su questo computer, dentro il browser. Scarica un backup ogni tanto: se cambi PC o cancelli i dati del browser lo ripristini da qui.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn sm primary" data-action="bk-export">Scarica backup</button>
+      <label class="btn sm" style="cursor:pointer">Ripristina da file<input type="file" accept=".json,application/json" data-change="bk-import" hidden></label></div></section>` : ''}
+  </div>`;
+}
+
+function render() {
+  const bl = document.getElementById('brandlogo'); if (bl && !bl.firstChild) bl.outerHTML = LOGO_SVG('logo', 'hg0');
+  const ae = document.activeElement, keep = ae && ae.id && $app.contains(ae) ? { id: ae.id, a: ae.selectionStart, b: ae.selectionEnd } : null;
+  const y = window.scrollY, t = todayStr();
+  for (const b of document.querySelectorAll('#nav button')) b.setAttribute('aria-current', b.dataset.tab === S.tab ? 'page' : 'false');
+  const nAv = S.eff.filter(s => s.data >= t).reduce((a, s) => a + warnsOf(s).length, 0);
+  const nUn = S.eff.filter(s => s.data >= t && stato(s) !== 'ok').length;
+  const setB = (id, n) => { const e = document.getElementById(id); e.hidden = !n; e.textContent = n; };
+  setB('b-avvisi', nAv); setB('b-assegna', nUn);
+  const sy = document.getElementById('sync');
+  sy.className = 'sync' + (S.mode === 'local' ? ' local' : '');
+  sy.innerHTML = S.mode === 'db' ? '<i></i>Salvataggio online attivo' : (S.mode === 'local' ? '<i></i>Dati solo su questo browser' : '');
+  if (!S.ready) { $app.innerHTML = '<div class="loading">Caricamento dei dati…</div>'; return; }
+  const hasEx = [...S.servizi, ...S.pullman, ...S.autisti].some(x => x.esempio);
+  const banner = hasEx ? `<div class="banner"><span>Stai vedendo dati di esempio per provare il gestionale.</span><button class="btn sm" data-action="del-examples">Elimina i dati di esempio</button></div>` : '';
+  $app.innerHTML = banner + ({ servizi: vServizi, assegna: vAssegna, auto: vAuto, riposi: vRiposi, fatturato: vFatturato, avvisi: vAvvisi, risorse: vRisorse }[S.tab])();
+  window.scrollTo(0, y);
+  if (keep) { const e = document.getElementById(keep.id); if (e) { e.focus(); try { if (keep.a != null) e.setSelectionRange(keep.a, keep.b); } catch (x) {} } }
+}
+
+/* ---------- pannello laterale ---------- */
+const $drawer = document.getElementById('drawer'), $scrim = document.getElementById('scrim'), $dbody = document.getElementById('dbody'), $dfoot = document.getElementById('dfoot');
+let lastFocus = null;
+function openDrawer(title, body, foot) {
+  lastFocus = document.activeElement;
+  document.getElementById('dtitle').textContent = title; $dbody.innerHTML = body; $dfoot.innerHTML = foot;
+  $drawer.hidden = false; $scrim.hidden = false;
+  const first = $dbody.querySelector('input:not([type=hidden]),select,textarea'); if (first) first.focus();
+}
+function closeDrawer() { $drawer.hidden = true; $scrim.hidden = true; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {} }
+const num = id => val(id) === '' ? '' : parseFloat(val(id));
+const val = id => { const e = document.getElementById(id); return e ? e.value.trim() : ''; };
+
+function hotelMap() { // elenco di base + hotel importati + hotel già usati nei servizi
+  const m = new Map(HOTEL_BASE.map(([n, a]) => [n, a]));
+  S.hotel.forEach(h => m.set(h.nome, h.indirizzo || ''));
+  S.servizi.forEach(x => { if (x.hotel && !m.has(x.hotel)) m.set(x.hotel, x.hotelInd || ''); });
+  return m;
+}
+function openServizio(id, preset) {
+  const ex = id ? S.servizi.find(x => x.id === id) : null;
+  const v = ex ? { ...ex } : { data: todayStr(), ora: '', citta: false, cliente: '', gruppo: '', pax: '', ass: '', volo: '', servizio: '', hotel: '', hotelInd: '', ztlTipo: '', ztlOk: false, note: '', altreNote: '', noteForn: '', prezzo: '', iva: 'escl', spese: '', pasti: '', vettore: '', costoVett: '', incasso: false, ztl: '', ...preset };
+  const uq = k => [...new Set(S.servizi.map(s => s[k]).filter(Boolean))].slice(0, 60);
+  const HT = hotelMap();
+  const sugg = uq('servizio').slice(0, 40), cli = uq('cliente'), vet = uq('vettore');
+  const body = `
+    <div class="g2">
+      <label class="field"><span>Data</span><input type="date" id="f-data" value="${esc(v.data)}"></label>
+      <label class="field"><span>Ora inizio</span><input type="time" id="f-ora" value="${esc(v.ora)}"></label>
+    </div>
+    <label class="field"><span>Cliente</span><input type="text" id="f-cliente" list="dl-cli" value="${esc(v.cliente)}" autocomplete="off"><datalist id="dl-cli">${cli.map(x => `<option value="${esc(x)}">`).join('')}</datalist></label>
+    <div class="g2">
+      <label class="field"><span>Nome gruppo / riferimento</span><input type="text" id="f-gruppo" value="${esc(v.gruppo)}" autocomplete="off" placeholder="Es. RIF 2026/4616"></label>
+      <div class="g2">
+        <label class="field"><span>N. persone</span><input type="number" id="f-pax" min="1" inputmode="numeric" value="${esc(v.pax)}"></label>
+        <label class="field"><span>Ass.</span><input type="text" id="f-ass" value="${esc(v.ass)}" autocomplete="off"></label>
+      </div>
+    </div>
+    <div class="field"><span>Servizio <em>testo libero</em></span>
+      <div class="chips presets">${SERV_PRESET.map(x => `<button type="button" class="pick" data-action="svc-preset" data-v="${esc(x)}">${esc(x)}</button>`).join('')}<small class="fcohint">Fco = Fiumicino · per full e half day scrivi la durata, es. «8 ore»</small></div>
+      <input type="text" id="f-servizio" value="${esc(v.servizio)}" autocomplete="off" placeholder="Scegli un preset o scrivi il servizio"></div>
+    <label class="field" id="volobox" ${isFcoHtl(v.servizio) ? '' : 'hidden'}><span>Volo <em>numero e orario, per il Fco → Htl</em></span><input type="text" id="f-volo" value="${esc(v.volo)}" autocomplete="off" placeholder="Es. Volo AZ 610 ore 10.05"></label>
+    <div class="g2 hotelbox">
+      <label class="field"><span>Hotel</span><input type="text" id="f-hotel" list="dl-htl" value="${esc(v.hotel)}" autocomplete="off" placeholder="Nome hotel"><datalist id="dl-htl">${[...HT].sort((a, b) => a[0].localeCompare(b[0], 'it')).map(([n, a]) => `<option value="${esc(n)}" label="${esc(a)}">`).join('')}</datalist></label>
+      <label class="field"><span>Indirizzo / telefono hotel</span><input type="text" id="f-hotelInd" value="${esc(v.hotelInd)}" autocomplete="off"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="f-citta" ${v.citta ? 'checked' : ''}><span>Transfer in città<small>Per gli avvisi dura circa ${cfg().oreCitta} ore. I tour fuori Roma sono già organizzati e contano solo dall'orario di inizio.</small></span></label>
+    <label class="field"><span>Note servizio</span><textarea id="f-note">${esc(v.note)}</textarea></label>
+    <label class="field"><span>Altre note</span><input type="text" id="f-altreNote" value="${esc(v.altreNote)}" autocomplete="off"></label>
+    <label class="field"><span>Note fornitore</span><input type="text" id="f-noteForn" value="${esc(v.noteForn)}" autocomplete="off"></label>
+    <div class="ztlbox">
+      <div class="g2">
+        <label class="field"><span>ZTL</span><select id="f-ztlTipo"><option value="">Nessuna</option>${['Zone', 'Permessi giornalieri', 'Aree a numero chiuso', 'Altro'].map(g => `<optgroup label="${g}">${Object.entries(ZTL_T).filter(([, x]) => x[2] === g).map(([k, [l]]) => `<option value="${k}" ${v.ztlTipo === k ? 'selected' : ''}>${l}</option>`).join('')}</optgroup>`).join('')}</select></label>
+        <label class="check"><input type="checkbox" id="f-ztlOk" ${v.ztlOk ? 'checked' : ''}><span>Permesso acquistato<small>Spunta quando l'hai preso.</small></span></label>
+      </div>
+      <p class="ztlhint" id="ztl-hint"></p>
+      <label class="field"><span>Permesso / note ZTL <em>testo libero</em></span><input type="text" id="f-ztl" value="${esc(v.ztl)}" autocomplete="off" placeholder="Es. Area Vaticano mattina, numero permesso"></label>
+    </div>
+    <div class="g2">
+      <label class="field"><span>Costo servizio (€)</span><input type="number" id="f-prezzo" step="0.01" min="0" inputmode="decimal" value="${esc(v.prezzo)}"></label>
+      <div class="field"><span>IVA</span><div class="seg"><label><input type="radio" name="iva" value="escl" ${v.iva !== 'incl' ? 'checked' : ''}><span>+ IVA</span></label><label><input type="radio" name="iva" value="incl" ${v.iva === 'incl' ? 'checked' : ''}><span>Ivato</span></label></div></div>
+    </div>
+    <div class="tot" id="f-tot"></div>
+    <div class="g2">
+      <label class="field"><span>Spese (€)</span><input type="number" id="f-spese" step="0.01" min="0" inputmode="decimal" value="${esc(v.spese)}"></label>
+      <label class="field"><span>Pasti (€)</span><input type="number" id="f-pasti" step="0.01" min="0" inputmode="decimal" value="${esc(v.pasti)}"></label>
+    </div>
+    <div class="g2">
+      <label class="field"><span>Vettore <em>se lo fa un esterno</em></span><input type="text" id="f-vettore" list="dl-vet" value="${esc(v.vettore)}" autocomplete="off"><datalist id="dl-vet">${vet.map(x => `<option value="${esc(x)}">`).join('')}</datalist></label>
+      <label class="field"><span>Costo vettore (€)</span><input type="number" id="f-costoVett" step="0.01" min="0" inputmode="decimal" value="${esc(v.costoVett)}"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="f-incasso" ${v.incasso ? 'checked' : ''}><span>Incasso<small>Spunta se il pagamento è stato incassato.</small></span></label>
+    <div class="ferr" id="ferr" role="alert"></div>`;
+  const foot = `<button class="btn primary" data-action="save-s" data-id="${id || ''}">Salva</button>
+    ${ex ? '' : '<button class="btn" data-action="save-s" data-new="1">Salva e aggiungi un altro</button>'}
+    ${ex ? `<button class="btn" data-action="dup-s" data-id="${id}">Duplica</button><button class="btn danger sp" data-action="del-s" data-id="${id}">Elimina</button>` : ''}`;
+  openDrawer(ex ? 'Modifica servizio' : 'Nuovo servizio', body, foot);
+  const upd = () => {
+    const p = parseFloat(val('f-prezzo')), r = cfg().ivaPct / 100, incl = document.querySelector('input[name=iva]:checked').value === 'incl';
+    const zh = document.getElementById('ztl-hint'); if (zh) zh.textContent = (ZTL_T[val('f-ztlTipo')] || [])[1] || '';
+    document.getElementById('f-tot').textContent = isNaN(p) ? '' : (incl ? `Imponibile ${eur(p / (1 + r))} · IVA ${cfg().ivaPct}% inclusa` : `Totale con IVA ${cfg().ivaPct}%: ${eur(p * (1 + r))}`);
+  };
+  $dbody.oninput = e => { if (e && e.target && e.target.id === 'f-hotel' && HT.has(e.target.value) && !val('f-hotelInd')) document.getElementById('f-hotelInd').value = HT.get(e.target.value); if (e && e.target && e.target.id === 'f-servizio') document.getElementById('volobox').hidden = !isFcoHtl(e.target.value); upd(); };
+  $dbody.onchange = upd; upd();
+}
+
+function saveServizio(isNew, id) {
+  const err = m => { document.getElementById('ferr').textContent = m; };
+  const o = { data: val('f-data'), ora: val('f-ora'), citta: document.getElementById('f-citta').checked, cliente: val('f-cliente'), gruppo: val('f-gruppo'), pax: parseInt(val('f-pax'), 10), ass: val('f-ass'), servizio: val('f-servizio'), hotel: val('f-hotel'), hotelInd: val('f-hotelInd'), volo: isFcoHtl(val('f-servizio')) ? val('f-volo') : '', prezzo: num('f-prezzo'), iva: document.querySelector('input[name=iva]:checked').value, spese: num('f-spese'), pasti: num('f-pasti'), vettore: val('f-vettore'), costoVett: num('f-costoVett'), incasso: document.getElementById('f-incasso').checked, ztlTipo: val('f-ztlTipo'), ztlOk: document.getElementById('f-ztlOk').checked, ztl: val('f-ztl'), note: val('f-note'), altreNote: val('f-altreNote'), noteForn: val('f-noteForn') };
+  if (!o.data) return err('Inserisci la data.');
+  if (!o.ora) return err('Inserisci l\'ora.');
+  if (!o.gruppo) return err('Inserisci il riferimento del gruppo.');
+  if (!(o.pax >= 1)) return err('Inserisci il numero di persone.');
+  const ex = id ? S.servizi.find(x => x.id === id) : null;
+  const rec = ex ? { ...ex, ...o } : { id: newId('s_'), accId: null, ...o };
+  delete rec.oraFine; delete rec.busId; delete rec.driverId; // campi del vecchio modello
+  persist('servizi', rec);
+  if (isNew) { toast('Servizio salvato. Puoi inserirne un altro.'); openServizio(null, { data: o.data, iva: o.iva }); }
+  else closeDrawer();
+}
+
+const RF = { pullman: [['nome', 'Nome', 'text', 'Es. Pullman 1'], ['targa', 'Targa', 'text'], ['posti', 'Posti a sedere', 'number'], ['note', 'Note', 'text']], autisti: [['nome', 'Nome e cognome', 'text'], ['telefono', 'Telefono', 'tel'], ['note', 'Note', 'text', 'Patente, disponibilità…']] };
+function openRisorsa(kind, id) {
+  const ex = id ? S[kind].find(x => x.id === id) : null, v = ex || {};
+  const body = RF[kind].map(([k, l, t, ph]) => `<label class="field"><span>${l}</span><input type="${t}" id="r-${k}" value="${esc(v[k])}" ${t === 'number' ? 'min="1" inputmode="numeric"' : ''} placeholder="${esc(ph || '')}" autocomplete="off"></label>`).join('') + '<div class="ferr" id="ferr" role="alert"></div>';
+  const body2 = kind === 'pullman' ? `<label class="field"><span>Tipo</span><select id="r-tipo"><option value="pullman" ${ex && !isMini(ex) || !ex ? 'selected' : ''}>Pullman</option><option value="minibus" ${ex && isMini(ex) ? 'selected' : ''}>Minibus</option></select></label><div class="chips">${[8, 16, 20, 30].map(n => `<button type="button" class="btn sm" data-action="mini-preset" data-n="${n}">Minibus ${n} posti</button>`).join('')}</div>` : '';
+  const foot = `<button class="btn primary" data-action="save-r" data-kind="${kind}" data-id="${id || ''}">Salva</button>${ex ? `<button class="btn danger sp" data-action="del-r" data-kind="${kind}" data-id="${id}">Elimina</button>` : ''}`;
+  openDrawer((ex ? 'Modifica ' : 'Nuovo ') + (kind === 'pullman' ? 'mezzo' : 'autista'), body2 + body, foot);
+}
+function saveRisorsa(kind, id) {
+  const o = {}; for (const [k, , t] of RF[kind]) o[k] = t === 'number' ? (val('r-' + k) === '' ? '' : parseInt(val('r-' + k), 10)) : val('r-' + k);
+  if (kind === 'pullman') o.tipo = val('r-tipo') === 'minibus' ? 'minibus' : 'pullman';
+  if (!o.nome) { document.getElementById('ferr').textContent = 'Inserisci il nome.'; return; }
+  if (kind === 'pullman' && !(o.posti >= 1)) { document.getElementById('ferr').textContent = 'Inserisci i posti: servono al controllo della capienza.'; return; }
+  const ex = id ? S[kind].find(x => x.id === id) : null;
+  persist(kind, ex ? { ...ex, ...o } : { id: newId(kind === 'pullman' ? 'b_' : 'd_'), ...o });
+  closeDrawer();
+}
+function armDelete(el, fn) {
+  if (el.dataset.armed) { fn(); return; }
+  el.dataset.armed = '1'; el.classList.add('armed'); el.textContent = 'Conferma eliminazione';
+  setTimeout(() => { if (el.isConnected) { delete el.dataset.armed; el.classList.remove('armed'); el.textContent = 'Elimina'; } }, 3500);
+}
+
+/* ---------- azioni ---------- */
+const rawSvc = id => S.servizi.find(x => x.id === id);
+const ACTIONS = {
+  'mini-preset'(el) { const n = el.dataset.n; document.getElementById('r-tipo').value = 'minibus'; document.getElementById('r-posti').value = n; const nm = document.getElementById('r-nome'); if (!nm.value) nm.value = 'Minibus ' + n; },
+  tab(el) { S.tab = el.dataset.tab; render(); window.scrollTo(0, 0); },
+  'new-s'() { openServizio(null, { data: S.tab === 'assegna' ? S.fa.day : (S.tab === 'auto' ? S.auto.day : todayStr()) }); },
+  'edit-s'(el) { openServizio(el.dataset.id); },
+  'save-s'(el) { saveServizio(!!el.dataset.new, el.dataset.id || null); },
+  'dup-s'(el) { const s = rawSvc(el.dataset.id); if (s) { const { id, accId, esempio, ...rest } = s; openServizio(null, rest); } },
+  'del-s'(el) { armDelete(el, () => { del('servizi', el.dataset.id, true); closeDrawer(); pruneAcc(); toast('Servizio eliminato.'); }); },
+  'close-drawer'() { closeDrawer(); },
+  'go-svc'(el) {
+    const s = S.eff.find(x => x.id === el.dataset.id); if (!s) return;
+    S.tab = 'assegna';
+    S.fa.day = s.data; S.fa.q = ''; S.fa.mostra = 'tutti'; render(); window.scrollTo(0, 0);
+  },
+  'pick-res'(el) { if (POP && POP.svc === el.dataset.svc && POP.kind === el.dataset.kind) closePop(); else openPop(el); },
+  'pop-set'(el) { if (!POP) return; const { svc, kind } = POP; closePop(); assignTo(svc, kind, el.dataset.id); },
+  'auto-day'(el) { S.auto.day = el.dataset.set || numDay(dayNum(S.auto.day) + Number(el.dataset.d)); render(); },
+  'auto-run'() { S.auto.plan = autoPlan(S.eff, S.pullman, S.autisti, cfg(), { day: S.auto.day, redo: S.auto.redo }); render(); },
+  'auto-discard'() { S.auto.plan = null; render(); },
+  'auto-apply'() {
+    const P = S.auto.plan; if (!P || !P.chains.length) return;
+    for (const c of P.chains) {
+      const a = { id: newId('a_'), n: c.n, busId: c.busId || null, driverId: c.driverId || null };
+      put('accoppiamenti', a, true);
+      c.ids.forEach(id => { const sv = rawSvc(id); if (sv) put('servizi', { ...sv, accId: a.id }, true); });
+    }
+    pruneAcc(); recompute(); S.auto.plan = null; S.fa.day = P.day; S.fa.q = ''; S.fa.mostra = 'tutti'; S.tab = 'assegna'; render(); window.scrollTo(0, 0);
+    toast(`${P.chains.length} accoppiamenti creati: li trovi in Assegnazione.`);
+  },
+  'fat-year'(el) { S.fat.year = (S.fat.year || new Date().getFullYear()) + Number(el.dataset.d); S.fat.month = ''; render(); },
+  'fat-month'(el) { S.fat.month = el.dataset.m; if (el.dataset.m) S.fat.year = Number(el.dataset.m.slice(0, 4)); render(); window.scrollTo(0, 0); },
+  'fat-day'(el) { S.fa.day = el.dataset.day; S.fa.q = ''; S.fa.mostra = 'tutti'; S.tab = 'assegna'; render(); window.scrollTo(0, 0); },
+  'sv-day'(el) { S.sv.day = el.dataset.set || numDay(dayNum(svDay()) + Number(el.dataset.d)); render(); },
+  'toggle-past'() { S.svPast = !S.svPast; render(); },
+  'fa-day'(el) { S.fa.day = el.dataset.set || numDay(dayNum(S.fa.day) + Number(el.dataset.d)); render(); },
+  'acc-new'(el) { const sv = rawSvc(el.dataset.id); if (!sv) return; const a = { id: newId('a_'), n: nextAccN(sv.data), busId: null, driverId: null }; put('accoppiamenti', a, true); put('servizi', { ...sv, accId: a.id }, true); recompute(); render(); },
+  'unpair-svc'(el) { const s = rawSvc(el.dataset.id); if (!s) return; put('servizi', { ...s, accId: null }, true); pruneAcc(); },
+  'unpair-acc'(el) { S.servizi.filter(s => s.accId === el.dataset.id).forEach(s => put('servizi', { ...s, accId: null }, true)); del('accoppiamenti', el.dataset.id, true); recompute(); render(); toast('Accoppiamento sciolto: i servizi sono di nuovo da accoppiare.'); },
+  'svc-preset'(el) { const i = document.getElementById('f-servizio'); i.value = el.dataset.v; const vb = document.getElementById('volobox'); vb.hidden = !isFcoHtl(i.value); if (!vb.hidden) document.getElementById('f-volo').focus(); else i.focus(); },
+  'bk-export'() { const o = { app: 'fleetline', quando: new Date().toISOString(), settings: S.settings }; COLLS.forEach(k => { o[k] = S[k]; }); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(o)], { type: 'application/json' })); a.download = `fleetline-backup-${todayStr()}.json`; document.body.appendChild(a); a.click(); a.remove(); },
+  'import-hotel'() {
+    const t = document.getElementById('imp-hotel'), known = new Set([...hotelMap().keys()].map(x => x.toLowerCase())); let n = 0, up = 0;
+    for (const line of t.value.split(/\r?\n/)) {
+      const [nome, ...r] = line.split(/\t|;/).map(x => x.trim()); if (!nome) continue;
+      const ind = r.filter(Boolean).join(', '), ex = S.hotel.find(h => h.nome.toLowerCase() === nome.toLowerCase());
+      if (ex) { if (ind && ind !== ex.indirizzo) { put('hotel', { ...ex, indirizzo: ind }, true); up++; } continue; }
+      put('hotel', { id: newId('h_'), nome, indirizzo: ind }, true); known.add(nome.toLowerCase()); n++;
+    }
+    t.value = ''; toast(`${n} hotel aggiunti${up ? `, ${up} aggiornati` : ''}.`); render();
+  },
+  'del-hotel'(el) { del('hotel', el.dataset.id, true); render(); },
+  'new-r'(el) { openRisorsa(el.dataset.kind, null); },
+  'edit-r'(el) { openRisorsa(el.dataset.kind, el.dataset.id); },
+  'save-r'(el) { saveRisorsa(el.dataset.kind, el.dataset.id || null); },
+  'del-r'(el) {
+    armDelete(el, () => {
+      const f = el.dataset.kind === 'pullman' ? 'busId' : 'driverId';
+      S.accoppiamenti.filter(a => a[f] === el.dataset.id).forEach(a => put('accoppiamenti', { ...a, [f]: null }, true));
+      del(el.dataset.kind, el.dataset.id, true); closeDrawer(); recompute(); render();
+      toast('Eliminato. Gli accoppiamenti che lo usavano sono tornati da assegnare.');
+    });
+  },
+  'rv-move'(el) { S.rv.from = numDay(dayNum(S.rv.from) + Number(el.dataset.d)); render(); },
+  'rv-today'() { S.rv.from = todayStr(); render(); },
+  'del-examples'() {
+    S.accoppiamenti.filter(a => accSvcs(a.id).every(s => s.esempio)).forEach(a => del('accoppiamenti', a.id, true));
+    for (const c of ['servizi', 'pullman', 'autisti']) S[c].filter(x => x.esempio).forEach(x => del(c, x.id, true));
+    pruneAcc(); toast('Dati di esempio eliminati.');
+  },
+};
+document.addEventListener('click', e => { const el = e.target.closest('[data-action]'); if (!el || !ACTIONS[el.dataset.action]) return; ACTIONS[el.dataset.action](el, e); });
+document.addEventListener('input', e => { const t = e.target; if (t.dataset && t.dataset.filter) { S[t.dataset.fs || 'f'][t.dataset.filter] = t.value; render(); } });
+document.addEventListener('change', e => {
+  const t = e.target, c = t.dataset && t.dataset.change; if (!c) return;
+  if (c === 'bk-import') { const fl = t.files && t.files[0]; if (!fl) return; const r = new FileReader(); r.onload = () => { try { const o = JSON.parse(r.result); if (!o || !Array.isArray(o.servizi)) throw 0; { COLLS.forEach(k => { S[k] = Array.isArray(o[k]) ? o[k] : []; }); S.settings = o.settings || {}; saveLocalAll(); recompute(); render(); } } catch (x) { alert_('File non valido: non è un backup di Track Desk.'); } }; r.readAsText(fl); t.value = ''; return; }
+  if (c === 'autoredo') { S.auto.redo = t.checked; render(); return; }
+  if (c === 'settingflag') { saveSettings({ [t.dataset.k]: t.checked ? 1 : 0 }); return; }
+  if (c === 'accset') { setAcc(t.dataset.svc, t.value); return; }
+  if (c === 'showpast') { S.showPast = t.checked; render(); }
+  if (c === 'rvfrom' && t.value) { S.rv.from = t.value; render(); }
+  if (c === 'rvn') { S.rv.n = parseInt(t.value, 10) || 14; render(); }
+  if (c === 'setting') { const n = parseFloat(t.value); if (!isNaN(n) && n >= 0) saveSettings({ [t.dataset.k]: n }); }
+});
+document.addEventListener('click', e => { if (POP && !POP.el.contains(e.target) && !e.target.closest('[data-action=pick-res]')) closePop(); }, true);
+window.addEventListener('scroll', e => { if (POP && !POP.el.contains(e.target)) closePop(); }, true);
+window.addEventListener('resize', closePop);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && POP) { closePop(); return; }
+  if (e.key === 'Escape' && !$drawer.hidden) closeDrawer();
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !$drawer.hidden) { const b = $dfoot.querySelector('.btn.primary'); if (b) b.click(); }
+});
+
+const alert_ = m => { const d = document.createElement('div'); d.setAttribute('role', 'alert'); d.textContent = m; d.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0E1A33;color:#fff;padding:10px 16px;border-radius:10px;z-index:99;font-size:13px'; document.body.appendChild(d); setTimeout(() => d.remove(), 4000); };
+/* ---------- avvio ---------- */
+(async function boot() {
+  render();
+  let db = null;
+  try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
+  if (db) { DB = db; S.mode = 'db'; subscribe(); }
+  else { S.mode = 'local'; loadLocal(); try { if (!localStorage.getItem('gsp-v2') && !localStorage.getItem('gsp-seeded')) { COLLS.forEach(k => { S[k] = JSON.parse(JSON.stringify(SAMPLE[k] || [])); }); saveLocalAll(); localStorage.setItem('gsp-seeded', '1'); } } catch (e) {} S.ready = true; recompute(); render(); }
+})();
+</script>
+
+<script>if('serviceWorker' in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
+</body></html>
